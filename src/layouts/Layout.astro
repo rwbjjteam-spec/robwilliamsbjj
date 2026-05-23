@@ -1,0 +1,64 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Rob Williams BJJ | Authentic Gracie Jiu Jitsu – South Brisbane',
+  description = 'Authentic Gracie Jiu Jitsu self-defence academy in Meadowbrook, South Brisbane. Classes for kids, teens and adults. Book your free trial today.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content="https://www.robwilliamsbjj.com" />
+
+    <!-- Local Business structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SportsClub",
+        "name": "Rob Williams BJJ",
+        "description": "Authentic Gracie Jiu Jitsu self-defence academy",
+        "url": "https://www.robwilliamsbjj.com",
+        "telephone": "+61421729868",
+        "email": "robwilliamsgz@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "3/45 Nealdon Dr",
+          "addressLocality": "Meadowbrook",
+          "addressRegion": "QLD",
+          "postalCode": "4131",
+          "addressCountry": "AU"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -27.6833,
+          "longitude": 153.0833
+        },
+        "openingHours": "Mo-Sa",
+        "sameAs": [
+          "https://www.instagram.com/rwbjj_meadowbrook_/",
+          "https://www.facebook.com/robwilliamsbjj",
+          "https://www.youtube.com/@robwilliamsbjj8446"
+        ]
+      }
+    </script>
+
+    <title>{title}</title>
+  </head>
+  <body class="bg-brand-dark text-white font-body antialiased">
+    <slot />
+  </body>
+</html>

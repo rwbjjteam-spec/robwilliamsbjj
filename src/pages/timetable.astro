@@ -1,0 +1,477 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+// Each cell: null = empty, or { label, type }
+// types: adults-gi | adults-nogi | pythons | anacondas | women
+const schedule = [
+  {
+    time: '8:00am',
+    classes: [null, null, null, null, null, { label: 'Adults Gi', type: 'adults-gi' }],
+  },
+  {
+    time: '9:30am',
+    classes: [null, null, null, null, null, { label: 'Anacondas', sub: 'Must Book · Trials OK', type: 'anacondas' }],
+  },
+  {
+    time: '10:00am',
+    classes: [
+      { label: 'Adults No Gi', type: 'adults-nogi' },
+      null,
+      { label: 'Adults Gi', type: 'adults-gi' },
+      null,
+      { label: 'Adults No Gi', type: 'adults-nogi' },
+      null,
+    ],
+  },
+  {
+    time: '5:00pm',
+    classes: [
+      { label: 'Girls (13y+) & Women', type: 'women' },
+      { label: 'Pythons', sub: 'Must Book · 30 mins', type: 'pythons' },
+      null,
+      { label: 'Pythons', sub: 'Must Book · 30 mins', type: 'pythons' },
+      null,
+      null,
+    ],
+  },
+  {
+    time: '5:45pm',
+    classes: [
+      null,
+      { label: 'Anacondas', sub: 'Must Book · Trials OK', type: 'anacondas' },
+      null,
+      { label: 'Anacondas', sub: 'Must Book · No Trials', type: 'anacondas' },
+      null,
+      null,
+    ],
+  },
+  {
+    time: '6:00pm',
+    classes: [
+      { label: 'Adults No Gi', type: 'adults-nogi' },
+      null,
+      null,
+      null,
+      null,
+      null,
+    ],
+  },
+  {
+    time: '6:30pm',
+    classes: [
+      null,
+      { label: 'Adults Gi', type: 'adults-gi' },
+      null,
+      { label: 'Adults No Gi', type: 'adults-nogi' },
+      null,
+      null,
+    ],
+  },
+];
+
+const typeStyles: Record<string, string> = {
+  'adults-gi':   'bg-blue-700/80 border-blue-500',
+  'adults-nogi': 'bg-blue-900/80 border-blue-700',
+  'pythons':     'bg-yellow-600/80 border-yellow-500',
+  'anacondas':   'bg-orange-600/80 border-orange-400',
+  'women':       'bg-emerald-700/80 border-emerald-500',
+};
+---
+
+<Layout
+  title="Timetable & Pricing | Rob Williams BJJ – South Brisbane"
+  description="View the full class timetable and pricing for Rob Williams BJJ in Meadowbrook, South Brisbane. Classes for kids, teens and adults, 6 days a week."
+>
+
+  <!-- ─── NAV ─────────────────────────────────────────────────── -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/90 backdrop-blur border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+      <a href="/" class="flex items-center">
+        <img src="/Rob Williams BJJ logo.jpg" alt="Rob Williams BJJ" class="h-10 w-auto" />
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-white/80">
+        <a href="/about" class="hover:text-white transition">About</a>
+        <a href="/#programs" class="hover:text-white transition">Programs</a>
+        <a href="/timetable" class="text-white font-semibold">Timetable</a>
+        <a href="/team" class="hover:text-white transition">Our Team</a>
+        <a href="/resources" class="hover:text-white transition">Resources</a>
+        <a href="/#contact" class="hover:text-white transition">Contact</a>
+      </nav>
+      <a
+        href="/#free-trial"
+        class="bg-brand-red hover:bg-red-700 text-white text-sm font-semibold px-5 py-2 rounded transition"
+      >
+        Free Trial
+      </a>
+    </div>
+  </header>
+
+  <!-- ─── PAGE HEADER ──────────────────────────────────────────── -->
+  <section class="pt-32 pb-16 px-6 bg-brand-dark text-center">
+    <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Schedule</p>
+    <h1 class="font-display text-5xl md:text-6xl font-bold mb-4">Timetable & Pricing</h1>
+    <p class="text-white/60 text-lg max-w-xl mx-auto">
+      Classes run 6 days a week across all age groups. Adults can walk in — kids classes (Pythons & Anacondas) must be pre-booked via ClubWorx.
+    </p>
+  </section>
+
+  <!-- ─── TIMETABLE GRID ───────────────────────────────────────── -->
+  <section class="bg-[#1e1e1e] px-4 py-10">
+    <div class="max-w-5xl mx-auto">
+
+      <!-- Legend -->
+      <div class="flex flex-wrap gap-3 mb-6 justify-center">
+        {[
+          { label: 'Adults Gi',       type: 'adults-gi',   style: 'bg-blue-700/80 border-blue-500 text-white' },
+          { label: 'Adults No Gi',    type: 'adults-nogi', style: 'bg-blue-900/80 border-blue-700 text-white' },
+          { label: 'Pythons (4–7)',   type: 'pythons',     style: 'bg-yellow-600/80 border-yellow-500 text-white' },
+          { label: 'Anacondas (8–12)',type: 'anacondas',   style: 'bg-orange-600/80 border-orange-400 text-white' },
+          { label: 'Girls & Women',   type: 'women',       style: 'bg-emerald-700/80 border-emerald-500 text-white' },
+        ].map(({ label, type, style }) => (
+          <div data-class-type={type} class={`legend-item flex items-center gap-2 border rounded-lg px-3 py-1.5 text-xs font-semibold cursor-pointer transition-all ${style}`}>
+            {label}
+          </div>
+        ))}
+      </div>
+
+      <!-- Desktop grid -->
+      <div class="hidden md:block overflow-x-auto rounded-2xl border border-white/20 shadow-[0_4px_32px_rgba(0,0,0,0.6)]">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-[#d4d4d4]">
+              <th class="text-black/50 font-semibold text-xs uppercase tracking-wide px-4 py-3 text-left w-24">Time</th>
+              {days.map(d => (
+                <th class="text-black font-bold px-4 py-3 text-center">{d}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {schedule.map((row, i) => (
+              <tr class={i % 2 === 0 ? 'bg-[#e8e8e8]' : 'bg-[#dedede]'}>
+                <td class="text-black/40 font-mono text-xs px-4 py-3 whitespace-nowrap border-r border-black/10">
+                  {row.time}
+                </td>
+                {row.classes.map(cell => (
+                  <td class="px-2 py-2 text-center">
+                    {cell ? (
+                      <div data-class-type={cell.type} class={`class-cell rounded-lg border px-2 py-2 text-white text-xs font-semibold leading-tight cursor-pointer transition-all duration-150 ${typeStyles[cell.type]}`}>
+                        <div>{cell.label}</div>
+                        {cell.sub && <div class="text-white/70 font-normal mt-0.5 text-[10px]">{cell.sub}</div>}
+                      </div>
+                    ) : (
+                      <span class="text-black/20">–</span>
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Mobile list view -->
+      <div class="md:hidden space-y-6">
+        {days.map((day, di) => {
+          const dayClasses = schedule
+            .filter(row => row.classes[di] !== null)
+            .map(row => ({ time: row.time, cell: row.classes[di]! }));
+          if (dayClasses.length === 0) return null;
+          return (
+            <div class="bg-brand-gray border border-white/10 rounded-2xl overflow-hidden">
+              <div class="bg-brand-gray/80 px-5 py-3 border-b border-white/10">
+                <p class="font-bold text-white">{day}</p>
+              </div>
+              <div class="divide-y divide-white/10">
+                {dayClasses.map(({ time, cell }) => (
+                  <div class="flex items-center gap-4 px-5 py-3">
+                    <span class="text-white/50 font-mono text-xs w-16 shrink-0">{time}</span>
+                    <div class={`rounded-lg border px-3 py-1.5 text-white text-xs font-semibold flex-1 ${typeStyles[cell.type]}`}>
+                      {cell.label}
+                      {cell.sub && <span class="ml-2 text-white/70 font-normal">{cell.sub}</span>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <!-- Note + Book button -->
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 bg-brand-gray border border-white/10 rounded-2xl px-6 py-5">
+        <p class="text-white/60 text-sm text-center sm:text-left">
+          Adults can walk in to any class. Pythons & Anacondas must pre-book via ClubWorx.<br class="hidden sm:inline" />
+          ⚠️ When the forecast exceeds 30°C, gi classes convert to No-Gi — check socials for updates.
+        </p>
+        <a
+          href="https://app.clubworx.com/websites/rob-williams-bjj/calendar/weekly_agenda"
+          target="_blank"
+          rel="noopener"
+          class="shrink-0 bg-brand-red hover:bg-red-700 text-white font-bold px-8 py-3 rounded-lg transition text-sm"
+        >
+          Book a Class via ClubWorx →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── PRICING ──────────────────────────────────────────────── -->
+  <section class="py-20 px-6 bg-brand-gray">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-14">
+        <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Membership</p>
+        <h2 class="font-display text-4xl font-bold">Simple, Honest Pricing</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-10">
+
+        <div class="bg-brand-dark border border-white/10 rounded-2xl p-8 flex flex-col">
+          <p class="text-white/50 text-sm font-semibold uppercase tracking-wide mb-4">Casual</p>
+          <p class="font-display text-5xl font-bold mb-1">$35</p>
+          <p class="text-white/50 text-sm mb-6">per class</p>
+          <ul class="text-white/60 text-sm space-y-2 flex-1">
+            <li>✓ Drop in any class</li>
+            <li>✓ No commitment required</li>
+            <li>✓ All programs</li>
+          </ul>
+          <a href="/#free-trial" class="mt-8 text-center border border-white/20 hover:border-white text-white font-semibold py-3 rounded-lg transition text-sm">
+            Book a Trial First
+          </a>
+        </div>
+
+        <div class="bg-brand-dark border border-brand-red rounded-2xl p-8 flex flex-col relative">
+          <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-red text-white text-xs font-bold px-4 py-1 rounded-full">
+            POPULAR
+          </span>
+          <p class="text-white/50 text-sm font-semibold uppercase tracking-wide mb-4">10-Visit Pass</p>
+          <p class="font-display text-5xl font-bold mb-1">$250<span class="text-2xl text-white/40"> / $300</span></p>
+          <p class="text-white/50 text-sm mb-6">kids / adults · valid 12 months</p>
+          <ul class="text-white/60 text-sm space-y-2 flex-1">
+            <li>✓ Kids: $25 per class</li>
+            <li>✓ Adults: $30 per class</li>
+            <li>✓ Valid for 12 months</li>
+            <li>✓ Non-refundable</li>
+          </ul>
+          <a href="/#free-trial" class="mt-8 text-center bg-brand-red hover:bg-red-700 text-white font-bold py-3 rounded-lg transition text-sm">
+            Get Started Free
+          </a>
+        </div>
+
+        <div class="bg-brand-dark border border-white/10 rounded-2xl p-8 flex flex-col">
+          <p class="text-white/50 text-sm font-semibold uppercase tracking-wide mb-4">Direct Debit</p>
+          <p class="font-display text-5xl font-bold mb-1">Best</p>
+          <p class="text-white/50 text-sm mb-6">value · contact for rates</p>
+          <ul class="text-white/60 text-sm space-y-2 flex-1">
+            <li>✓ Discounted rates</li>
+            <li>✓ 3, 6 or 12-month terms</li>
+            <li>✓ Upfront payment options</li>
+            <li>✓ Family deals available</li>
+          </ul>
+          <a href="mailto:robwilliamsgz@gmail.com" class="mt-8 text-center border border-white/20 hover:border-white text-white font-semibold py-3 rounded-lg transition text-sm">
+            Contact for Rates
+          </a>
+        </div>
+
+      </div>
+
+      <p class="text-white/40 text-xs text-center">
+        Memberships are non-transferable and cannot be shared. No makeup classes are provided.
+        Family deals available — contact Rob to discuss a fee structure that suits your family.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── UNIFORM & GEAR ────────────────────────────────────────── -->
+  <section class="py-20 px-6 bg-brand-dark">
+    <div class="max-w-3xl mx-auto">
+      <div class="relative text-center mb-12">
+        <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Equipment</p>
+        <h2 class="font-display text-4xl font-bold">Uniform & Gear</h2>
+        <img
+          src="/Kangaroo Rob.jpg"
+          alt="Kangaroo Rob"
+          class="absolute -right-10 -top-16 h-56 w-auto object-contain object-top drop-shadow-xl pointer-events-none z-0"
+        />
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4 relative z-10">
+        {[
+          { item: 'Kids Gi', price: '$130' },
+          { item: 'Adults Gi', price: '$150' },
+          { item: 'Gi Pants', price: '$50' },
+          { item: 'Belt', price: '$20' },
+          { item: 'Rashie (Short Sleeve)', price: '$55' },
+          { item: 'Rashie (Long Sleeve)', price: '$65' },
+          { item: 'Fight Shorts', price: '$40' },
+          { item: 'Leggings', price: '$40' },
+          { item: 'T-Shirts', price: '$39' },
+          { item: 'Hoodies', price: '$59' },
+        ].map(({ item, price }) => (
+          <div class="flex items-center justify-between bg-brand-gray border border-white/10 rounded-xl px-5 py-4">
+            <span class="text-white/80 text-sm font-medium">{item}</span>
+            <span class="text-white font-bold">{price}</span>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-white/40 text-xs text-center mt-6">
+        All gear available directly through the academy. Contact Rob to order.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── GRADINGS ───────────────────────────────────────────────── -->
+  <section class="py-24 px-6 bg-brand-gray">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-start">
+
+      <div>
+        <img src="/Gradings.jpg" alt="Rob Williams BJJ Grading" class="rounded-2xl w-full object-cover mb-6" />
+        <!-- Transfer students note -->
+        <div class="bg-brand-dark border border-white/10 rounded-2xl p-6">
+          <p class="text-brand-red uppercase tracking-widest text-xs font-semibold mb-3">Transferring from Another Gym?</p>
+          <p class="text-white/70 text-sm leading-relaxed mb-3">
+            The Pedro Sauer Association upholds very high standards. Students joining from another school —
+            particularly those wearing a coloured belt — must meet PSBJJA requirements before wearing
+            that belt in our academy uniform.
+          </p>
+          <p class="text-white/70 text-sm leading-relaxed mb-3">
+            Casual visitors are always welcome to train in their own uniform and belt. However, full members
+            wishing to wear our uniform must sit the assessment for each belt level before it is awarded here.
+          </p>
+          <p class="text-white/50 text-xs leading-relaxed">
+            This policy exists to protect the integrity of our ranks. The curriculum for each grade is available
+            to study and be assessed on at any time — just ask Rob.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Progression</p>
+        <h2 class="font-display text-4xl font-bold mb-6">Gradings</h2>
+        <p class="text-white/70 text-lg leading-relaxed mb-8">
+          Grading at Rob Williams BJJ follows the Pedro Sauer Association curriculum.
+          Every student must demonstrate technical and physical competency at each level
+          before advancing — no shortcuts, no exceptions.
+        </p>
+
+        <!-- Kids -->
+        <div class="mb-8">
+          <h3 class="font-display text-xl font-bold mb-4 text-white">Kids (Ages 4–14)</h3>
+          <div class="grid grid-cols-2 gap-3">
+            {[
+              { label: 'Classes per stripe', value: '20' },
+              { label: 'Classes per belt', value: '100' },
+            ].map(({ label, value }) => (
+              <div class="bg-brand-dark border border-white/10 rounded-xl p-4 text-center">
+                <p class="font-display text-3xl font-bold text-white">{value}</p>
+                <p class="text-white/50 text-xs mt-1">{label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Adults -->
+        <div>
+          <h3 class="font-display text-xl font-bold mb-4 text-white">Adults (16+)</h3>
+          <div class="space-y-3">
+            {[
+              { from: 'White', to: 'Blue', years: '2–3 years' },
+              { from: 'Blue', to: 'Purple', years: '5–7 years' },
+              { from: 'Purple', to: 'Brown', years: '7–10 years' },
+              { from: 'Brown', to: 'Black', years: '10–12 years' },
+            ].map(({ from, to, years }) => (
+              <div class="flex items-center justify-between bg-brand-dark border border-white/10 rounded-xl px-5 py-3">
+                <span class="text-white/80 text-sm">{from} → {to}</span>
+                <span class="text-white font-bold text-sm">{years}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── CTA ──────────────────────────────────────────────────── -->
+  <section class="py-20 px-6 bg-brand-gray text-center">
+    <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Ready to Start?</p>
+    <h2 class="font-display text-4xl font-bold mb-6">Your First Class is Free</h2>
+    <p class="text-white/60 text-lg mb-10 max-w-lg mx-auto">
+      No experience needed. Try a class, meet the team, and see if Rob Williams BJJ is the right fit for you.
+    </p>
+    <a
+      href="/#free-trial"
+      class="bg-brand-red hover:bg-red-700 text-white font-bold text-lg px-12 py-4 rounded transition inline-block"
+    >
+      Book Your Free Trial
+    </a>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────────── -->
+  <footer class="bg-brand-dark border-t border-white/10 py-14 px-6">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-10">
+      <div>
+        <p class="font-display text-xl font-bold mb-3">ROB WILLIAMS <span class="text-brand-red">BJJ</span></p>
+        <p class="text-white/50 text-sm leading-relaxed">
+          Authentic Gracie Jiu Jitsu self-defence academy.<br />
+          South Brisbane · Meadowbrook QLD
+        </p>
+      </div>
+      <div>
+        <p class="font-semibold text-white/80 mb-4 text-sm uppercase tracking-wide">Contact</p>
+        <ul class="space-y-3 text-white/60 text-sm">
+          <li><a href="tel:0421729868" class="hover:text-white transition">📞 0421 729 868</a></li>
+          <li><a href="mailto:robwilliamsgz@gmail.com" class="hover:text-white transition">✉️ robwilliamsgz@gmail.com</a></li>
+          <li>
+            <a href="https://maps.google.com/?q=3/45+Nealdon+Dr+Meadowbrook+QLD+4131" target="_blank" rel="noopener" class="hover:text-white transition">
+              📍 3/45 Nealdon Dr, Meadowbrook QLD 4131
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-white/80 mb-4 text-sm uppercase tracking-wide">Quick Links</p>
+        <ul class="space-y-2 text-white/60 text-sm">
+          <li><a href="/#programs" class="hover:text-white transition">Programs</a></li>
+          <li><a href="/timetable" class="hover:text-white transition">Timetable & Pricing</a></li>
+          <li><a href="/#free-trial" class="hover:text-white transition">Free Trial</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="max-w-5xl mx-auto mt-10 pt-6 border-t border-white/10 text-center text-white/30 text-xs">
+      © {new Date().getFullYear()} Rob Williams BJJ. All rights reserved.
+    </div>
+  </footer>
+
+<style>
+  .class-cell, .legend-item { transition: opacity 0.15s, box-shadow 0.15s, transform 0.15s; }
+  .class-cell.dimmed, .legend-item.dimmed { opacity: 0.25; }
+  .class-cell.highlighted { box-shadow: 0 0 0 2px white, 0 0 12px rgba(255,255,255,0.3); transform: scale(1.04); opacity: 1; }
+  .legend-item.highlighted { box-shadow: 0 0 0 2px white, 0 0 10px rgba(255,255,255,0.2); transform: scale(1.06); opacity: 1; }
+</style>
+
+<script>
+  const items = document.querySelectorAll<HTMLElement>('[data-class-type]');
+  items.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      const type = item.dataset.classType;
+      items.forEach(el => {
+        if (el.dataset.classType === type) {
+          el.classList.add('highlighted');
+          el.classList.remove('dimmed');
+        } else {
+          el.classList.add('dimmed');
+          el.classList.remove('highlighted');
+        }
+      });
+    });
+    item.addEventListener('mouseleave', () => {
+      items.forEach(el => el.classList.remove('highlighted', 'dimmed'));
+    });
+  });
+</script>
+
+</Layout>

@@ -1,0 +1,454 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const programs = [
+  {
+    name: 'Pythons',
+    age: 'Ages 4–7',
+    icon: '🐍',
+    desc: 'Fun, safe introduction to grappling. Builds coordination, confidence and essential life skills through age-appropriate games.',
+    details: [
+      'Fundamental takedowns, throws and self-defence techniques',
+      'Positional control and escape methods',
+      'Anti-bullying strategies, empathy and leadership',
+      'Self-discipline, teamwork and socialization',
+      'Improves fitness and coordination in a safe environment',
+      'Must pre-book via ClubWorx',
+    ],
+  },
+  {
+    name: 'Anacondas',
+    age: 'Ages 8–12',
+    icon: '🥋',
+    desc: 'Structured classes covering defence fundamentals, ground grappling and throws in a fun, challenging environment.',
+    details: [
+      'Takedowns, throws, escapes and transitions',
+      'Submissions including chokes and armlocks',
+      'Anti-bullying, leadership and cooperation skills',
+      'Team-building exercises and responsibility',
+      'Friendly competitions for advanced students',
+      'Must pre-book via ClubWorx',
+    ],
+  },
+  {
+    name: 'Women',
+    age: '13 & Over',
+    icon: '💪',
+    desc: 'A supportive, non-competitive environment to learn Jiu Jitsu at your own pace. Mondays at 5pm — bring a friend.',
+    details: [
+      'Crawl, walk, run philosophy — no pressure, no comparisons',
+      'Practical self-defence skills in a safe space',
+      'Personalised progression at your own pace',
+      'Encouraging community — bring a friend',
+      'Mondays at 5:00pm',
+    ],
+  },
+  {
+    name: 'Adults',
+    age: '13 & Over',
+    icon: '🏆',
+    desc: 'Full Gracie Jiu Jitsu curriculum for beginners and experienced grapplers alike. Walk in — no booking required.',
+    details: [
+      '2–3 techniques per class covering standing and ground work',
+      'Gentle warm up, partner drilling, then free training or sparring',
+      'Full Gracie Jiu Jitsu curriculum including weapons defence',
+      'Suitable for complete beginners through to experienced grapplers',
+      'Builds mutual respect and a strong training community',
+      'Walk-in — no booking required',
+    ],
+  },
+];
+---
+
+<Layout>
+
+  <!-- ─── NAV ─────────────────────────────────────────────────── -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/90 backdrop-blur border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+      <a href="/" class="flex items-center">
+        <img src="/Rob Williams BJJ logo.jpg" alt="Rob Williams BJJ" class="h-10 w-auto" />
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-white/80">
+        <a href="/about" class="hover:text-white transition">About</a>
+        <a href="#programs" class="hover:text-white transition">Programs</a>
+        <a href="/timetable" class="hover:text-white transition">Timetable</a>
+        <a href="/team" class="hover:text-white transition">Our Team</a>
+        <a href="/resources" class="hover:text-white transition">Resources</a>
+        <a href="#contact" class="hover:text-white transition">Contact</a>
+      </nav>
+      <a
+        href="#free-trial"
+        class="bg-brand-red hover:bg-red-700 text-white text-sm font-semibold px-5 py-2 rounded transition"
+      >
+        Free Trial
+      </a>
+    </div>
+  </header>
+
+  <!-- ─── HERO ─────────────────────────────────────────────────── -->
+  <section
+    class="relative min-h-screen flex items-center justify-center text-center px-6"
+    style="background: linear-gradient(to bottom, rgba(13,13,13,0.65) 0%, rgba(13,13,13,0.85) 100%), url('/hero-bg.jpg') center/cover no-repeat;"
+  >
+    <div class="max-w-3xl mx-auto pt-16">
+      <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-4">
+        Meadowbrook · South Brisbane
+      </p>
+      <h1 class="font-display text-5xl md:text-7xl font-bold leading-tight mb-6">
+        Authentic Gracie<br />
+        <span class="text-brand-red">Jiu Jitsu</span>
+      </h1>
+      <p class="text-white/80 text-lg md:text-xl max-w-xl mx-auto mb-10">
+        A family-style academy focused on real self-defence and personal development.
+        Classes 6 days a week for all ages.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="#free-trial"
+          class="bg-brand-red hover:bg-red-700 text-white font-bold text-lg px-10 py-4 rounded transition"
+        >
+          Start Your Free Trial
+        </a>
+        <a
+          href="#programs"
+          class="border border-white/40 hover:border-white text-white font-semibold text-lg px-10 py-4 rounded transition"
+        >
+          View Programs
+        </a>
+      </div>
+    </div>
+
+    <!-- scroll hint -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/40 text-xs">
+      <span>Scroll</span>
+      <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- ─── TRUST BAR ─────────────────────────────────────────────── -->
+  <section class="bg-brand-red py-5 px-6">
+    <div class="max-w-5xl mx-auto text-white font-semibold text-sm md:text-base tracking-wide text-center">
+      <!-- Accolades row -->
+      <div class="flex flex-wrap justify-center gap-x-8 gap-y-1 mb-2">
+        <span>3rd Degree Black Belt</span>
+        <span class="hidden sm:inline text-white/40">|</span>
+        <span>World Championship Competitor</span>
+        <span class="hidden sm:inline text-white/40">|</span>
+        <span>7× NZ National Champion</span>
+      </div>
+      <!-- Award row -->
+      <div class="text-white/90">
+        Best Martial Arts Studio – Logan City 2024
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─────────────────────────────────────────────────── -->
+  <section id="about" class="py-24 px-6 bg-brand-gray">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+      <div>
+        <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">About the Academy</p>
+        <h2 class="font-display text-4xl font-bold mb-6">
+          Jiu Jitsu for Everyone.<br />Not Just Fighters.
+        </h2>
+        <p class="text-white/70 text-lg leading-relaxed mb-6">
+          Gracie Jiu Jitsu is the martial art for you — even if you never want to compete or call yourself a fighter.
+          Our curriculum covers kicks, punches, throws, and ground techniques, giving you real self-defence skills
+          you can use in the real world.
+        </p>
+        <p class="text-white/70 text-lg leading-relaxed mb-8">
+          Rob Williams Academy is a family-style gym that focuses on self-defence and personal development.
+          We welcome complete beginners, experienced grapplers, families, and everyone in between.
+        </p>
+        <a href="#free-trial" class="bg-brand-red hover:bg-red-700 text-white font-bold px-8 py-3 rounded transition inline-block">
+          Try a Free Class
+        </a>
+      </div>
+      <div class="rounded-2xl overflow-hidden aspect-[4/5]">
+        <img src="/rob-photo.jpg" alt="Professor Rob Williams – 3rd Degree Black Belt" class="w-full h-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROGRAMS ──────────────────────────────────────────────── -->
+  <section id="programs" class="py-24 px-6 bg-brand-dark">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Programs</p>
+        <h2 class="font-display text-4xl font-bold">Training for Every Age</h2>
+      </div>
+      <!-- Program cards -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        {programs.map((p) => (
+          <button
+            data-program={p.name.toLowerCase()}
+            class="program-card bg-brand-gray border border-white/10 rounded-2xl p-7 text-left flex flex-col gap-4 hover:border-brand-red/60 transition w-full cursor-pointer"
+          >
+            <div class="text-4xl">{p.icon}</div>
+            <div>
+              <h3 class="font-display text-xl font-bold">{p.name}</h3>
+              <p class="text-brand-red text-sm font-semibold mt-0.5">{p.age}</p>
+            </div>
+            <p class="text-white/60 text-sm leading-relaxed flex-1">{p.desc}</p>
+            <span class="text-brand-red text-sm font-semibold mt-auto">Learn more ↓</span>
+          </button>
+        ))}
+      </div>
+
+      <!-- Expanded detail panels (one per program, hidden by default) -->
+      {programs.map((p) => (
+        <div
+          id={`program-${p.name.toLowerCase()}`}
+          class="program-detail hidden bg-brand-gray border border-brand-red/60 rounded-2xl p-8 grid md:grid-cols-[160px_1fr] gap-8 items-start"
+        >
+          <div class="flex flex-col items-center text-center md:items-start md:text-left">
+            <div class="text-5xl mb-3">{p.icon}</div>
+            <h3 class="font-display text-2xl font-bold">{p.name}</h3>
+            <p class="text-brand-red text-sm font-semibold mt-1">{p.age}</p>
+          </div>
+          <div>
+            <p class="text-white/70 text-base leading-relaxed mb-5">{p.desc}</p>
+            <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2 mb-6">
+              {p.details.map((d) => (
+                <li class="flex gap-2 text-sm text-white/70">
+                  <span class="text-brand-red shrink-0">▸</span>
+                  <span>{d}</span>
+                </li>
+              ))}
+            </ul>
+            <a href="#free-trial" class="inline-block bg-brand-red hover:bg-red-700 text-white font-bold px-8 py-3 rounded transition text-sm">
+              Book a free trial →
+            </a>
+          </div>
+        </div>
+      ))}
+
+      <script>
+        const cards = document.querySelectorAll('.program-card');
+        const panels = document.querySelectorAll('.program-detail');
+
+        cards.forEach(card => {
+          card.addEventListener('click', () => {
+            const id = card.dataset.program;
+            const panel = document.getElementById(`program-${id}`);
+            const isOpen = !panel.classList.contains('hidden');
+
+            panels.forEach(p => p.classList.add('hidden'));
+            cards.forEach(c => c.classList.remove('!border-brand-red'));
+
+            if (!isOpen) {
+              panel.classList.remove('hidden');
+              card.classList.add('!border-brand-red');
+              panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+          });
+        });
+      </script>
+    </div>
+  </section>
+
+  <!-- ─── TIMETABLE TEASER ──────────────────────────────────────── -->
+  <section id="timetable" class="py-24 px-6 bg-brand-gray">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Timetable</p>
+      <h2 class="font-display text-4xl font-bold mb-6">Classes 6 Days a Week</h2>
+      <p class="text-white/70 text-lg mb-10">
+        We run morning and evening sessions Monday through Saturday, with dedicated classes for kids,
+        women and adults. Something for every schedule.
+      </p>
+      <a
+        href="https://www.robwilliamsbjj.com/timetable"
+        target="_blank"
+        rel="noopener"
+        class="inline-block border-2 border-brand-red text-brand-red hover:bg-brand-red hover:text-white font-bold px-10 py-4 rounded transition"
+      >
+        View Full Timetable & Pricing
+      </a>
+    </div>
+  </section>
+
+  <!-- ─── FREE TRIAL FORM ───────────────────────────────────────── -->
+  <section id="free-trial" class="py-24 px-6 bg-brand-dark">
+    <div class="max-w-xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Get Started</p>
+        <h2 class="font-display text-4xl font-bold mb-4">Book Your Free Trial</h2>
+        <p class="text-white/60 text-lg">
+          No experience needed. Show up, give it a go, and see why hundreds of South Brisbane
+          families have chosen Rob Williams BJJ.
+        </p>
+      </div>
+
+      <form
+        name="free-trial"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        class="bg-brand-gray border border-white/10 rounded-2xl p-8 flex flex-col gap-5"
+      >
+        <input type="hidden" name="form-name" value="free-trial" />
+        <p class="hidden"><label>Don't fill this out: <input name="bot-field" /></label></p>
+
+        <div>
+          <label class="block text-sm font-semibold text-white/80 mb-2">Full Name *</label>
+          <input
+            type="text"
+            name="name"
+            required
+            class="w-full bg-brand-dark border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-brand-red transition"
+            placeholder="Your name"
+          />
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-white/80 mb-2">Phone *</label>
+          <input
+            type="tel"
+            name="phone"
+            required
+            class="w-full bg-brand-dark border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-brand-red transition"
+            placeholder="0400 000 000"
+          />
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-white/80 mb-2">Email</label>
+          <input
+            type="email"
+            name="email"
+            class="w-full bg-brand-dark border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-brand-red transition"
+            placeholder="you@email.com"
+          />
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-white/80 mb-2">Which program are you interested in?</label>
+          <select
+            name="program"
+            class="w-full bg-brand-dark border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-red transition"
+          >
+            <option value="">Select a program</option>
+            <option>Pythons (Ages 4–7)</option>
+            <option>Anacondas (Ages 8–12)</option>
+            <option>Women (13+)</option>
+            <option>Adults (13+)</option>
+            <option>Women's class</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-white/80 mb-2">Message (optional)</label>
+          <textarea
+            name="message"
+            rows="3"
+            class="w-full bg-brand-dark border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-brand-red transition resize-none"
+            placeholder="Any questions or preferred class times?"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="bg-brand-red hover:bg-red-700 text-white font-bold text-lg py-4 rounded-lg transition mt-2"
+        >
+          Claim My Free Trial →
+        </button>
+
+        <p class="text-white/40 text-xs text-center">
+          No lock-in contracts. Rob will be in touch within 24 hours.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ─── SOCIALS ───────────────────────────────────────────────── -->
+  <section class="py-16 px-6 bg-brand-gray border-t border-white/10">
+    <div class="max-w-xl mx-auto text-center">
+      <p class="text-white/60 text-sm uppercase tracking-widest mb-4">Follow the journey</p>
+      <h3 class="font-display text-2xl font-bold mb-8">Stay Connected</h3>
+      <div class="flex justify-center gap-6">
+        <a
+          href="https://www.instagram.com/rwbjj_meadowbrook_/"
+          target="_blank"
+          rel="noopener"
+          class="flex items-center gap-2 bg-brand-dark hover:bg-brand-red border border-white/10 text-white px-6 py-3 rounded-xl font-semibold transition text-sm"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          Instagram
+        </a>
+        <a
+          href="https://www.facebook.com/robwilliamsbjj"
+          target="_blank"
+          rel="noopener"
+          class="flex items-center gap-2 bg-brand-dark hover:bg-brand-red border border-white/10 text-white px-6 py-3 rounded-xl font-semibold transition text-sm"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+          Facebook
+        </a>
+        <a
+          href="https://www.youtube.com/@robwilliamsbjj8446"
+          target="_blank"
+          rel="noopener"
+          class="flex items-center gap-2 bg-brand-dark hover:bg-brand-red border border-white/10 text-white px-6 py-3 rounded-xl font-semibold transition text-sm"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+          YouTube
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER / CONTACT ──────────────────────────────────────── -->
+  <footer id="contact" class="bg-brand-dark border-t border-white/10 py-14 px-6">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-10">
+      <div>
+        <p class="font-display text-xl font-bold mb-3">ROB WILLIAMS <span class="text-brand-red">BJJ</span></p>
+        <p class="text-white/50 text-sm leading-relaxed">
+          Authentic Gracie Jiu Jitsu self-defence academy.<br />
+          South Brisbane · Meadowbrook QLD
+        </p>
+      </div>
+      <div>
+        <p class="font-semibold text-white/80 mb-4 text-sm uppercase tracking-wide">Contact</p>
+        <ul class="space-y-3 text-white/60 text-sm">
+          <li>
+            <a href="tel:0421729868" class="hover:text-white transition">📞 0421 729 868</a>
+          </li>
+          <li>
+            <a href="mailto:robwilliamsgz@gmail.com" class="hover:text-white transition">✉️ robwilliamsgz@gmail.com</a>
+          </li>
+          <li>
+            <a
+              href="https://maps.google.com/?q=3/45+Nealdon+Dr+Meadowbrook+QLD+4131"
+              target="_blank"
+              rel="noopener"
+              class="hover:text-white transition"
+            >
+              📍 3/45 Nealdon Dr, Meadowbrook QLD 4131
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-white/80 mb-4 text-sm uppercase tracking-wide">Quick Links</p>
+        <ul class="space-y-2 text-white/60 text-sm">
+          <li><a href="#programs" class="hover:text-white transition">Programs</a></li>
+          <li><a href="#timetable" class="hover:text-white transition">Timetable & Pricing</a></li>
+          <li><a href="#free-trial" class="hover:text-white transition">Free Trial</a></li>
+          <li><a href="https://www.robwilliamsbjj.com/our-academy/our-team" class="hover:text-white transition">Our Team</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="max-w-5xl mx-auto mt-10 pt-6 border-t border-white/10 text-center text-white/30 text-xs">
+      © {new Date().getFullYear()} Rob Williams BJJ. All rights reserved.
+    </div>
+  </footer>
+
+</Layout>

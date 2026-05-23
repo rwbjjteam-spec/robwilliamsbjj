@@ -1,0 +1,177 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Our Team | Rob Williams BJJ – South Brisbane"
+  description="Meet the coaches at Rob Williams BJJ. Professor Rob Williams and assistant coach Rane Labrum bring Master Pedro Sauer's philosophy to life every class in Meadowbrook, South Brisbane."
+>
+
+  <!-- ─── NAV ─────────────────────────────────────────────────── -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/90 backdrop-blur border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+      <a href="/" class="flex items-center">
+        <img src="/Rob Williams BJJ logo.jpg" alt="Rob Williams BJJ" class="h-10 w-auto" />
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-white/80">
+        <a href="/about" class="hover:text-white transition">About</a>
+        <a href="/#programs" class="hover:text-white transition">Programs</a>
+        <a href="/timetable" class="hover:text-white transition">Timetable</a>
+        <a href="/team" class="text-white font-semibold">Our Team</a>
+        <a href="/resources" class="hover:text-white transition">Resources</a>
+        <a href="/#contact" class="hover:text-white transition">Contact</a>
+      </nav>
+      <a href="/#free-trial" class="bg-brand-red hover:bg-red-700 text-white text-sm font-semibold px-5 py-2 rounded transition">
+        Free Trial
+      </a>
+    </div>
+  </header>
+
+  <!-- ─── HERO ─────────────────────────────────────────────────── -->
+  <section
+    class="relative min-h-[45vh] flex items-end px-6 pb-16 pt-32"
+    style="background: linear-gradient(to bottom, rgba(13,13,13,0.45) 0%, rgba(13,13,13,0.92) 100%), url('/hero-bg.jpg') center 30%/cover no-repeat;"
+  >
+    <div class="max-w-5xl mx-auto w-full">
+      <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Our Team</p>
+      <h1 class="font-display text-5xl md:text-6xl font-bold leading-tight">
+        The People<br />Behind the Mat
+      </h1>
+    </div>
+  </section>
+
+  <!-- ─── ROB WILLIAMS ─────────────────────────────────────────── -->
+  <section class="py-24 px-6 bg-brand-gray">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-16 items-start mb-10">
+        <img src="/Rob_OurTeam.jpg" alt="Professor Rob Williams" class="rounded-2xl w-full" />
+        <div>
+          <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Head Coach</p>
+          <h2 class="font-display text-4xl font-bold mb-2">Professor Rob Williams</h2>
+          <p class="text-white/50 text-base mb-6">3rd Degree Gracie Jiu Jitsu Black Belt · Age 55</p>
+          <p class="text-white/70 text-lg leading-relaxed mb-5">
+            Rob began his martial arts journey in childhood, training in judo, boxing, karate, kung fu,
+            kickboxing, taekwondo and aikido before discovering Brazilian Jiu Jitsu in 1997. He was
+            hooked immediately and has been on the mats ever since.
+          </p>
+          <p class="text-white/70 text-lg leading-relaxed mb-6">
+            A 7x New Zealand National Champion and World Champion Coach, Rob brings over two decades
+            of competition experience, strength and conditioning expertise, and 15 years in security
+            to every class. His mission is to make authentic Gracie Jiu Jitsu accessible to everyone
+            in South Brisbane and Logan.
+          </p>
+          <div class="flex flex-col gap-2">
+            {[
+              '3rd Degree Gracie Jiu Jitsu Black Belt',
+              '7x NZ National Champion · World Champion Coach',
+              'Pacific Rim Champion · 4x World Championship Competitor',
+              'PSBJJA Qualified Kids Coach',
+              'National Strength & Conditioning Certified',
+              '15 Years Security · First Aid · Blue Card',
+            ].map((cred) => (
+              <div class="flex items-start gap-2">
+                <span class="text-brand-red shrink-0 leading-5">▸</span>
+                <span class="text-white/60 text-xs leading-5">{cred}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── DIVIDER ──────────────────────────────────────────────── -->
+  <div class="max-w-5xl mx-auto border-t border-white/10"></div>
+
+  <!-- ─── RANE LABRUM ──────────────────────────────────────────── -->
+  <section class="py-24 px-6 bg-brand-dark">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-16 items-start mb-10">
+        <div>
+          <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Assistant Coach</p>
+          <h2 class="font-display text-4xl font-bold mb-2">Rane Labrum</h2>
+          <p class="text-white/50 text-base mb-6">Blue Belt · Jiu Jitsu Champion · Age 37</p>
+          <p class="text-white/70 text-lg leading-relaxed mb-5">
+            Rane brings energy, passion and a genuine love of Jiu Jitsu to every session. As a
+            qualified PSBJJA Kids Coach, he is especially committed to building the next generation
+            of grapplers at Rob Williams BJJ.
+          </p>
+          <p class="text-white/70 text-lg leading-relaxed mb-6">
+            Outside the gym, Rane is passionate about health and fitness, and you'll find him
+            biking, hiking or running the beach. That active mindset carries straight onto the mat —
+            he trains and coaches with the same enthusiasm every single class.
+          </p>
+          <div class="flex flex-col gap-2">
+            {[
+              'Blue Belt · Jiu Jitsu Champion',
+              'PSBJJA Qualified Kids Coach',
+              'First Aid Certified · Blue Card Holder',
+            ].map((cred) => (
+              <div class="flex items-start gap-2">
+                <span class="text-brand-red shrink-0 leading-5">▸</span>
+                <span class="text-white/60 text-xs leading-5">{cred}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <img src="/Rane_OurTeam.jpg" alt="Rane Labrum" class="rounded-2xl w-full" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA ─────────────────────────────────────────────────── -->
+  <section class="py-20 px-6 bg-brand-gray border-t border-white/10 text-center">
+    <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Come Train With Us</p>
+    <h2 class="font-display text-4xl font-bold mb-4">Ready to Get Started?</h2>
+    <p class="text-white/60 text-lg mb-10 max-w-lg mx-auto">
+      Book a free trial and see what Gracie Jiu Jitsu can do for you.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="/#free-trial" class="bg-brand-red hover:bg-red-700 text-white font-bold text-lg px-10 py-4 rounded transition inline-block">
+        Book a Free Trial
+      </a>
+      <a href="/timetable" class="border border-white/30 hover:border-white text-white font-semibold text-lg px-10 py-4 rounded transition inline-block">
+        View Timetable
+      </a>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────────── -->
+  <footer class="bg-brand-dark border-t border-white/10 py-14 px-6">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-10">
+      <div>
+        <p class="font-display text-xl font-bold mb-3">ROB WILLIAMS <span class="text-brand-red">BJJ</span></p>
+        <p class="text-white/50 text-sm leading-relaxed">
+          Authentic Gracie Jiu Jitsu self-defence academy.<br />
+          South Brisbane · Meadowbrook QLD
+        </p>
+      </div>
+      <div>
+        <p class="font-semibold text-white/80 mb-4 text-sm uppercase tracking-wide">Contact</p>
+        <ul class="space-y-3 text-white/60 text-sm">
+          <li><a href="tel:0421729868" class="hover:text-white transition">📞 0421 729 868</a></li>
+          <li><a href="mailto:robwilliamsgz@gmail.com" class="hover:text-white transition">✉️ robwilliamsgz@gmail.com</a></li>
+          <li>
+            <a href="https://maps.google.com/?q=3/45+Nealdon+Dr+Meadowbrook+QLD+4131" target="_blank" rel="noopener" class="hover:text-white transition">
+              📍 3/45 Nealdon Dr, Meadowbrook QLD 4131
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-white/80 mb-4 text-sm uppercase tracking-wide">Quick Links</p>
+        <ul class="space-y-2 text-white/60 text-sm">
+          <li><a href="/about" class="hover:text-white transition">About</a></li>
+          <li><a href="/#programs" class="hover:text-white transition">Programs</a></li>
+          <li><a href="/timetable" class="hover:text-white transition">Timetable & Pricing</a></li>
+          <li><a href="/team" class="hover:text-white transition">Our Team</a></li>
+          <li><a href="/#free-trial" class="hover:text-white transition">Free Trial</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="max-w-5xl mx-auto mt-10 pt-6 border-t border-white/10 text-center text-white/30 text-xs">
+      © {new Date().getFullYear()} Rob Williams BJJ. All rights reserved.
+    </div>
+  </footer>
+
+</Layout>

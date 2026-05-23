@@ -1,0 +1,233 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Fallback video shown while the live fetch runs (or if it fails)
+const latestVideoId    = 'ArStX4WJoxI';
+const latestVideoTitle = 'Saturdays!!!! #bjj';
+
+const techniques = [
+  { num: '01', title: 'Triangle Choke from Open Guard',                      id: '8jabp9AJvrA' },
+  { num: '02', title: 'Flower Sweep',                                         id: '8FGKCNsuzGw' },
+  { num: '03', title: 'Half Guard Tripod Pass',                               id: 'oqFcYryeGc0' },
+  { num: '04', title: 'My Favourite Armbar',                                  id: 'BbT9MCzmBpA' },
+  { num: '05', title: 'Basic Sweep to Technical Mount',                       id: '-kD64Gqg75I' },
+  { num: '06', title: 'Technical Mount Escape',                               id: 'dgtvDWUSctY' },
+  { num: '07', title: 'Escape Shin-Block Armbar (+ Advanced Escape)',         id: 'S5A8JXqD1cI' },
+  { num: '08', title: 'Flattening Shoulders with Hip Movement',               id: 'ltYX7elADqY' },
+  { num: '09', title: 'Standing Passing',                                     id: 'wILoK-rnWdE' },
+  { num: '10', title: 'Double-Under Pass Counters',                           id: 'RTyQlf--CzU' },
+  { num: '11', title: 'Back Take from Quarter Guard',                         id: 'atQleAH8o3E' },
+  { num: '12', title: 'North-South Options',                                  id: 'UVsYm0CLzvI' },
+  { num: '13', title: 'Basic Bridge & Roll + Armbar from Guard',              id: 'F8SRCxbeyME' },
+  { num: '14', title: 'Basic Kimura from Closed Guard',                       id: 'ysQqHh2WWlA' },
+  { num: '15', title: 'Over-Hook Choke (Advanced)',                           id: 'ixvYaLeljjA' },
+];
+---
+
+<Layout
+  title="Resources | Rob Williams BJJ – South Brisbane"
+  description="Training resources for Rob Williams BJJ students. Watch the latest technique videos and explore the White-to-Blue Belt curriculum series."
+>
+
+  <!-- ─── NAV ─────────────────────────────────────────────────── -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/90 backdrop-blur border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+      <a href="/" class="flex items-center">
+        <img src="/Rob Williams BJJ logo.jpg" alt="Rob Williams BJJ" class="h-10 w-auto" />
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-white/80">
+        <a href="/about" class="hover:text-white transition">About</a>
+        <a href="/#programs" class="hover:text-white transition">Programs</a>
+        <a href="/timetable" class="hover:text-white transition">Timetable</a>
+        <a href="/team" class="hover:text-white transition">Our Team</a>
+        <a href="/resources" class="text-white font-semibold">Resources</a>
+        <a href="/#contact" class="hover:text-white transition">Contact</a>
+      </nav>
+      <a href="/#free-trial" class="bg-brand-red hover:bg-red-700 text-white text-sm font-semibold px-5 py-2 rounded transition">
+        Free Trial
+      </a>
+    </div>
+  </header>
+
+  <!-- ─── HERO ─────────────────────────────────────────────────── -->
+  <section
+    class="relative min-h-[40vh] flex items-end px-6 pb-16 pt-32"
+    style="background: linear-gradient(to bottom, rgba(13,13,13,0.45) 0%, rgba(13,13,13,0.92) 100%), url('/hero-bg.jpg') center 30%/cover no-repeat;"
+  >
+    <div class="max-w-5xl mx-auto w-full">
+      <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">For Students</p>
+      <h1 class="font-display text-5xl md:text-6xl font-bold leading-tight">
+        Resources
+      </h1>
+      <p class="text-white/60 text-lg mt-4 max-w-xl">
+        Technique videos, curriculum guides, and training materials — all in one place.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── LATEST VIDEO ─────────────────────────────────────────── -->
+  <section class="py-24 px-6 bg-brand-gray">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-10">
+        <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">YouTube</p>
+        <h2 class="font-display text-4xl font-bold">Latest from the Channel</h2>
+      </div>
+
+      <!-- Video embed -->
+      <div class="relative w-full rounded-2xl overflow-hidden bg-black" style="aspect-ratio: 16/9;">
+        <iframe
+          id="latest-video-iframe"
+          src={`https://www.youtube.com/embed/${latestVideoId}?rel=0&modestbranding=1`}
+          title={latestVideoTitle}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          class="absolute inset-0 w-full h-full"
+        ></iframe>
+      </div>
+
+      <!-- Video meta + channel link -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6">
+        <p class="text-white/60 text-sm">
+          <span id="latest-video-title" class="text-white font-semibold">{latestVideoTitle}</span>
+          &nbsp;·&nbsp; Rob Williams BJJ
+        </p>
+        <a
+          href="https://www.youtube.com/@robwilliamsbjj8446"
+          target="_blank"
+          rel="noopener"
+          class="shrink-0 border border-white/30 hover:border-white text-white text-sm font-semibold px-6 py-2.5 rounded-lg transition"
+        >
+          View Full Channel →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── AUTO-UPDATE LATEST VIDEO ────────────────────────────────── -->
+  <script>
+    // Fetches the channel's latest video from the YouTube RSS feed on every page load.
+    // Uses rss2json.com as a CORS-friendly proxy (free, 1000 req/day — more than enough).
+    // If the fetch fails for any reason the hard-coded fallback video above stays visible.
+    (async () => {
+      try {
+        const channelId = 'UCdjnapRr2XcGAiMoyZCPvmw';
+        const rssUrl    = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
+        const apiUrl    = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+
+        const res  = await fetch(apiUrl);
+        const data = await res.json();
+
+        if (data.status !== 'ok' || !data.items?.length) return;
+
+        const latest  = data.items[0];
+        const videoId = latest.link?.split('v=')[1]?.split('&')[0];
+        if (!videoId) return;
+
+        const iframe = document.getElementById('latest-video-iframe') as HTMLIFrameElement | null;
+        const title  = document.getElementById('latest-video-title');
+
+        if (iframe) iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`;
+        if (title)  title.textContent = latest.title;
+      } catch {
+        // Silently keep the fallback video — no visible error to the user
+      }
+    })();
+  </script>
+
+  <!-- ─── TECHNIQUE LIBRARY ─────────────────────────────────────── -->
+  <section class="py-24 px-6 bg-brand-dark">
+    <div class="max-w-5xl mx-auto">
+      <div class="mb-12">
+        <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Curriculum</p>
+        <h2 class="font-display text-4xl font-bold mb-4">White to Blue Belt Techniques</h2>
+        <p class="text-white/60 text-lg max-w-2xl">
+          Rob's own technique series covering the core movements every student should know on their
+          journey from White to Blue Belt. Click any technique to watch on YouTube.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+        {techniques.map(({ num, title, id }) => (
+          <a
+            href={`https://www.youtube.com/watch?v=${id}`}
+            target="_blank"
+            rel="noopener"
+            class="group flex items-start gap-4 bg-brand-gray border border-white/10 hover:border-brand-red rounded-2xl px-5 py-4 transition"
+          >
+            <span class="text-brand-red font-mono text-xs font-bold shrink-0 mt-0.5 leading-5">{num}</span>
+            <span class="text-white/80 group-hover:text-white text-sm font-medium leading-snug transition">{title}</span>
+            <span class="ml-auto shrink-0 text-white/20 group-hover:text-brand-red transition text-xs leading-5">▶</span>
+          </a>
+        ))}
+      </div>
+
+      <div class="text-center">
+        <a
+          href="https://www.youtube.com/playlist?list=PLGFWCYhPhk04j1u0d_ZUX1gfkWmaNMRTz"
+          target="_blank"
+          rel="noopener"
+          class="border border-white/30 hover:border-white text-white font-semibold px-8 py-3 rounded-lg transition inline-block text-sm"
+        >
+          View Full Playlist on YouTube →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA ─────────────────────────────────────────────────── -->
+  <section class="py-20 px-6 bg-brand-gray border-t border-white/10 text-center">
+    <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Come Train With Us</p>
+    <h2 class="font-display text-4xl font-bold mb-4">See It Live on the Mat</h2>
+    <p class="text-white/60 text-lg mb-10 max-w-lg mx-auto">
+      Videos are great — but nothing beats learning in person. Book a free trial and drill these techniques with Rob.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="/#free-trial" class="bg-brand-red hover:bg-red-700 text-white font-bold text-lg px-10 py-4 rounded transition inline-block">
+        Book a Free Trial
+      </a>
+      <a href="/timetable" class="border border-white/30 hover:border-white text-white font-semibold text-lg px-10 py-4 rounded transition inline-block">
+        View Timetable
+      </a>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────────── -->
+  <footer class="bg-brand-dark border-t border-white/10 py-14 px-6">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-10">
+      <div>
+        <p class="font-display text-xl font-bold mb-3">ROB WILLIAMS <span class="text-brand-red">BJJ</span></p>
+        <p class="text-white/50 text-sm leading-relaxed">
+          Authentic Gracie Jiu Jitsu self-defence academy.<br />
+          South Brisbane · Meadowbrook QLD
+        </p>
+      </div>
+      <div>
+        <p class="font-semibold text-white/80 mb-4 text-sm uppercase tracking-wide">Contact</p>
+        <ul class="space-y-3 text-white/60 text-sm">
+          <li><a href="tel:0421729868" class="hover:text-white transition">📞 0421 729 868</a></li>
+          <li><a href="mailto:robwilliamsgz@gmail.com" class="hover:text-white transition">✉️ robwilliamsgz@gmail.com</a></li>
+          <li>
+            <a href="https://maps.google.com/?q=3/45+Nealdon+Dr+Meadowbrook+QLD+4131" target="_blank" rel="noopener" class="hover:text-white transition">
+              📍 3/45 Nealdon Dr, Meadowbrook QLD 4131
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-white/80 mb-4 text-sm uppercase tracking-wide">Quick Links</p>
+        <ul class="space-y-2 text-white/60 text-sm">
+          <li><a href="/about" class="hover:text-white transition">About</a></li>
+          <li><a href="/#programs" class="hover:text-white transition">Programs</a></li>
+          <li><a href="/timetable" class="hover:text-white transition">Timetable & Pricing</a></li>
+          <li><a href="/team" class="hover:text-white transition">Our Team</a></li>
+          <li><a href="/resources" class="hover:text-white transition">Resources</a></li>
+          <li><a href="/#free-trial" class="hover:text-white transition">Free Trial</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="max-w-5xl mx-auto mt-10 pt-6 border-t border-white/10 text-center text-white/30 text-xs">
+      © {new Date().getFullYear()} Rob Williams BJJ. All rights reserved.
+    </div>
+  </footer>
+
+</Layout>
