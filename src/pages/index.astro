@@ -297,6 +297,71 @@ const programs = [
     </div>
   </section>
 
+  <!-- ─── REVIEWS ─────────────────────────────────────────────────── -->
+  <section class="py-24 px-6 bg-brand-dark">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-14">
+        <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Google Reviews</p>
+        <h2 class="font-display text-4xl font-bold mb-4">What Our Students Say</h2>
+        <div class="flex items-center justify-center gap-2 mt-3">
+          <div class="flex gap-1">
+            {[1,2,3,4,5].map(() => (
+              <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+            ))}
+          </div>
+          <span class="text-white font-bold">5.0</span>
+          <a
+            href="https://maps.app.goo.gl/S9Xd7LfiCp1NJaZa8"
+            target="_blank"
+            rel="noopener"
+            class="text-white/40 text-sm hover:text-white transition"
+          >
+            View on Google →
+          </a>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          {
+            name: 'Cassandra Leadbetter',
+            text: "I couldn't recommend Rob and his coaches enough. My daughter was being bullied badly at school and now — just over two months in — the change in her confidence has been absolutely amazing. She's feeling more herself, like she could take on the world. Rob has brought out a side to her that I never thought I would see again. She's happy, she's confident and she has made so many new life-long friends. Thank you for giving my girl her spark back ❤️",
+          },
+          {
+            name: 'Nicholas Edwards',
+            text: "Rob and his team are great. 2 of my children have joined his classes and they absolutely love it — watching their confidence grow is awesome. I also attend classes and I'm on the same vibe as my kids. He sets up a good, fun and safe environment where everyone enjoys each other's company.",
+          },
+          {
+            name: 'Bec Barnes',
+            text: "My teenage daughter and I both come here and it's the best! Such a great environment, everyone is so welcoming and Rob is hands down a truly amazing coach. It becomes like a little family and we don't know what we would do without RWBJJ.",
+          },
+          {
+            name: 'Bethany Fox',
+            text: "I have just enrolled my 2 children with Rob and it has been amazing! My kids are counting down the hours until they get to come back. Friendly atmosphere and very patient with the kids.",
+          },
+          {
+            name: 'Arshad Sahib',
+            text: "I would highly recommend Rob Williams BJJ to anyone considering starting BJJ or for ongoing training. Rob is a great guy and a very knowledgeable instructor. The facilities are clean, well run, and there is a welcoming atmosphere for people of all skill levels.",
+          },
+        ].map(({ name, text }) => (
+          <div class="bg-brand-gray border border-white/10 rounded-2xl p-6 flex flex-col gap-4">
+            <div class="flex gap-1">
+              {[1,2,3,4,5].map(() => (
+                <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>
+              ))}
+            </div>
+            <p class="text-white/70 text-sm leading-relaxed flex-1">"{text}"</p>
+            <p class="text-white font-semibold text-sm">— {name}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- ─── FREE TRIAL FORM ───────────────────────────────────────── -->
   <section id="free-trial" class="py-24 px-6 bg-brand-dark">
     <div class="max-w-xl mx-auto">
