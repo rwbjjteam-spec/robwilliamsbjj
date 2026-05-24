@@ -5,9 +5,13 @@ interface Props {
 }
 
 const {
-  title = 'Rob Williams BJJ | Authentic Gracie Jiu Jitsu – South Brisbane',
-  description = 'Authentic Gracie Jiu Jitsu self-defence academy in Meadowbrook, South Brisbane. Classes for kids, teens and adults. Book your free trial today.',
+  title = 'Jiu Jitsu Meadowbrook | Rob Williams BJJ – South Brisbane & Logan',
+  description = 'Authentic Gracie Jiu Jitsu self-defence academy in Meadowbrook, South Brisbane. Classes for kids, teens and adults in the Logan area. Book your free trial today.',
 } = Astro.props;
+
+const siteBase   = 'https://www.robwilliamsbjj.com';
+const canonicalURL = new URL(Astro.url.pathname, siteBase).href;
+const ogImage    = `${siteBase}/hero-bg.jpg`;
 ---
 
 <!doctype html>
@@ -18,11 +22,18 @@ const {
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
 
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalURL} />
+
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
+    <meta property="og:type"        content="website" />
+    <meta property="og:title"       content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content="https://www.robwilliamsbjj.com" />
+    <meta property="og:url"         content={canonicalURL} />
+    <meta property="og:image"       content={ogImage} />
+    <meta property="og:image:width"  content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name"   content="Rob Williams BJJ" />
 
     <!-- Local Business structured data -->
     <script type="application/ld+json">
@@ -30,8 +41,10 @@ const {
         "@context": "https://schema.org",
         "@type": "SportsClub",
         "name": "Rob Williams BJJ",
-        "description": "Authentic Gracie Jiu Jitsu self-defence academy",
+        "description": "Authentic Gracie Jiu Jitsu self-defence academy in Meadowbrook, South Brisbane, serving the Logan area.",
         "url": "https://www.robwilliamsbjj.com",
+        "image": "https://www.robwilliamsbjj.com/hero-bg.jpg",
+        "priceRange": "$$",
         "telephone": "+61421729868",
         "email": "robwilliamsgz@gmail.com",
         "address": {
@@ -47,7 +60,15 @@ const {
           "latitude": -27.6833,
           "longitude": 153.0833
         },
-        "openingHours": "Mo-Sa",
+        "openingHoursSpecification": [
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday",    "opens": "10:00", "closes": "20:00" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": "Tuesday",   "opens": "17:00", "closes": "20:00" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "10:00", "closes": "11:00" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday",  "opens": "17:00", "closes": "20:00" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday",    "opens": "10:00", "closes": "11:00" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday",  "opens": "08:00", "closes": "10:30" }
+        ],
+        "hasMap": "https://maps.google.com/?q=3/45+Nealdon+Dr+Meadowbrook+QLD+4131",
         "sameAs": [
           "https://www.instagram.com/rwbjj_meadowbrook_/",
           "https://www.facebook.com/robwilliamsbjj",
