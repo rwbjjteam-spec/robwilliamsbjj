@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
 ---
 
 <Layout
@@ -7,25 +8,7 @@ import Layout from '../layouts/Layout.astro';
   description="Rob Williams BJJ is Queensland's first Pedro Sauer Jiu-Jitsu Association affiliate. Learn about Master Pedro Sauer, his philosophy, and what makes our academy different."
 >
 
-  <!-- ─── NAV ─────────────────────────────────────────────────── -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/90 backdrop-blur border-b border-white/10">
-    <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
-      <a href="/" class="flex items-center">
-        <img src="/Rob Williams BJJ logo.jpg" alt="Rob Williams BJJ" class="h-10 w-auto" />
-      </a>
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-white/80">
-        <a href="/about" class="text-white font-semibold">About</a>
-        <a href="/#programs" class="hover:text-white transition">Programs</a>
-        <a href="/timetable" class="hover:text-white transition">Timetable</a>
-        <a href="/team" class="hover:text-white transition">Our Team</a>
-        <a href="/resources" class="hover:text-white transition">Resources</a>
-        <a href="/#contact" class="hover:text-white transition">Contact</a>
-      </nav>
-      <a href="/#free-trial" class="bg-brand-red hover:bg-red-700 text-white text-sm font-semibold px-5 py-2 rounded transition">
-        Free Trial
-      </a>
-    </div>
-  </header>
+  <Header />
 
   <!-- ─── HERO ─────────────────────────────────────────────────── -->
   <section
@@ -133,9 +116,9 @@ import Layout from '../layouts/Layout.astro';
 
   <!-- ─── PHOTO BREAK ─────────────────────────────────────────── -->
   <section class="px-6 py-0 bg-brand-dark">
-    <div class="max-w-5xl mx-auto grid grid-cols-2 gap-4">
-      <img src="/Pedro.jpg" alt="Master Pedro Sauer" class="w-full object-cover max-h-[480px]" />
-      <img src="/Pedro.Rob.jpg" alt="Rob Williams with Master Pedro Sauer" class="w-full object-cover max-h-[480px]" />
+    <div class="max-w-5xl mx-auto grid grid-cols-2 gap-4 h-[480px]">
+      <img src="/Pedro.jpg" alt="Master Pedro Sauer" class="w-full h-full object-cover rounded-lg" />
+      <img src="/Pedro.Rob.jpg" alt="Rob Williams with Master Pedro Sauer" class="w-full h-full object-cover rounded-lg" />
     </div>
   </section>
 
@@ -211,7 +194,7 @@ import Layout from '../layouts/Layout.astro';
       <div>
         <p class="font-semibold text-white/80 mb-4 text-sm uppercase tracking-wide">Quick Links</p>
         <ul class="space-y-2 text-white/60 text-sm">
-          <li><a href="/#programs" class="hover:text-white transition">Programs</a></li>
+          <li><a href="/programs" class="hover:text-white transition">Programs</a></li>
           <li><a href="/timetable" class="hover:text-white transition">Timetable & Pricing</a></li>
           <li><a href="/about" class="hover:text-white transition">About</a></li>
           <li><a href="/team" class="hover:text-white transition">Our Team</a></li>

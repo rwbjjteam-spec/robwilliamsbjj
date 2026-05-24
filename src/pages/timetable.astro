@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
 
 const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -85,28 +86,7 @@ const typeStyles: Record<string, string> = {
   description="View the full class timetable and pricing for Rob Williams BJJ in Meadowbrook, South Brisbane. Classes for kids, teens and adults, 6 days a week."
 >
 
-  <!-- ─── NAV ─────────────────────────────────────────────────── -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/90 backdrop-blur border-b border-white/10">
-    <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
-      <a href="/" class="flex items-center">
-        <img src="/Rob Williams BJJ logo.jpg" alt="Rob Williams BJJ" class="h-10 w-auto" />
-      </a>
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-white/80">
-        <a href="/about" class="hover:text-white transition">About</a>
-        <a href="/#programs" class="hover:text-white transition">Programs</a>
-        <a href="/timetable" class="text-white font-semibold">Timetable</a>
-        <a href="/team" class="hover:text-white transition">Our Team</a>
-        <a href="/resources" class="hover:text-white transition">Resources</a>
-        <a href="/#contact" class="hover:text-white transition">Contact</a>
-      </nav>
-      <a
-        href="/#free-trial"
-        class="bg-brand-red hover:bg-red-700 text-white text-sm font-semibold px-5 py-2 rounded transition"
-      >
-        Free Trial
-      </a>
-    </div>
-  </header>
+  <Header />
 
   <!-- ─── PAGE HEADER ──────────────────────────────────────────── -->
   <section class="pt-32 pb-16 px-6 bg-brand-dark text-center">
@@ -172,22 +152,22 @@ const typeStyles: Record<string, string> = {
       </div>
 
       <!-- Mobile list view -->
-      <div class="md:hidden space-y-6">
+      <div class="md:hidden space-y-4 rounded-2xl overflow-hidden border border-black/10 shadow-[0_4px_32px_rgba(0,0,0,0.4)]">
         {days.map((day, di) => {
           const dayClasses = schedule
             .filter(row => row.classes[di] !== null)
             .map(row => ({ time: row.time, cell: row.classes[di]! }));
           if (dayClasses.length === 0) return null;
           return (
-            <div class="bg-brand-gray border border-white/10 rounded-2xl overflow-hidden">
-              <div class="bg-brand-gray/80 px-5 py-3 border-b border-white/10">
-                <p class="font-bold text-white">{day}</p>
+            <div class="overflow-hidden">
+              <div class="bg-[#d4d4d4] px-5 py-3 border-b border-black/10">
+                <p class="font-bold text-black">{day}</p>
               </div>
-              <div class="divide-y divide-white/10">
+              <div class="divide-y divide-black/10">
                 {dayClasses.map(({ time, cell }) => (
-                  <div class="flex items-center gap-4 px-5 py-3">
-                    <span class="text-white/50 font-mono text-xs w-16 shrink-0">{time}</span>
-                    <div class={`rounded-lg border px-3 py-1.5 text-white text-xs font-semibold flex-1 ${typeStyles[cell.type]}`}>
+                  <div class="flex items-center gap-4 px-5 py-3 bg-[#e8e8e8]">
+                    <span class="text-black/40 font-mono text-xs w-16 shrink-0">{time}</span>
+                    <div data-class-type={cell.type} class={`class-cell rounded-lg border px-3 py-1.5 text-white text-xs font-semibold flex-1 cursor-pointer ${typeStyles[cell.type]}`}>
                       {cell.label}
                       {cell.sub && <span class="ml-2 text-white/70 font-normal">{cell.sub}</span>}
                     </div>
@@ -200,7 +180,7 @@ const typeStyles: Record<string, string> = {
       </div>
 
       <!-- Note + Book button -->
-      <div class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 bg-brand-gray border border-white/10 rounded-2xl px-6 py-5">
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 bg-brand-gray border border-white/10 rounded-2xl px-6 py-5 md:bg-brand-gray">
         <p class="text-white/60 text-sm text-center sm:text-left">
           Adults can walk in to any class. Pythons & Anacondas must pre-book via ClubWorx.<br class="hidden sm:inline" />
           ⚠️ When the forecast exceeds 30°C, gi classes convert to No-Gi — check socials for updates.
@@ -288,8 +268,8 @@ const typeStyles: Record<string, string> = {
   <section class="py-20 px-6 bg-brand-dark">
     <div class="max-w-3xl mx-auto">
       <div class="relative text-center mb-12">
-        <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Equipment</p>
-        <h2 class="font-display text-4xl font-bold">Uniform & Gear</h2>
+        <p class="relative z-10 text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Equipment</p>
+        <h2 class="relative z-10 font-display text-4xl font-bold">Uniform & Gear</h2>
         <img
           src="/Kangaroo Rob.jpg"
           alt="Kangaroo Rob"
@@ -435,7 +415,7 @@ const typeStyles: Record<string, string> = {
       <div>
         <p class="font-semibold text-white/80 mb-4 text-sm uppercase tracking-wide">Quick Links</p>
         <ul class="space-y-2 text-white/60 text-sm">
-          <li><a href="/#programs" class="hover:text-white transition">Programs</a></li>
+          <li><a href="/programs" class="hover:text-white transition">Programs</a></li>
           <li><a href="/timetable" class="hover:text-white transition">Timetable & Pricing</a></li>
           <li><a href="/#free-trial" class="hover:text-white transition">Free Trial</a></li>
         </ul>
@@ -455,22 +435,50 @@ const typeStyles: Record<string, string> = {
 
 <script>
   const items = document.querySelectorAll<HTMLElement>('[data-class-type]');
+  let lockedType: string | null = null;
+
+  function applyHighlight(type: string | null) {
+    items.forEach(el => {
+      if (!type) {
+        el.classList.remove('highlighted', 'dimmed');
+      } else if (el.dataset.classType === type) {
+        el.classList.add('highlighted');
+        el.classList.remove('dimmed');
+      } else {
+        el.classList.add('dimmed');
+        el.classList.remove('highlighted');
+      }
+    });
+  }
+
   items.forEach(item => {
+    // Hover: only previews when nothing is locked
     item.addEventListener('mouseenter', () => {
-      const type = item.dataset.classType;
-      items.forEach(el => {
-        if (el.dataset.classType === type) {
-          el.classList.add('highlighted');
-          el.classList.remove('dimmed');
-        } else {
-          el.classList.add('dimmed');
-          el.classList.remove('highlighted');
-        }
-      });
+      if (!lockedType) applyHighlight(item.dataset.classType ?? null);
     });
     item.addEventListener('mouseleave', () => {
-      items.forEach(el => el.classList.remove('highlighted', 'dimmed'));
+      if (!lockedType) applyHighlight(null);
     });
+
+    // Click / tap: lock or unlock a type
+    item.addEventListener('click', () => {
+      const type = item.dataset.classType ?? null;
+      if (lockedType === type) {
+        lockedType = null;
+        applyHighlight(null);
+      } else {
+        lockedType = type;
+        applyHighlight(type);
+      }
+    });
+  });
+
+  // Tap outside any item clears the lock
+  document.addEventListener('click', (e) => {
+    if (!(e.target as HTMLElement).closest('[data-class-type]')) {
+      lockedType = null;
+      applyHighlight(null);
+    }
   });
 </script>
 

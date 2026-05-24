@@ -1,0 +1,99 @@
+---
+const pathname = Astro.url.pathname;
+const active = (path: string) => pathname === path ? 'text-white font-semibold' : 'hover:text-white transition';
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/90 backdrop-blur border-b border-white/10">
+  <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+
+    <!-- Logo -->
+    <a href="/" class="flex items-center shrink-0">
+      <img src="/Rob Williams BJJ logo.jpg" alt="Rob Williams BJJ" class="h-10 w-auto" />
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-white/80">
+      <a href="/about"     class={active('/about')}>About</a>
+      <a href="/programs"  class={active('/programs')}>Programs</a>
+      <a href="/timetable" class={active('/timetable')}>Timetable</a>
+      <a href="/team"      class={active('/team')}>Our Team</a>
+      <a href="/resources" class={active('/resources')}>Resources</a>
+      <a href="/#contact"  class="hover:text-white transition">Contact</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <!-- Hamburger — mobile only -->
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden flex flex-col justify-center gap-1.5 w-10 h-10 rounded focus:outline-none"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        <span class="hamburger-line block h-0.5 w-6 bg-white rounded transition-all origin-center"></span>
+        <span class="hamburger-line block h-0.5 w-6 bg-white rounded transition-all"></span>
+        <span class="hamburger-line block h-0.5 w-6 bg-white rounded transition-all origin-center"></span>
+      </button>
+
+      <!-- Free Trial button -->
+      <a href="/#free-trial" class="bg-brand-red hover:bg-red-700 text-white text-sm font-semibold px-5 py-2 rounded transition">
+        Free Trial
+      </a>
+    </div>
+  </div>
+
+  <!-- Mobile dropdown menu -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden bg-brand-dark/95 backdrop-blur border-t border-white/10"
+  >
+    <nav class="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-1 text-sm font-medium">
+      <a href="/about"     class="text-white/80 hover:text-white hover:bg-white/5 transition px-3 py-3 rounded-lg">About</a>
+      <a href="/programs"  class="text-white/80 hover:text-white hover:bg-white/5 transition px-3 py-3 rounded-lg">Programs</a>
+      <a href="/timetable" class="text-white/80 hover:text-white hover:bg-white/5 transition px-3 py-3 rounded-lg">Timetable & Pricing</a>
+      <a href="/team"      class="text-white/80 hover:text-white hover:bg-white/5 transition px-3 py-3 rounded-lg">Our Team</a>
+      <a href="/resources" class="text-white/80 hover:text-white hover:bg-white/5 transition px-3 py-3 rounded-lg">Resources</a>
+      <a href="/#contact"  class="text-white/80 hover:text-white hover:bg-white/5 transition px-3 py-3 rounded-lg">Contact</a>
+      <a href="/#free-trial" class="mt-2 text-center bg-brand-red hover:bg-red-700 text-white font-bold px-5 py-3 rounded-lg transition">
+        Book a Free Trial
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn  = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const lines = btn?.querySelectorAll('.hamburger-line');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded', String(!isOpen));
+
+    // Animate hamburger → X
+    if (lines && lines.length === 3) {
+      if (!isOpen) {
+        (lines[0] as HTMLElement).style.transform = 'translateY(8px) rotate(45deg)';
+        (lines[1] as HTMLElement).style.opacity = '0';
+        (lines[2] as HTMLElement).style.transform = 'translateY(-8px) rotate(-45deg)';
+      } else {
+        (lines[0] as HTMLElement).style.transform = '';
+        (lines[1] as HTMLElement).style.opacity = '';
+        (lines[2] as HTMLElement).style.transform = '';
+      }
+    }
+  });
+
+  // Close menu when a link is clicked
+  menu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      btn?.setAttribute('aria-expanded', 'false');
+      if (lines && lines.length === 3) {
+        (lines[0] as HTMLElement).style.transform = '';
+        (lines[1] as HTMLElement).style.opacity = '';
+        (lines[2] as HTMLElement).style.transform = '';
+      }
+    });
+  });
+</script>

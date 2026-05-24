@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
 
 const programs = [
   {
@@ -62,28 +63,7 @@ const programs = [
 
 <Layout>
 
-  <!-- ─── NAV ─────────────────────────────────────────────────── -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/90 backdrop-blur border-b border-white/10">
-    <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
-      <a href="/" class="flex items-center">
-        <img src="/Rob Williams BJJ logo.jpg" alt="Rob Williams BJJ" class="h-10 w-auto" />
-      </a>
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-white/80">
-        <a href="/about" class="hover:text-white transition">About</a>
-        <a href="#programs" class="hover:text-white transition">Programs</a>
-        <a href="/timetable" class="hover:text-white transition">Timetable</a>
-        <a href="/team" class="hover:text-white transition">Our Team</a>
-        <a href="/resources" class="hover:text-white transition">Resources</a>
-        <a href="#contact" class="hover:text-white transition">Contact</a>
-      </nav>
-      <a
-        href="#free-trial"
-        class="bg-brand-red hover:bg-red-700 text-white text-sm font-semibold px-5 py-2 rounded transition"
-      >
-        Free Trial
-      </a>
-    </div>
-  </header>
+  <Header />
 
   <!-- ─── HERO ─────────────────────────────────────────────────── -->
   <section
@@ -179,8 +159,42 @@ const programs = [
         <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Programs</p>
         <h2 class="font-display text-4xl font-bold">Training for Every Age</h2>
       </div>
-      <!-- Program cards -->
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+
+      <!-- ── MOBILE: each card expands inline below itself ── -->
+      <div class="sm:hidden space-y-3 mb-6">
+        {programs.map((p) => (
+          <div class="mobile-program-group">
+            <button
+              data-program={p.name.toLowerCase()}
+              class="mobile-card w-full bg-brand-gray border border-white/10 rounded-2xl p-5 text-left flex items-center gap-4 hover:border-brand-red/60 transition cursor-pointer"
+            >
+              <span class="text-3xl shrink-0">{p.icon}</span>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-display text-lg font-bold">{p.name}</h3>
+                <p class="text-brand-red text-xs font-semibold">{p.age}</p>
+              </div>
+              <span class="mobile-chevron text-brand-red text-lg leading-none transition-transform">↓</span>
+            </button>
+            <div class="mobile-detail hidden bg-brand-gray border border-brand-red/60 border-t-0 rounded-b-2xl px-5 pb-5 pt-4">
+              <p class="text-white/70 text-sm leading-relaxed mb-4">{p.desc}</p>
+              <ul class="space-y-1.5 mb-5">
+                {p.details.map((d) => (
+                  <li class="flex gap-2 text-sm text-white/70">
+                    <span class="text-brand-red shrink-0">▸</span>
+                    <span>{d}</span>
+                  </li>
+                ))}
+              </ul>
+              <a href="#free-trial" class="inline-block bg-brand-red hover:bg-red-700 text-white font-bold px-6 py-2.5 rounded transition text-sm">
+                Book a free trial →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- ── DESKTOP: 4-column grid + panel below ── -->
+      <div class="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
         {programs.map((p) => (
           <button
             data-program={p.name.toLowerCase()}
@@ -196,8 +210,6 @@ const programs = [
           </button>
         ))}
       </div>
-
-      <!-- Expanded detail panels (one per program, hidden by default) -->
       {programs.map((p) => (
         <div
           id={`program-${p.name.toLowerCase()}`}
@@ -226,19 +238,37 @@ const programs = [
       ))}
 
       <script>
-        const cards = document.querySelectorAll('.program-card');
-        const panels = document.querySelectorAll('.program-detail');
+        // ── Mobile inline expansion ──
+        document.querySelectorAll('.mobile-program-group').forEach(group => {
+          const btn     = group.querySelector('.mobile-card') as HTMLElement;
+          const detail  = group.querySelector('.mobile-detail') as HTMLElement;
+          const chevron = group.querySelector('.mobile-chevron') as HTMLElement;
+          btn?.addEventListener('click', () => {
+            const isOpen = !detail.classList.contains('hidden');
+            // Close all others first
+            document.querySelectorAll('.mobile-detail').forEach(d => d.classList.add('hidden'));
+            document.querySelectorAll('.mobile-card').forEach(b => { b.classList.remove('!border-brand-red', 'rounded-b-none'); });
+            document.querySelectorAll('.mobile-chevron').forEach(c => { (c as HTMLElement).style.transform = ''; });
+            if (!isOpen) {
+              detail.classList.remove('hidden');
+              btn.classList.add('!border-brand-red', 'rounded-b-none');
+              chevron.style.transform = 'rotate(180deg)';
+              detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+          });
+        });
 
+        // ── Desktop grid + panel below ──
+        const cards  = document.querySelectorAll('.program-card');
+        const panels = document.querySelectorAll('.program-detail');
         cards.forEach(card => {
           card.addEventListener('click', () => {
-            const id = card.dataset.program;
-            const panel = document.getElementById(`program-${id}`);
-            const isOpen = !panel.classList.contains('hidden');
-
+            const id     = (card as HTMLElement).dataset.program;
+            const panel  = document.getElementById(`program-${id}`);
+            const isOpen = !panel?.classList.contains('hidden');
             panels.forEach(p => p.classList.add('hidden'));
             cards.forEach(c => c.classList.remove('!border-brand-red'));
-
-            if (!isOpen) {
+            if (!isOpen && panel) {
               panel.classList.remove('hidden');
               card.classList.add('!border-brand-red');
               panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -365,7 +395,7 @@ const programs = [
     <div class="max-w-xl mx-auto text-center">
       <p class="text-white/60 text-sm uppercase tracking-widest mb-4">Follow the journey</p>
       <h3 class="font-display text-2xl font-bold mb-8">Stay Connected</h3>
-      <div class="flex justify-center gap-6">
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
         <a
           href="https://www.instagram.com/rwbjj_meadowbrook_/"
           target="_blank"
@@ -424,7 +454,7 @@ const programs = [
           </li>
           <li>
             <a
-              href="https://maps.google.com/?q=3/45+Nealdon+Dr+Meadowbrook+QLD+4131"
+              href="https://www.google.com/maps/dir/?api=1&destination=3%2F45+Nealdon+Dr+Meadowbrook+QLD+4131"
               target="_blank"
               rel="noopener"
               class="hover:text-white transition"
@@ -437,10 +467,10 @@ const programs = [
       <div>
         <p class="font-semibold text-white/80 mb-4 text-sm uppercase tracking-wide">Quick Links</p>
         <ul class="space-y-2 text-white/60 text-sm">
-          <li><a href="#programs" class="hover:text-white transition">Programs</a></li>
+          <li><a href="/programs" class="hover:text-white transition">Programs</a></li>
           <li><a href="#timetable" class="hover:text-white transition">Timetable & Pricing</a></li>
           <li><a href="#free-trial" class="hover:text-white transition">Free Trial</a></li>
-          <li><a href="https://www.robwilliamsbjj.com/our-academy/our-team" class="hover:text-white transition">Our Team</a></li>
+          <li><a href="/team" class="hover:text-white transition">Our Team</a></li>
         </ul>
       </div>
     </div>

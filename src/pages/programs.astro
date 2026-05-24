@@ -1,0 +1,252 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+
+const programs = [
+  {
+    name: 'Pythons',
+    age: 'Ages 4–7',
+    icon: '🐍',
+    color: 'text-green-400',
+    image: '/Pythons.jpg',
+    imageAlt: 'Rob Williams coaching the Pythons kids class',
+    desc: 'Fun, safe introduction to grappling. Builds coordination, confidence and essential life skills through age-appropriate games and movement.',
+    details: [
+      'Fundamental takedowns, throws and self-defence techniques',
+      'Positional control and escape methods',
+      'Anti-bullying strategies, empathy and leadership',
+      'Self-discipline, teamwork and socialisation',
+      'Improves fitness and coordination in a safe environment',
+    ],
+    booking: 'Must pre-book via ClubWorx',
+    bookingLink: 'https://app.clubworx.com/websites/rob-williams-bjj/calendar/weekly_agenda',
+    schedule: 'Tuesday & Thursday 5:00pm · 30 minute sessions',
+  },
+  {
+    name: 'Anacondas',
+    age: 'Ages 8–12',
+    icon: '🥋',
+    color: 'text-blue-400',
+    image: '/Anacondas.jpg',
+    imageAlt: 'Anacondas kids class',
+    desc: 'Structured classes covering defence fundamentals, ground grappling and throws in a fun, challenging environment. Builds real technique and character.',
+    details: [
+      'Takedowns, throws, escapes and transitions',
+      'Submissions including chokes and armlocks',
+      'Anti-bullying, leadership and cooperation skills',
+      'Team-building exercises and responsibility',
+      'Friendly competitions for advanced students',
+    ],
+    booking: 'Must pre-book via ClubWorx',
+    bookingLink: 'https://app.clubworx.com/websites/rob-williams-bjj/calendar/weekly_agenda',
+    schedule: 'Tuesday 5:45pm · Thursday 5:45pm · Saturday 9:30am',
+  },
+  {
+    name: 'Girls & Women',
+    age: '13 & Over',
+    icon: '💪',
+    color: 'text-pink-400',
+    image: '/Womens.jpg',
+    imageAlt: 'Girls and Women\'s class at Rob Williams BJJ',
+    desc: 'A supportive, non-competitive environment to learn Jiu Jitsu at your own pace. No prior experience needed — just show up. Bring a friend.',
+    details: [
+      'Crawl, walk, run philosophy — no pressure, no comparisons',
+      'Practical self-defence skills in a safe space',
+      'Personalised progression at your own pace',
+      'Encouraging community — bring a friend',
+      'No booking required — just walk in',
+    ],
+    booking: 'Walk in — no booking required',
+    bookingLink: '/#free-trial',
+    schedule: 'Mondays 5:00pm',
+  },
+  {
+    name: 'Adults',
+    age: '13 & Over',
+    icon: '🏆',
+    color: 'text-brand-red',
+    image: '/Adults.jpg',
+    imageAlt: 'Adults class at Rob Williams BJJ',
+    desc: 'Full Gracie Jiu Jitsu curriculum for beginners and experienced grapplers alike. Every class covers standing and ground techniques, drilling and live training.',
+    details: [
+      '2–3 techniques per class covering standing and ground work',
+      'Gentle warm up, partner drilling, then free training or sparring',
+      'Full Gracie Jiu Jitsu curriculum including weapons defence',
+      'Suitable for complete beginners through to experienced grapplers',
+      'Builds mutual respect and a strong training community',
+    ],
+    booking: 'Walk in — no booking required',
+    bookingLink: '/#free-trial',
+    schedule: 'Mon 10am & 6pm · Tue 6:30pm · Wed 10am · Thu 6:30pm · Fri 10am · Sat 8am',
+  },
+];
+---
+
+<Layout
+  title="Programs | Rob Williams BJJ – South Brisbane"
+  description="Jiu Jitsu classes for all ages in Meadowbrook, South Brisbane. Pythons (4–7), Anacondas (8–12), Women's classes and Adults — taught by Professor Rob Williams."
+>
+  <Header />
+
+  <!-- ─── HERO ─────────────────────────────────────────────────── -->
+  <section
+    class="relative min-h-[40vh] flex items-end px-6 pb-16 pt-32"
+    style="background: linear-gradient(to bottom, rgba(13,13,13,0.45) 0%, rgba(13,13,13,0.92) 100%), url('/hero-bg.jpg') center 30%/cover no-repeat;"
+  >
+    <div class="max-w-5xl mx-auto w-full">
+      <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">What We Offer</p>
+      <h1 class="font-display text-5xl md:text-6xl font-bold leading-tight">Our Programs</h1>
+      <p class="text-white/60 text-lg mt-4 max-w-xl">
+        Classes for every age and ability — taught using Master Pedro Sauer's proven Crawl, Walk, Run method.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── PROGRAMS ─────────────────────────────────────────────── -->
+  {programs.map((p, i) => (
+    <section class={`py-24 px-6 ${i % 2 === 0 ? 'bg-brand-gray' : 'bg-brand-dark'}`}>
+      <div class="max-w-5xl mx-auto">
+        <div class={`grid md:grid-cols-2 gap-16 items-center ${i % 2 === 1 ? 'md:[direction:rtl]' : ''}`}>
+
+          <!-- Image -->
+          <div class="md:[direction:ltr]">
+            <img
+              src={p.image}
+              alt={p.imageAlt}
+              class="rounded-2xl w-full object-cover max-h-[420px]"
+            />
+          </div>
+
+          <!-- Content -->
+          <div class="md:[direction:ltr]">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-3xl">{p.icon}</span>
+              <p class="text-brand-red uppercase tracking-widest text-sm font-semibold">{p.age}</p>
+            </div>
+            <h2 class="font-display text-4xl font-bold mb-4">{p.name}</h2>
+            <p class="text-white/70 text-lg leading-relaxed mb-6">{p.desc}</p>
+
+            <!-- Details list -->
+            <ul class="space-y-2 mb-6">
+              {p.details.map(d => (
+                <li class="flex items-start gap-2">
+                  <span class="text-brand-red shrink-0 mt-0.5">▸</span>
+                  <span class="text-white/70 text-sm">{d}</span>
+                </li>
+              ))}
+            </ul>
+
+            <!-- Schedule -->
+            <div class="bg-brand-dark/60 border border-white/10 rounded-xl px-5 py-4 mb-6">
+              <p class="text-white/40 text-xs uppercase tracking-wide mb-1">Schedule</p>
+              <p class="text-white/80 text-sm font-medium">{p.schedule}</p>
+            </div>
+
+            <!-- CTAs -->
+            <div class="flex flex-col sm:flex-row gap-3">
+              <a
+                href="/#free-trial"
+                class="text-center bg-brand-red hover:bg-red-700 text-white font-bold px-8 py-3 rounded-lg transition text-sm"
+              >
+                Book a Free Trial
+              </a>
+              <a
+                href={p.bookingLink}
+                target={p.bookingLink.startsWith('http') ? '_blank' : undefined}
+                rel={p.bookingLink.startsWith('http') ? 'noopener' : undefined}
+                class="text-center border border-white/30 hover:border-white text-white font-semibold px-8 py-3 rounded-lg transition text-sm"
+              >
+                {p.booking}
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- ─── COACHES ─────────────────────────────────────────────── -->
+  <section class="py-16 px-6 bg-brand-dark border-t border-white/10">
+    <div class="max-w-5xl mx-auto">
+      <p class="text-center text-white/40 text-xs uppercase tracking-widest mb-6">Your Coaches</p>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <a href="/team#rob" class="group flex items-center gap-4 bg-brand-gray border border-white/10 hover:border-brand-red rounded-2xl p-4 transition">
+          <img src="/KidsCoach_Rob.jpg" alt="Professor Rob Williams" class="w-16 h-16 rounded-xl object-cover object-top shrink-0" />
+          <div class="flex-1 min-w-0">
+            <p class="font-bold text-white text-sm">Professor Rob Williams</p>
+            <p class="text-brand-red text-xs font-semibold mb-1">Head Coach</p>
+            <p class="text-white/50 text-xs leading-relaxed">3rd Degree Black Belt · 7× NZ National Champion · PSBJJA Kids Coach</p>
+          </div>
+          <span class="text-white/20 group-hover:text-brand-red text-xs shrink-0 transition">View →</span>
+        </a>
+        <a href="/team#rane" class="group flex items-center gap-4 bg-brand-gray border border-white/10 hover:border-brand-red rounded-2xl p-4 transition">
+          <img src="/KidsCoach_Rane.jpg" alt="Rane Labrum" class="w-16 h-16 rounded-xl object-cover object-top shrink-0" />
+          <div class="flex-1 min-w-0">
+            <p class="font-bold text-white text-sm">Rane Labrum</p>
+            <p class="text-brand-red text-xs font-semibold mb-1">Assistant Coach</p>
+            <p class="text-white/50 text-xs leading-relaxed">Blue Belt · Jiu Jitsu Champion · PSBJJA Qualified Kids Coach</p>
+          </div>
+          <span class="text-white/20 group-hover:text-brand-red text-xs shrink-0 transition">View →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA ─────────────────────────────────────────────────── -->
+  <section class="py-20 px-6 bg-brand-gray border-t border-white/10 text-center">
+    <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Not Sure Where to Start?</p>
+    <h2 class="font-display text-4xl font-bold mb-4">Your First Class is Free</h2>
+    <p class="text-white/60 text-lg mb-10 max-w-lg mx-auto">
+      Try any class at no cost. Meet Rob and the team, see the gym, and find out which program suits you best.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="/#free-trial" class="bg-brand-red hover:bg-red-700 text-white font-bold text-lg px-10 py-4 rounded transition inline-block">
+        Book a Free Trial
+      </a>
+      <a href="/timetable" class="border border-white/30 hover:border-white text-white font-semibold text-lg px-10 py-4 rounded transition inline-block">
+        View Timetable & Pricing
+      </a>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────────── -->
+  <footer class="bg-brand-dark border-t border-white/10 py-14 px-6">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-10">
+      <div>
+        <p class="font-display text-xl font-bold mb-3">ROB WILLIAMS <span class="text-brand-red">BJJ</span></p>
+        <p class="text-white/50 text-sm leading-relaxed">
+          Authentic Gracie Jiu Jitsu self-defence academy.<br />
+          South Brisbane · Meadowbrook QLD
+        </p>
+      </div>
+      <div>
+        <p class="font-semibold text-white/80 mb-4 text-sm uppercase tracking-wide">Contact</p>
+        <ul class="space-y-3 text-white/60 text-sm">
+          <li><a href="tel:0421729868" class="hover:text-white transition">📞 0421 729 868</a></li>
+          <li><a href="mailto:robwilliamsgz@gmail.com" class="hover:text-white transition">✉️ robwilliamsgz@gmail.com</a></li>
+          <li>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=3%2F45+Nealdon+Dr+Meadowbrook+QLD+4131" target="_blank" rel="noopener" class="hover:text-white transition">
+              📍 3/45 Nealdon Dr, Meadowbrook QLD 4131
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-white/80 mb-4 text-sm uppercase tracking-wide">Quick Links</p>
+        <ul class="space-y-2 text-white/60 text-sm">
+          <li><a href="/about" class="hover:text-white transition">About</a></li>
+          <li><a href="/programs" class="hover:text-white transition">Programs</a></li>
+          <li><a href="/timetable" class="hover:text-white transition">Timetable & Pricing</a></li>
+          <li><a href="/team" class="hover:text-white transition">Our Team</a></li>
+          <li><a href="/resources" class="hover:text-white transition">Resources</a></li>
+          <li><a href="/#free-trial" class="hover:text-white transition">Free Trial</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="max-w-5xl mx-auto mt-10 pt-6 border-t border-white/10 text-center text-white/30 text-xs">
+      © {new Date().getFullYear()} Rob Williams BJJ. All rights reserved.
+    </div>
+  </footer>
+
+</Layout>
