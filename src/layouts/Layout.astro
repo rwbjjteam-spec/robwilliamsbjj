@@ -80,17 +80,40 @@ const ogImage    = `${siteBase}/hero-bg.jpg`;
     <title>{title}</title>
 
     <style is:global>
-      /* Shared inner-page hero — consistent mobile crop across all pages */
+      /* Shared inner-page hero — consistent crop & size across all pages */
       .page-hero {
-        background: linear-gradient(to bottom, rgba(13,13,13,0.45) 0%, rgba(13,13,13,0.92) 100%),
+        background: linear-gradient(to bottom, rgba(13,13,13,0.45) 0%, rgba(13,13,13,0.88) 85%, #0d0d0d 100%),
                     url('/hero-bg.jpg') center 25% / cover no-repeat;
-        min-height: 38vw;
+        min-height: 48vw;
+        position: relative;
+        overflow: hidden;
       }
       @media (min-width: 768px) {
         .page-hero {
           background-position: center 30%;
-          min-height: 45vh;
+          min-height: 54vh;
         }
+      }
+
+      /* Fade-in for hero content */
+      @keyframes heroFadeUp {
+        from { opacity: 0; transform: translateY(16px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .page-hero > div {
+        animation: heroFadeUp 0.75s ease-out both;
+      }
+
+      /* Fade out bottom of hero into the next section */
+      .page-hero::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 80px;
+        background: linear-gradient(to bottom, transparent, #0d0d0d);
+        pointer-events: none;
       }
     </style>
   </head>
