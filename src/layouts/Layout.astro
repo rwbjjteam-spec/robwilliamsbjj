@@ -90,7 +90,7 @@ const ogImage    = `${siteBase}/hero-bg.jpg`;
       }
       @media (min-width: 768px) {
         .page-hero {
-          background-position: center 70%;
+          background-position: center 40%;
           min-height: 70vh;
         }
       }
@@ -104,16 +104,21 @@ const ogImage    = `${siteBase}/hero-bg.jpg`;
         animation: heroFadeUp 0.75s ease-out both;
       }
 
-      /* Fade out bottom into next section (brand-gray #1a1a1a) */
+      /* Fade out bottom — smaller on mobile so it doesn't eat the image */
       .page-hero::after {
         content: '';
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
-        height: 100px;
+        height: 50px;
         background: linear-gradient(to bottom, transparent, #1a1a1a);
         pointer-events: none;
+      }
+      @media (min-width: 768px) {
+        .page-hero::after {
+          height: 120px;
+        }
       }
     </style>
   </head>
