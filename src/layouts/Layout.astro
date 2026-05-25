@@ -78,6 +78,21 @@ const ogImage    = `${siteBase}/hero-bg.jpg`;
     </script>
 
     <title>{title}</title>
+
+    <style>
+      /* Shared inner-page hero — consistent mobile crop across all pages */
+      .page-hero {
+        background: linear-gradient(to bottom, rgba(13,13,13,0.45) 0%, rgba(13,13,13,0.92) 100%),
+                    url('/hero-bg.jpg') center 25% / cover no-repeat;
+        min-height: 38vw; /* tighter crop on mobile */
+      }
+      @media (min-width: 768px) {
+        .page-hero {
+          background-position: center 30%;
+          min-height: 45vh;
+        }
+      }
+    </style>
   </head>
   <body class="bg-brand-dark text-white font-body antialiased">
     <slot />

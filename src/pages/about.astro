@@ -11,10 +11,7 @@ import Header from '../components/Header.astro';
   <Header />
 
   <!-- ─── HERO ─────────────────────────────────────────────────── -->
-  <section
-    class="relative min-h-[45vh] flex items-end px-6 pb-16 pt-32"
-    style="background: linear-gradient(to bottom, rgba(13,13,13,0.45) 0%, rgba(13,13,13,0.92) 100%), url('/hero-bg.jpg') center 30%/cover no-repeat;"
-  >
+  <section class="page-hero relative flex items-end px-6 pb-16 pt-32">
     <div class="max-w-5xl mx-auto w-full">
       <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Pedro Sauer Association</p>
       <h1 class="font-display text-5xl md:text-6xl font-bold leading-tight">
@@ -115,26 +112,26 @@ import Header from '../components/Header.astro';
   </section>
 
   <!-- ─── PHOTO BREAK ─────────────────────────────────────────── -->
-  <section class="px-6 py-0 bg-brand-dark">
-    <div class="max-w-5xl mx-auto grid grid-cols-2 gap-4 h-[480px]">
-      <img src="/Pedro.jpg" alt="Master Pedro Sauer" class="w-full h-full object-cover rounded-lg" />
-      <img src="/Pedro.Rob.jpg" alt="Rob Williams with Master Pedro Sauer" class="w-full h-full object-cover rounded-lg" />
+  <section class="px-6 py-0 md:pb-10 bg-brand-dark">
+    <div class="max-w-5xl mx-auto grid grid-cols-2 gap-4 h-[560px]">
+      <img src="/Pedro.jpg" alt="Master Pedro Sauer" class="w-full h-full object-cover object-center rounded-lg" />
+      <img src="/Pedro.Rob.jpg" alt="Rob Williams with Master Pedro Sauer" class="w-full h-full object-cover object-bottom rounded-lg" />
     </div>
   </section>
 
   <!-- ─── COMMUNITY MISSION ─────────────────────────────────────── -->
-  <section class="py-24 px-6 bg-brand-gray">
-    <div class="max-w-4xl mx-auto text-center">
+  <section class="py-24 md:pt-28 px-6 bg-brand-gray">
+    <div class="max-w-5xl mx-auto text-center">
       <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Our Mission</p>
       <h2 class="font-display text-4xl font-bold mb-8">More Than Martial Arts</h2>
-      <p class="text-white/70 text-xl leading-relaxed mb-6">
+      <p class="text-white/70 text-xl leading-relaxed mb-6 max-w-3xl mx-auto">
         The Pedro Sauer Association's main focus is to create stronger, safer and a more healthy community.
         Beyond self-defence and confidence-building, we believe Jiu Jitsu has the power to transform lives.
       </p>
-      <p class="text-white/60 text-lg leading-relaxed mb-12">
+      <p class="text-white/60 text-lg leading-relaxed mb-12 max-w-3xl mx-auto">
         Every instructor affiliated with Master Sauer is held to a standard that reflects his legacy —
-        a friendly attitude, respect for all training partners regardless of age or ability, and a
-        commitment to making Jiu Jitsu accessible for life.
+        a friendly attitude, respect for all training partners regardless of age or ability,
+        and a commitment to making Jiu Jitsu accessible for life.
       </p>
       <div class="grid sm:grid-cols-3 gap-6 text-left">
         {[
