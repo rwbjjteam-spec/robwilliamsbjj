@@ -82,15 +82,15 @@ const ogImage    = `${siteBase}/hero-bg.jpg`;
     <style is:global>
       /* Shared inner-page hero — consistent crop & size across all pages */
       .page-hero {
-        background: linear-gradient(to bottom, rgba(13,13,13,0.45) 0%, rgba(13,13,13,0.88) 85%, #0d0d0d 100%),
-                    url('/hero-bg.jpg') center 25% / cover no-repeat;
+        background: linear-gradient(to bottom, rgba(13,13,13,0.45) 0%, rgba(13,13,13,0.88) 85%, #1a1a1a 100%),
+                    url('/hero-bg.jpg') center 55% / cover no-repeat;
         min-height: 48vw;
         position: relative;
         overflow: hidden;
       }
       @media (min-width: 768px) {
         .page-hero {
-          background-position: center 30%;
+          background-position: center 55%;
           min-height: 54vh;
         }
       }
@@ -104,15 +104,15 @@ const ogImage    = `${siteBase}/hero-bg.jpg`;
         animation: heroFadeUp 0.75s ease-out both;
       }
 
-      /* Fade out bottom of hero into the next section */
+      /* Fade out bottom into next section (brand-gray #1a1a1a) */
       .page-hero::after {
         content: '';
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
-        height: 80px;
-        background: linear-gradient(to bottom, transparent, #0d0d0d);
+        height: 100px;
+        background: linear-gradient(to bottom, transparent, #1a1a1a);
         pointer-events: none;
       }
     </style>
