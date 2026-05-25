@@ -88,13 +88,18 @@ const typeStyles: Record<string, string> = {
 
   <Header />
 
-  <!-- ─── PAGE HEADER ──────────────────────────────────────────── -->
-  <section class="pt-32 pb-16 px-6 bg-brand-dark text-center">
-    <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Schedule</p>
-    <h1 class="font-display text-5xl md:text-6xl font-bold mb-4">Timetable & Pricing</h1>
-    <p class="text-white/60 text-lg max-w-xl mx-auto">
-      Classes run 6 days a week across all age groups. Adults can walk in — kids classes (Pythons & Anacondas) must be pre-booked via ClubWorx.
-    </p>
+  <!-- ─── HERO ──────────────────────────────────────────────────── -->
+  <section
+    class="relative min-h-[45vh] flex items-end px-6 pb-16 pt-32"
+    style="background: linear-gradient(to bottom, rgba(13,13,13,0.45) 0%, rgba(13,13,13,0.92) 100%), url('/hero-bg.jpg') center 30%/cover no-repeat;"
+  >
+    <div class="max-w-5xl mx-auto w-full">
+      <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Schedule</p>
+      <h1 class="font-display text-5xl md:text-6xl font-bold leading-tight">Timetable & Pricing</h1>
+      <p class="text-white/60 text-lg mt-4 max-w-xl">
+        Classes 6 days a week. Adults walk in — Pythons & Anacondas must pre-book via ClubWorx.
+      </p>
+    </div>
   </section>
 
   <!-- ─── TIMETABLE GRID ───────────────────────────────────────── -->

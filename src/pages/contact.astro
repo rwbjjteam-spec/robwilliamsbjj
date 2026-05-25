@@ -1,0 +1,171 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+---
+
+<Layout
+  title="Contact | Rob Williams BJJ – South Brisbane"
+  description="Get in touch with Rob Williams BJJ in Meadowbrook, South Brisbane. Find us at 3/45 Nealdon Dr, Meadowbrook QLD 4131 or call 0421 729 868."
+>
+
+  <Header />
+
+  <!-- ─── HERO ─────────────────────────────────────────────────── -->
+  <section
+    class="relative min-h-[45vh] flex items-end px-6 pb-16 pt-32"
+    style="background: linear-gradient(to bottom, rgba(13,13,13,0.45) 0%, rgba(13,13,13,0.92) 100%), url('/hero-bg.jpg') center 30%/cover no-repeat;"
+  >
+    <div class="max-w-5xl mx-auto w-full">
+      <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Get In Touch</p>
+      <h1 class="font-display text-5xl md:text-6xl font-bold leading-tight">Contact Us</h1>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT + MAP ────────────────────────────────────────── -->
+  <section class="py-24 px-6 bg-brand-gray">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-start">
+
+      <!-- Contact details -->
+      <div>
+        <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Rob Williams BJJ</p>
+        <h2 class="font-display text-3xl font-bold mb-8">Find Us</h2>
+
+        <ul class="space-y-6 mb-10">
+          <li class="flex items-start gap-4">
+            <span class="text-2xl mt-0.5">📍</span>
+            <div>
+              <p class="text-white font-semibold mb-1">Address</p>
+              <a
+                href="https://www.google.com/maps/dir/?api=1&destination=3%2F45+Nealdon+Dr+Meadowbrook+QLD+4131"
+                target="_blank"
+                rel="noopener"
+                class="text-white/60 hover:text-white transition leading-relaxed"
+              >
+                3/45 Nealdon Dr<br />Meadowbrook QLD 4131
+              </a>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="text-2xl mt-0.5">📞</span>
+            <div>
+              <p class="text-white font-semibold mb-1">Phone</p>
+              <a href="tel:0421729868" class="text-white/60 hover:text-white transition">0421 729 868</a>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="text-2xl mt-0.5">✉️</span>
+            <div>
+              <p class="text-white font-semibold mb-1">Email</p>
+              <a href="mailto:robwilliamsgz@gmail.com" class="text-white/60 hover:text-white transition">robwilliamsgz@gmail.com</a>
+            </div>
+          </li>
+        </ul>
+
+        <!-- Hours -->
+        <div class="bg-brand-dark border border-white/10 rounded-2xl p-6 mb-8">
+          <p class="text-brand-red uppercase tracking-widest text-xs font-semibold mb-4">Class Times</p>
+          <ul class="space-y-2 text-sm text-white/70">
+            <li class="flex justify-between"><span>Monday</span><span>10:00am · 6:00pm</span></li>
+            <li class="flex justify-between"><span>Tuesday</span><span>5:00pm · 6:30pm</span></li>
+            <li class="flex justify-between"><span>Wednesday</span><span>10:00am</span></li>
+            <li class="flex justify-between"><span>Thursday</span><span>5:00pm · 6:30pm</span></li>
+            <li class="flex justify-between"><span>Friday</span><span>10:00am</span></li>
+            <li class="flex justify-between"><span>Saturday</span><span>8:00am · 9:30am</span></li>
+            <li class="flex justify-between text-white/40 pt-2 border-t border-white/10"><span>Sunday</span><span>Closed</span></li>
+          </ul>
+        </div>
+
+        <!-- Socials -->
+        <div>
+          <p class="text-white/50 text-xs uppercase tracking-wide mb-3">Follow Us</p>
+          <div class="flex gap-3">
+            <a href="https://www.instagram.com/rwbjj_meadowbrook_/" target="_blank" rel="noopener"
+               class="bg-brand-dark border border-white/10 hover:border-brand-red text-white/70 hover:text-white px-4 py-2 rounded-lg text-sm transition">
+              Instagram
+            </a>
+            <a href="https://www.facebook.com/robwilliamsbjj" target="_blank" rel="noopener"
+               class="bg-brand-dark border border-white/10 hover:border-brand-red text-white/70 hover:text-white px-4 py-2 rounded-lg text-sm transition">
+              Facebook
+            </a>
+            <a href="https://www.youtube.com/@robwilliamsbjj8446" target="_blank" rel="noopener"
+               class="bg-brand-dark border border-white/10 hover:border-brand-red text-white/70 hover:text-white px-4 py-2 rounded-lg text-sm transition">
+              YouTube
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Google Maps embed -->
+      <div class="rounded-2xl overflow-hidden border border-white/10 h-[500px] md:h-full min-h-[400px]">
+        <iframe
+          src="https://maps.google.com/maps?q=3%2F45+Nealdon+Dr+Meadowbrook+QLD+4131&z=16&output=embed"
+          width="100%"
+          height="100%"
+          style="border:0; min-height:400px;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Rob Williams BJJ location"
+        ></iframe>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── CTA ─────────────────────────────────────────────────── -->
+  <section class="py-20 px-6 bg-brand-dark border-t border-white/10 text-center">
+    <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Ready to Start?</p>
+    <h2 class="font-display text-4xl font-bold mb-4">Book a Free Trial</h2>
+    <p class="text-white/60 text-lg mb-10 max-w-lg mx-auto">
+      No experience needed. Come meet Rob and the team and try a class at no cost.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="/#free-trial" class="bg-brand-red hover:bg-red-700 text-white font-bold text-lg px-10 py-4 rounded transition inline-block">
+        Book a Free Trial
+      </a>
+      <a href="/timetable" class="border border-white/30 hover:border-white text-white font-semibold text-lg px-10 py-4 rounded transition inline-block">
+        View Timetable
+      </a>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────────── -->
+  <footer class="bg-brand-dark border-t border-white/10 py-14 px-6">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-10">
+      <div>
+        <p class="font-display text-xl font-bold mb-3">ROB WILLIAMS <span class="text-brand-red">BJJ</span></p>
+        <p class="text-white/50 text-sm leading-relaxed">
+          Authentic Gracie Jiu Jitsu self-defence academy.<br />
+          South Brisbane · Meadowbrook QLD
+        </p>
+      </div>
+      <div>
+        <p class="font-semibold text-white/80 mb-4 text-sm uppercase tracking-wide">Contact</p>
+        <ul class="space-y-3 text-white/60 text-sm">
+          <li><a href="tel:0421729868" class="hover:text-white transition">📞 0421 729 868</a></li>
+          <li><a href="mailto:robwilliamsgz@gmail.com" class="hover:text-white transition">✉️ robwilliamsgz@gmail.com</a></li>
+          <li>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=3%2F45+Nealdon+Dr+Meadowbrook+QLD+4131" target="_blank" rel="noopener" class="hover:text-white transition">
+              📍 3/45 Nealdon Dr, Meadowbrook QLD 4131
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-white/80 mb-4 text-sm uppercase tracking-wide">Quick Links</p>
+        <ul class="space-y-2 text-white/60 text-sm">
+          <li><a href="/about" class="hover:text-white transition">About</a></li>
+          <li><a href="/programs" class="hover:text-white transition">Programs</a></li>
+          <li><a href="/timetable" class="hover:text-white transition">Timetable & Pricing</a></li>
+          <li><a href="/team" class="hover:text-white transition">Our Team</a></li>
+          <li><a href="/resources" class="hover:text-white transition">Resources</a></li>
+          <li><a href="/#free-trial" class="hover:text-white transition">Free Trial</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="max-w-5xl mx-auto mt-10 pt-6 border-t border-white/10 text-center text-white/30 text-xs">
+      © {new Date().getFullYear()} Rob Williams BJJ. All rights reserved.
+    </div>
+  </footer>
+
+</Layout>

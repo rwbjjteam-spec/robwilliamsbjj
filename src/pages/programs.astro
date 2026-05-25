@@ -48,6 +48,7 @@ const programs = [
     color: 'text-pink-400',
     image: '/Womens.jpg',
     imageAlt: 'Girls and Women\'s class at Rob Williams BJJ',
+    imgClass: 'object-top scale-125',
     desc: 'A supportive, non-competitive environment to learn Jiu Jitsu at your own pace. No prior experience needed — just show up. Bring a friend.',
     details: [
       'Crawl, walk, run philosophy — no pressure, no comparisons',
@@ -90,15 +91,13 @@ const programs = [
 
   <!-- ─── HERO ─────────────────────────────────────────────────── -->
   <section
-    class="relative min-h-[40vh] flex items-end px-6 pb-16 pt-32"
+    class="relative min-h-[45vh] flex items-end px-6 pb-16 pt-32"
     style="background: linear-gradient(to bottom, rgba(13,13,13,0.45) 0%, rgba(13,13,13,0.92) 100%), url('/hero-bg.jpg') center 30%/cover no-repeat;"
   >
     <div class="max-w-5xl mx-auto w-full">
       <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">What We Offer</p>
       <h1 class="font-display text-5xl md:text-6xl font-bold leading-tight">Our Programs</h1>
-      <p class="text-white/60 text-lg mt-4 max-w-xl">
-        Classes for every age and ability — taught using Master Pedro Sauer's proven Crawl, Walk, Run method.
-      </p>
+      <p class="text-white text-xl mt-4 font-semibold">Classes for every age and ability.</p>
     </div>
   </section>
 
@@ -109,11 +108,11 @@ const programs = [
         <div class={`grid md:grid-cols-2 gap-16 items-center ${i % 2 === 1 ? 'md:[direction:rtl]' : ''}`}>
 
           <!-- Image -->
-          <div class="md:[direction:ltr]">
+          <div class="md:[direction:ltr] rounded-2xl overflow-hidden h-[420px]">
             <img
               src={p.image}
               alt={p.imageAlt}
-              class="rounded-2xl w-full object-cover max-h-[420px]"
+              class={`w-full h-full object-cover ${p.imgClass ?? ''}`}
             />
           </div>
 

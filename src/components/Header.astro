@@ -18,7 +18,7 @@ const active = (path: string) => pathname === path ? 'text-white font-semibold' 
       <a href="/timetable" class={active('/timetable')}>Timetable</a>
       <a href="/team"      class={active('/team')}>Our Team</a>
       <a href="/resources" class={active('/resources')}>Resources</a>
-      <a href="/#contact"  class="hover:text-white transition">Contact</a>
+      <a href="/contact"  class={active('/contact')}>Contact</a>
     </nav>
 
     <div class="flex items-center gap-3">
@@ -52,7 +52,7 @@ const active = (path: string) => pathname === path ? 'text-white font-semibold' 
       <a href="/timetable" class="text-white/80 hover:text-white hover:bg-white/5 transition px-3 py-3 rounded-lg">Timetable & Pricing</a>
       <a href="/team"      class="text-white/80 hover:text-white hover:bg-white/5 transition px-3 py-3 rounded-lg">Our Team</a>
       <a href="/resources" class="text-white/80 hover:text-white hover:bg-white/5 transition px-3 py-3 rounded-lg">Resources</a>
-      <a href="/#contact"  class="text-white/80 hover:text-white hover:bg-white/5 transition px-3 py-3 rounded-lg">Contact</a>
+      <a href="/contact"  class="text-white/80 hover:text-white hover:bg-white/5 transition px-3 py-3 rounded-lg">Contact</a>
       <a href="/#free-trial" class="mt-2 text-center bg-brand-red hover:bg-red-700 text-white font-bold px-5 py-3 rounded-lg transition">
         Book a Free Trial
       </a>
