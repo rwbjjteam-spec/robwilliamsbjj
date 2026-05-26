@@ -2,9 +2,23 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 
-// Fallback video shown while the live fetch runs (or if it fails)
-const latestVideoId    = 'ArStX4WJoxI';
-const latestVideoTitle = 'Saturdays!!!! #bjj';
+// Fetch latest video server-side at build time (no CORS issues)
+let latestVideoId    = 'ArStX4WJoxI';
+let latestVideoTitle = 'Saturdays!!!! #bjj';
+
+try {
+  const channelId = 'UCdjnapRr2XcGAiMoyZCPvmw';
+  const res = await fetch(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`);
+  if (res.ok) {
+    const xml = await res.text();
+    const idMatch    = xml.match(/<yt:videoId>([^<]+)<\/yt:videoId>/);
+    const titleMatch = xml.match(/<title>(?!Rob Williams BJJ)([^<]+)<\/title>/);
+    if (idMatch?.[1])    latestVideoId    = idMatch[1];
+    if (titleMatch?.[1]) latestVideoTitle = titleMatch[1];
+  }
+} catch {
+  // Keep fallback values
+}
 
 const techniques = [
   { num: '01', title: 'Triangle Choke from Open Guard',                      id: '8jabp9AJvrA' },
@@ -83,43 +97,6 @@ const techniques = [
     </div>
   </section>
 
-  <!-- ─── AUTO-UPDATE LATEST VIDEO ────────────────────────────────── -->
-  <script>
-    // Fetches YouTube RSS directly (no third-party proxy needed) and parses the XML.
-    // Falls back silently to the hard-coded video if anything fails.
-    (async () => {
-      try {
-        const channelId = 'UCdjnapRr2XcGAiMoyZCPvmw';
-        const rssUrl    = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
-
-        const res  = await fetch(rssUrl);
-        if (!res.ok) return;
-        const text = await res.text();
-
-        const parser  = new DOMParser();
-        const xml     = parser.parseFromString(text, 'text/xml');
-        const entries = xml.querySelectorAll('entry');
-        if (!entries.length) return;
-
-        const latest  = entries[0];
-        // yt:videoId lives in the yt namespace — grab it by local name
-        const videoIdEl = Array.from(latest.children).find(el => el.localName === 'videoId');
-        const titleEl   = latest.querySelector('title');
-
-        const videoId = videoIdEl?.textContent?.trim();
-        const title   = titleEl?.textContent?.trim();
-        if (!videoId) return;
-
-        const iframe = document.getElementById('latest-video-iframe') as HTMLIFrameElement | null;
-        const titleEl2 = document.getElementById('latest-video-title');
-
-        if (iframe)   iframe.src         = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`;
-        if (titleEl2) titleEl2.textContent = title ?? '';
-      } catch {
-        // Silently keep the fallback video
-      }
-    })();
-  </script>
 
   <div style="height:50px;background:linear-gradient(to bottom,#1a1a1a,#0d0d0d);"></div>
 
