@@ -364,12 +364,18 @@ const typeStyles: Record<string, string> = {
           <h3 class="font-display text-xl font-bold mb-4 text-white">Adults (16+)</h3>
           <div class="space-y-3">
             {[
-              { from: 'White', to: 'Blue', years: '2–3 years' },
-              { from: 'Blue', to: 'Purple', years: '5–7 years' },
-              { from: 'Purple', to: 'Brown', years: '7–10 years' },
-              { from: 'Brown', to: 'Black', years: '10–12 years' },
-            ].map(({ from, to, years }) => (
-              <div class="flex items-center justify-between bg-brand-dark border border-white/10 rounded-xl px-5 py-3">
+              { from: 'White', to: 'Blue',   years: '2–3 years',  c1: '#e5e7eb', c2: '#2563eb' },
+              { from: 'Blue',  to: 'Purple', years: '5–7 years',  c1: '#2563eb', c2: '#9333ea' },
+              { from: 'Purple',to: 'Brown',  years: '7–10 years', c1: '#9333ea', c2: '#92400e' },
+              { from: 'Brown', to: 'Black',  years: '10–12 years',c1: '#92400e', c2: '#4b5563' },
+            ].map(({ from, to, years, c1, c2 }) => (
+              <div
+                class="belt-row flex items-center justify-between bg-brand-dark rounded-xl px-5 py-3 border cursor-default"
+                style={`border-color: ${c1}; transition: border-color 3s ease;`}
+                style={`border-color: ${c1};`}
+                data-c1={c1}
+                data-c2={c2}
+              >
                 <span class="text-white/80 text-sm">{from} → {to}</span>
                 <span class="text-white font-bold text-sm">{years}</span>
               </div>
@@ -487,6 +493,16 @@ const typeStyles: Record<string, string> = {
       lockedType = null;
       applyHighlight(null);
     }
+  });
+
+  // Belt row hover + tap colours
+  document.querySelectorAll<HTMLElement>('.belt-row').forEach(row => {
+    const c1 = row.dataset.c1!;
+    const c2 = row.dataset.c2!;
+    row.addEventListener('mouseenter', () => row.style.borderColor = c2);
+    row.addEventListener('mouseleave', () => row.style.borderColor = c1);
+    row.addEventListener('touchstart', () => row.style.borderColor = c2, { passive: true });
+    row.addEventListener('touchend', () => setTimeout(() => row.style.borderColor = c1, 3500), { passive: true });
   });
 </script>
 
