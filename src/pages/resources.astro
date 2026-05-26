@@ -85,31 +85,38 @@ const techniques = [
 
   <!-- ─── AUTO-UPDATE LATEST VIDEO ────────────────────────────────── -->
   <script>
-    // Fetches the channel's latest video from the YouTube RSS feed on every page load.
-    // Uses rss2json.com as a CORS-friendly proxy (free, 1000 req/day — more than enough).
-    // If the fetch fails for any reason the hard-coded fallback video above stays visible.
+    // Fetches YouTube RSS directly (no third-party proxy needed) and parses the XML.
+    // Falls back silently to the hard-coded video if anything fails.
     (async () => {
       try {
         const channelId = 'UCdjnapRr2XcGAiMoyZCPvmw';
         const rssUrl    = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
-        const apiUrl    = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 
-        const res  = await fetch(apiUrl);
-        const data = await res.json();
+        const res  = await fetch(rssUrl);
+        if (!res.ok) return;
+        const text = await res.text();
 
-        if (data.status !== 'ok' || !data.items?.length) return;
+        const parser  = new DOMParser();
+        const xml     = parser.parseFromString(text, 'text/xml');
+        const entries = xml.querySelectorAll('entry');
+        if (!entries.length) return;
 
-        const latest  = data.items[0];
-        const videoId = latest.link?.split('v=')[1]?.split('&')[0];
+        const latest  = entries[0];
+        // yt:videoId lives in the yt namespace — grab it by local name
+        const videoIdEl = Array.from(latest.children).find(el => el.localName === 'videoId');
+        const titleEl   = latest.querySelector('title');
+
+        const videoId = videoIdEl?.textContent?.trim();
+        const title   = titleEl?.textContent?.trim();
         if (!videoId) return;
 
         const iframe = document.getElementById('latest-video-iframe') as HTMLIFrameElement | null;
-        const title  = document.getElementById('latest-video-title');
+        const titleEl2 = document.getElementById('latest-video-title');
 
-        if (iframe) iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`;
-        if (title)  title.textContent = latest.title;
+        if (iframe)   iframe.src         = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`;
+        if (titleEl2) titleEl2.textContent = title ?? '';
       } catch {
-        // Silently keep the fallback video — no visible error to the user
+        // Silently keep the fallback video
       }
     })();
   </script>
