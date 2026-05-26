@@ -48,7 +48,7 @@ const programs = [
     color: 'text-pink-400',
     image: '/Womens.jpg',
     imageAlt: 'Girls and Women\'s class at Rob Williams BJJ',
-    imgClass: 'object-right-bottom scale-[1.6] -translate-y-[15%] translate-x-[5%]',
+    imgClass: 'scale-[1.4] -translate-y-[15%] [object-position:75%_60%]',
     desc: 'A supportive, non-competitive environment to learn Jiu Jitsu at your own pace. No prior experience needed — just show up. Bring a friend.',
     details: [
       'Crawl, walk, run philosophy — no pressure, no comparisons',
@@ -109,7 +109,7 @@ const programs = [
         <div class={`grid md:grid-cols-2 gap-16 items-center ${i % 2 === 1 ? 'md:[direction:rtl]' : ''}`}>
 
           <!-- Image -->
-          <div class="md:[direction:ltr] rounded-2xl overflow-hidden h-[420px]">
+          <div class="md:[direction:ltr] rounded-2xl overflow-hidden h-[300px] md:h-[420px]">
             <img
               src={p.image}
               alt={p.imageAlt}
