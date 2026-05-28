@@ -1,0 +1,235 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+
+const faqs = [
+  {
+    category: 'Getting Started',
+    questions: [
+      {
+        q: 'Do I need any experience to start?',
+        a: 'None at all. Every class is structured so complete beginners can follow along from day one. Rob uses the "Crawl, Walk, Run" approach — technique first, intensity later. You will never be thrown in the deep end.',
+      },
+      {
+        q: 'What should I bring to my first class?',
+        a: 'Just yourself and comfortable clothing — shorts and a t-shirt are perfect for your first visit. If you decide to continue, Rob stocks everything you need on-site: Gi, belt, rashie, shorts and more.',
+      },
+      {
+        q: 'Do I need to book in advance?',
+        a: 'Most classes are walk-in — no booking needed. The only exception is Anacondas (ages 8–12), which must be pre-booked via ClubWorx. Check the timetable page for the booking link.',
+      },
+      {
+        q: 'How old do you need to be to start?',
+        a: 'We welcome students from age 4 upward. The Pythons program (ages 4–7) is a fun, age-appropriate introduction to grappling. Anacondas covers ages 8–12, and the Adults and Girls & Women classes are open from age 13.',
+      },
+    ],
+  },
+  {
+    category: 'The Classes',
+    questions: [
+      {
+        q: 'What is the difference between Gi and No-Gi?',
+        a: 'Gi classes are trained in the traditional Jiu Jitsu uniform (the Gi), which allows for grip-based techniques like collar chokes and lapel controls. No-Gi is done in shorts and a rashie — grips are on the body, not the clothing. Rob Williams BJJ teaches both, giving you a well-rounded game.',
+      },
+      {
+        q: 'Is there sparring (rolling) in every class?',
+        a: 'Not necessarily. Classes follow a structure: warm-up, technique drilling, then optional live training. Beginners are never pressured to spar before they are ready. The focus is always on building correct technique first.',
+      },
+      {
+        q: 'Is Jiu Jitsu safe for kids?',
+        a: 'Yes. The Pythons and Anacondas programs are designed specifically for children, with age-appropriate drilling, games, and controlled contact. All kids coaches hold current Working with Children (Blue Card) and First Aid certifications.',
+      },
+      {
+        q: 'What happens in the Girls & Women\'s class?',
+        a: 'It is a dedicated, non-competitive class on Monday evenings at 5pm for girls and women 13 and over. No experience needed — no booking, just walk in. Bring a friend. The class covers practical self-defence at a comfortable pace.',
+      },
+    ],
+  },
+  {
+    category: 'Progression & Grading',
+    questions: [
+      {
+        q: 'How long does it take to get a blue belt?',
+        a: 'Generally 2–3 years of consistent training. Grading at Rob Williams BJJ follows the Pedro Sauer Association curriculum — every student must demonstrate technical and physical competency at each level. There are no shortcuts, which is exactly why our belts mean something.',
+      },
+      {
+        q: 'I already train somewhere else. Will my belt be recognised?',
+        a: 'Casual visitors are welcome to train in their own uniform and belt at any time. However, members wishing to wear our academy uniform must sit the PSBJJA assessment for each belt level before it is awarded here. This protects the integrity of our ranks — not just for us, but for you.',
+      },
+      {
+        q: 'Do kids progress through belts the same way as adults?',
+        a: 'Kids progress through a dedicated kids belt system. They earn a stripe every 20 classes and a new belt every 100 classes, based on attendance and technique. This keeps goals achievable and motivating.',
+      },
+    ],
+  },
+  {
+    category: 'Pricing & Membership',
+    questions: [
+      {
+        q: 'How much does it cost?',
+        a: 'Casual classes are $30 for kids and $35 for adults per session. The most popular option is the 10-Visit Pass — $250 for kids, $300 for adults — valid for 12 months. Direct debit memberships offer the best value with discounted rates and family deals. Contact Rob for details.',
+      },
+      {
+        q: 'Is the first class really free?',
+        a: 'Yes, completely. No payment details needed. Just book via the free trial form on the home page and Rob will be in touch within 24 hours to confirm your session.',
+      },
+      {
+        q: 'Are there family discounts?',
+        a: 'Yes. Rob offers tailored fee structures for families. Contact him directly at robwilliamsgz@gmail.com or call 0421 729 868 to work out the best option for your family.',
+      },
+    ],
+  },
+  {
+    category: 'About the Academy',
+    questions: [
+      {
+        q: 'What is the Pedro Sauer Association?',
+        a: 'Master Pedro Sauer holds an 8th degree Rickson Gracie coral belt and is recognised as one of the most technical and professional coaches in Gracie Jiu Jitsu. Rob Williams BJJ is the first and only Queensland affiliate of the Pedro Sauer BJJ Association — meaning our students train Jiu Jitsu that connects directly to the Gracie family lineage.',
+      },
+      {
+        q: 'Is this good for real self-defence — not just sport?',
+        a: 'Absolutely. The curriculum is built around the original Gracie self-defence system, covering standing attacks, weapon defences, ground control and more. Rob also brings 15 years of professional security experience to every class — this is practical Jiu Jitsu, not just competition training.',
+      },
+      {
+        q: 'Where are you located?',
+        a: '3/45 Nealdon Drive, Meadowbrook QLD 4131 — in South Brisbane, easily accessible from Logan and surrounding suburbs. Plenty of parking on-site.',
+      },
+    ],
+  },
+];
+---
+
+<Layout
+  title="FAQ | Rob Williams BJJ – South Brisbane"
+  description="Frequently asked questions about Rob Williams BJJ in Meadowbrook, South Brisbane. Classes, pricing, grading, kids programs and more."
+>
+
+  <Header />
+
+  <!-- ─── HERO ─────────────────────────────────────────────────── -->
+  <section class="page-hero relative flex items-end px-6 pb-16 pt-32">
+    <div class="max-w-5xl mx-auto w-full">
+      <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Questions</p>
+      <h1 class="font-display text-5xl md:text-6xl font-bold leading-tight">
+        Frequently Asked<br />Questions
+      </h1>
+      <p class="text-white/60 text-lg mt-4 max-w-xl">
+        Everything you need to know before your first class — and beyond.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── FAQ ACCORDION ────────────────────────────────────────── -->
+  <section class="py-24 px-6 bg-brand-gray">
+    <div class="max-w-3xl mx-auto space-y-12">
+
+      {faqs.map((section) => (
+        <div>
+          <p class="text-brand-red uppercase tracking-widest text-xs font-semibold mb-5">{section.category}</p>
+          <div class="space-y-2">
+            {section.questions.map((item, i) => (
+              <div class="faq-item border border-white/10 rounded-2xl overflow-hidden">
+                <button
+                  class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left bg-brand-dark hover:bg-white/5 transition"
+                  data-faq={`${section.category}-${i}`}
+                >
+                  <span class="font-semibold text-white text-sm pr-4">{item.q}</span>
+                  <span class="faq-chevron text-brand-red text-sm transition-transform duration-300 shrink-0">↓</span>
+                </button>
+                <div
+                  class="faq-panel hidden px-6 pb-5 bg-brand-dark border-t border-white/10"
+                  data-faq-panel={`${section.category}-${i}`}
+                >
+                  <p class="text-white/65 text-sm leading-relaxed pt-4">{item.a}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+
+    </div>
+  </section>
+
+  <script>
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const key     = (btn as HTMLElement).dataset.faq!;
+        const panel   = document.querySelector(`[data-faq-panel="${key}"]`) as HTMLElement;
+        const chevron = btn.querySelector('.faq-chevron') as HTMLElement;
+        const isOpen  = !panel.classList.contains('hidden');
+
+        // Close all
+        document.querySelectorAll('.faq-panel').forEach(p => p.classList.add('hidden'));
+        document.querySelectorAll('.faq-chevron').forEach(c => (c as HTMLElement).style.transform = '');
+
+        if (!isOpen) {
+          panel.classList.remove('hidden');
+          chevron.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+  </script>
+
+  <div style="height:50px;background:linear-gradient(to bottom,#1a1a1a,#0d0d0d);"></div>
+
+  <!-- ─── CTA ─────────────────────────────────────────────────── -->
+  <section class="py-20 px-6 bg-brand-dark text-center">
+    <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Still Have Questions?</p>
+    <h2 class="font-display text-4xl font-bold mb-4">Just Ask Rob</h2>
+    <p class="text-white/60 text-lg mb-10 max-w-lg mx-auto">
+      The easiest way to get answers is to come in for a free trial. No commitment, no pressure — just a class.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="/#free-trial" class="bg-brand-red hover:bg-red-700 text-white font-bold text-lg px-10 py-4 rounded transition inline-block">
+        Book a Free Trial
+      </a>
+      <a href="mailto:robwilliamsgz@gmail.com" class="border border-white/30 hover:border-white text-white font-semibold text-lg px-10 py-4 rounded transition inline-block">
+        Email Rob
+      </a>
+    </div>
+  </section>
+
+  <div style="height:50px;background:linear-gradient(to bottom,#0d0d0d,#1a1a1a);"></div>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────────── -->
+  <footer class="bg-brand-dark py-14 px-6">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-10">
+      <div>
+        <p class="font-display text-xl font-bold mb-3">ROB WILLIAMS <span class="text-brand-red">BJJ</span></p>
+        <p class="text-white/50 text-sm leading-relaxed">
+          Authentic Gracie Jiu Jitsu self-defence academy.<br />
+          South Brisbane · Meadowbrook QLD
+        </p>
+      </div>
+      <div>
+        <p class="font-semibold text-white/80 mb-4 text-sm uppercase tracking-wide">Contact</p>
+        <ul class="space-y-3 text-white/60 text-sm">
+          <li><a href="tel:0421729868" class="hover:text-white transition">📞 0421 729 868</a></li>
+          <li><a href="mailto:robwilliamsgz@gmail.com" class="hover:text-white transition">✉️ robwilliamsgz@gmail.com</a></li>
+          <li>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=3%2F45+Nealdon+Dr+Meadowbrook+QLD+4131" target="_blank" rel="noopener" class="hover:text-white transition">
+              📍 3/45 Nealdon Dr, Meadowbrook QLD 4131
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-white/80 mb-4 text-sm uppercase tracking-wide">Quick Links</p>
+        <ul class="space-y-2 text-white/60 text-sm">
+          <li><a href="/about" class="hover:text-white transition">About</a></li>
+          <li><a href="/programs" class="hover:text-white transition">Programs</a></li>
+          <li><a href="/timetable" class="hover:text-white transition">Timetable & Pricing</a></li>
+          <li><a href="/team" class="hover:text-white transition">Our Team</a></li>
+          <li><a href="/faq" class="hover:text-white transition">FAQ</a></li>
+          <li><a href="/resources" class="hover:text-white transition">Resources</a></li>
+          <li><a href="/#free-trial" class="hover:text-white transition">Free Trial</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="max-w-5xl mx-auto mt-10 pt-6 border-t border-white/10 text-center text-white/30 text-xs">
+      © {new Date().getFullYear()} Rob Williams BJJ. All rights reserved.
+    </div>
+  </footer>
+
+</Layout>

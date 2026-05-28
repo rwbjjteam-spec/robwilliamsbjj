@@ -332,27 +332,27 @@ const programs = [
         {[
           {
             name: 'Cassandra Leadbetter',
-            text: "I couldn't recommend Rob and his coaches enough. My daughter was being bullied badly at school and now — just over two months in — the change in her confidence has been absolutely amazing. She's feeling more herself, like she could take on the world. Rob has brought out a side to her that I never thought I would see again. She's happy, she's confident and she has made so many new life-long friends. Thank you for giving my girl her spark back ❤️",
+            text: "Just over two months in — the change in my daughter's confidence has been absolutely amazing. She's happy, she's confident and she has made so many new life-long friends. Thank you for giving my girl her spark back ❤️",
           },
           {
             name: 'Nicholas Edwards',
-            text: "Rob and his team are great. 2 of my children have joined his classes and they absolutely love it — watching their confidence grow is awesome. I also attend classes and I'm on the same vibe as my kids. He sets up a good, fun and safe environment where everyone enjoys each other's company.",
+            text: "Watching my kids' confidence grow is awesome. Rob sets up a good, fun and safe environment where everyone enjoys each other's company.",
           },
           {
             name: 'Bec Barnes',
-            text: "My teenage daughter and I both come here and it's the best! Such a great environment, everyone is so welcoming and Rob is hands down a truly amazing coach. It becomes like a little family and we don't know what we would do without RWBJJ.",
+            text: "Rob is hands down a truly amazing coach. It becomes like a little family and we don't know what we would do without RWBJJ.",
           },
           {
             name: 'Bethany Fox',
-            text: "I have just enrolled my 2 children with Rob and it has been amazing! My kids are counting down the hours until they get to come back. Friendly atmosphere and very patient with the kids.",
+            text: "My kids are counting down the hours until they get to come back. Friendly atmosphere and very patient with the kids.",
           },
           {
             name: 'Arshad Sahib',
-            text: "I would highly recommend Rob Williams BJJ to anyone considering starting BJJ or for ongoing training. Rob is a great guy and a very knowledgeable instructor. The facilities are clean, well run, and there is a welcoming atmosphere for people of all skill levels.",
+            text: "Rob is a great guy and a very knowledgeable instructor. Clean, well run, and a welcoming atmosphere for people of all skill levels.",
           },
           {
             name: 'M J',
-            text: "I recently joined Rob Williams BJJ after searching for a gym in the area. Best gym! Great atmosphere and the best teacher in Rob. I am grateful for Rob's style of teaching that focuses on training and technique rather than ego rolls — especially after having gone through many injuries over the decades. I would highly recommend Rob Williams BJJ to anyone considering training BJJ!",
+            text: "Best gym! Rob's style focuses on training and technique rather than ego rolls. I would highly recommend Rob Williams BJJ to anyone considering BJJ.",
           },
         ].map(({ name, text }) => (
           <div class="bg-brand-gray border border-white/10 rounded-2xl p-6 flex flex-col gap-4 transition-all duration-200 hover:scale-[1.03] hover:border-brand-red hover:shadow-[0_0_20px_rgba(196,18,48,0.25)]">
@@ -511,6 +511,41 @@ const programs = [
 
   <div style="height:50px;background:linear-gradient(to bottom,#1a1a1a,#0d0d0d);"></div>
 
+  <!-- ─── LOCATION MAP ─────────────────────────────────────────── -->
+  <section class="bg-brand-dark py-16 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-10">
+        <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Find Us</p>
+        <h2 class="font-display text-4xl font-bold mb-2">Meadowbrook, South Brisbane</h2>
+        <p class="text-white/50 text-sm">3/45 Nealdon Drive, Meadowbrook QLD 4131</p>
+      </div>
+      <div class="rounded-2xl overflow-hidden border border-white/10" style="height:380px;">
+        <iframe
+          src="https://maps.google.com/maps?q=3%2F45+Nealdon+Drive+Meadowbrook+QLD+4131&output=embed&z=16"
+          width="100%"
+          height="100%"
+          style="border:0;filter:grayscale(30%) invert(90%) hue-rotate(180deg);"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Rob Williams BJJ location"
+        ></iframe>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mt-6">
+        <a
+          href="https://www.google.com/maps/dir/?api=1&destination=3%2F45+Nealdon+Dr+Meadowbrook+QLD+4131"
+          target="_blank"
+          rel="noopener"
+          class="text-center bg-brand-red hover:bg-red-700 text-white font-bold px-8 py-3 rounded-lg transition text-sm"
+        >
+          Get Directions →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div style="height:50px;background:linear-gradient(to bottom,#0d0d0d,#1a1a1a);"></div>
+
   <!-- ─── FOOTER / CONTACT ──────────────────────────────────────── -->
   <footer id="contact" class="bg-brand-dark py-14 px-6">
     <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-10">
@@ -547,8 +582,9 @@ const programs = [
         <ul class="space-y-2 text-white/60 text-sm">
           <li><a href="/programs" class="hover:text-white transition">Programs</a></li>
           <li><a href="/timetable" class="hover:text-white transition">Timetable & Pricing</a></li>
-          <li><a href="#free-trial" class="hover:text-white transition">Free Trial</a></li>
           <li><a href="/team" class="hover:text-white transition">Our Team</a></li>
+          <li><a href="/faq" class="hover:text-white transition">FAQ</a></li>
+          <li><a href="#free-trial" class="hover:text-white transition">Free Trial</a></li>
         </ul>
       </div>
     </div>
