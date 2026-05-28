@@ -20,22 +20,199 @@ try {
   // Keep fallback values
 }
 
-const techniques = [
-  { num: '01', title: 'Triangle Choke from Open Guard',                      id: '8jabp9AJvrA' },
-  { num: '02', title: 'Flower Sweep',                                         id: '8FGKCNsuzGw' },
-  { num: '03', title: 'Half Guard Tripod Pass',                               id: 'oqFcYryeGc0' },
-  { num: '04', title: 'My Favourite Armbar',                                  id: 'BbT9MCzmBpA' },
-  { num: '05', title: 'Basic Sweep to Technical Mount',                       id: '-kD64Gqg75I' },
-  { num: '06', title: 'Technical Mount Escape',                               id: 'dgtvDWUSctY' },
-  { num: '07', title: 'Escape Shin-Block Armbar (+ Advanced Escape)',         id: 'S5A8JXqD1cI' },
-  { num: '08', title: 'Flattening Shoulders with Hip Movement',               id: 'ltYX7elADqY' },
-  { num: '09', title: 'Standing Passing',                                     id: 'wILoK-rnWdE' },
-  { num: '10', title: 'Double-Under Pass Counters',                           id: 'RTyQlf--CzU' },
-  { num: '11', title: 'Back Take from Quarter Guard',                         id: 'atQleAH8o3E' },
-  { num: '12', title: 'North-South Options',                                  id: 'UVsYm0CLzvI' },
-  { num: '13', title: 'Basic Bridge & Roll + Armbar from Guard',              id: 'F8SRCxbeyME' },
-  { num: '14', title: 'Basic Kimura from Closed Guard',                       id: 'ysQqHh2WWlA' },
-  { num: '15', title: 'Over-Hook Choke (Advanced)',                           id: 'ixvYaLeljjA' },
+type Technique = string | { title: string; videoId: string };
+
+const curriculum = [
+  {
+    part: 1,
+    category: 'Fundamentals',
+    techniques: [
+      { title: '01. Tie the Belt', videoId: 'EaMxkYioG8w' },
+      '00. Break Fall',
+      '00. Shrimp',
+      '02. Roll Forward',
+      '03. Roll Backward',
+      '04. Upa',
+      '05. Teeter Totter',
+      '06. Four-Points Base',
+      { title: '08. Stand up in Base', videoId: 'CySWLbXbbYk' },
+      '30. Basic Armlock Movement',
+    ] as Technique[],
+  },
+  {
+    part: 1,
+    category: 'Self-Defence: Standing Attacks',
+    techniques: [
+      { title: '20. T-Position Hip Throw', videoId: 'mC7Ko5jY8j8' },
+      { title: '21. T-Position Leg Throw', videoId: 'P2SMD_anUOM' },
+      { title: '22. T-Position Throw from Behind (Sitting Down)', videoId: 'Iw_BY-8rrqY' },
+      '44. Standing Guillotine Choke',
+      '86. Bajana (Double Leg Takedown)',
+    ],
+  },
+  {
+    part: 1,
+    category: 'Self-Defence: Striking Defences',
+    techniques: [
+      '83. Close the Gap (to T Position)',
+      '15. Round House Punch Defence (lunging punch)',
+      '15. Round House Punch Defence (close)',
+      '16. Straight Punch Defence',
+      '17. Front Kick Defence (absorb)',
+      '18. Low Kick Defence',
+      '19. High Kick Defence',
+    ],
+  },
+  {
+    part: 1,
+    category: 'Self-Defence: Standing Defences',
+    techniques: [
+      '10. Same Side Wrist Grab Escape',
+      '11. Two-Hand Wrist Grab Escape',
+      '12. One-Hand Lapel Grab Defence (Straight Arm / from side)',
+      '13. One-Hand Lapel Grab Defence (Bent Arm)',
+      '14. One-Hand Lapel Grab Defence (Bent Wrist)',
+      '09. Two-Handed Choke Defence',
+      '45. Standing Guillotine Choke Defence (Hands on Knees)',
+      '46. Standing Guillotine Choke Defence (Buckle the Knee)',
+      '65. Standing Rear Naked Choke Defence (throw)',
+      '73. Standing Rear Naked Choke being dragged backwards',
+      '64. Overhead Club Defence (close distance)',
+      '88. Standing Hair / Ear Grab Defence',
+    ],
+  },
+  {
+    part: 1,
+    category: 'Bear Hug & Wall Defences',
+    techniques: [
+      '47. Rear Bear Hug Defence (Arms Pinned)',
+      '00. Rear Bear Hug Defence (Arms Free)',
+      '72. Rear Bear Hug Defence (Arms Free being picked up)',
+      '70. Front Bear Hug Defence (Arms Free)',
+      '67. Front Bear Hug Defence (Arms Pinned)',
+      '71. Neck Defence (Pinned to Wall - One Hand)',
+    ],
+  },
+  {
+    part: 1,
+    category: 'Headlock Defences',
+    techniques: [
+      '63. Headlock Defence (lifting opponent)',
+      '66. Headlock Defence (with punch defense)',
+    ],
+  },
+  {
+    part: 1,
+    category: 'Cross Body (Side Control) Attacks',
+    techniques: [
+      '50. Establish Cross Body Position',
+      '51. Maintain Cross Side',
+      '56. American Armlock from Cross Body (Keylock)',
+      '57. Cross Body Kimura (chicken wing)',
+      '82. Cross Body Neck Crank (Pass the Leg)',
+      { title: '85. Armlock from Cross Body', videoId: 'JybSE2swg8Y' },
+    ],
+  },
+  {
+    part: 1,
+    category: 'Mounting',
+    techniques: [
+      { title: '54. Basic Mount from Cross Body (Arm Out)', videoId: 'tgkxf7FvAeo' },
+      { title: '55. Basic Mount from Cross Body (Arm In)', videoId: 'OyJyWlCRbBc' },
+    ],
+  },
+  {
+    part: 1,
+    category: 'Mount: Control & Attacks',
+    techniques: [
+      '23. Maintain the Mount (Swimming Through Arms)',
+      '24. Maintain the Mount (Pulling Hands off Knees)',
+      '25. Maintain the Mount (Pushing Opponent\'s Head)',
+      { title: '28/29. Basic Cross Choke', videoId: 'Ql9Enzo88tc' },
+      '32. Keylock (American Armlock)',
+      '31. Armbar',
+    ],
+  },
+  {
+    part: 1,
+    category: 'Back: Attacks',
+    techniques: [
+      '58. Maintain Back Control with Hooks',
+      '60. Collar Choke',
+      '61. Mata Leao (RNC)',
+    ],
+  },
+  {
+    part: 1,
+    category: 'Guard: Attacks',
+    techniques: [
+      { title: '36. Cross Choke', videoId: 'BnsnEiblTyA' },
+      '40. Armlock',
+      { title: '41. Triangle', videoId: 'lcPoZUpftA8' },
+      { title: '34. Kimura', videoId: 'ysQqHh2WWlA' },
+      { title: '42. Guillotine Choke', videoId: '35gdHO8uo28' },
+    ],
+  },
+  {
+    part: 2,
+    category: 'Guard: Defences',
+    techniques: [
+      '35. Posture (driving hips to ground, one arm post)',
+      '43. Guillotine Choke Defence',
+      '38. Choke Defence (comb the hair)',
+      '37/49. Choke Defence (squeeze the bread)',
+      '78/79. Display Active Protection from Attacks and Sweeps',
+    ],
+  },
+  {
+    part: 2,
+    category: 'Guard: Breaks & Passes',
+    techniques: [
+      '48. Knee on Floor Break: Shoulder Pass',
+      '48. Knee on Floor Break: Hip Pass',
+    ],
+  },
+  {
+    part: 2,
+    category: 'Guard: Defences & Sweeps',
+    techniques: [
+      '39. Scissor Sweep to Mount',
+      { title: '77. Basic Hook Sweep', videoId: 'bEYtZNxNVmM' },
+      { title: '33. Sit-up Sweep (knee to ground)', videoId: 'tGuWH_cnekg' },
+    ],
+  },
+  {
+    part: 2,
+    category: 'Side Control (Cross-Body) Defences',
+    techniques: [
+      { title: '52. Regain the Guard from Cross Body', videoId: 'CTWH4G9x21o' },
+      '53. Cross Body Defence (Turn on Knees)',
+      '68. Cross Body Headlock Defence (Opponents Head Low)',
+      '69. Wrestlers Head and Arm Defence (Hips under Opponent)',
+      '74. Cross Body Headlock Defence (Make a Frame)',
+      '80. Cross Body Headlock Defence (Go to Back)',
+      '81. Cross Body Headlock Defence (Go to Knees)',
+    ],
+  },
+  {
+    part: 2,
+    category: 'Mount: Defences',
+    techniques: [
+      '04. Upa',
+      { title: '26. Upa with Choke Defence', videoId: '8QUDcKmiaN4' },
+      '75. Mounted Punch Attack (Upa)',
+      '84. Mount Defence (Move Away)',
+      { title: '7/27. Elbow Escape', videoId: 'WHRtPS2HEEg' },
+    ],
+  },
+  {
+    part: 2,
+    category: 'Back: Defences',
+    techniques: [
+      '59. Escape from Back Control with Hooks',
+      '62. Rear Choke Escape (Finger Point)',
+    ],
+  },
 ];
 ---
 
@@ -100,45 +277,186 @@ const techniques = [
 
   <div style="height:50px;background:linear-gradient(to bottom,#1a1a1a,#0d0d0d);"></div>
 
-  <!-- ─── TECHNIQUE LIBRARY ─────────────────────────────────────── -->
+  <!-- ─── CURRICULUM ────────────────────────────────────────────── -->
   <section class="py-24 px-6 bg-brand-dark">
-    <div class="max-w-5xl mx-auto">
+    <div class="max-w-3xl mx-auto">
+
       <div class="mb-12">
         <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Curriculum</p>
-        <h2 class="font-display text-4xl font-bold mb-4">White to Blue Belt Techniques</h2>
+        <h2 class="font-display text-4xl font-bold mb-4">White to Blue Belt</h2>
         <p class="text-white/60 text-lg max-w-2xl">
-          Rob's own technique series covering the core movements every student should know on their
-          journey from White to Blue Belt. Click any technique to watch on YouTube.
+          The full Pedro Sauer Association Blue Belt curriculum. Click a part to expand, then a category to see techniques.
         </p>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
-        {techniques.map(({ num, title, id }) => (
-          <a
-            href={`https://www.youtube.com/watch?v=${id}`}
-            target="_blank"
-            rel="noopener"
-            class="group flex items-start gap-4 bg-brand-gray border border-white/10 hover:border-brand-red rounded-2xl px-5 py-4 transition"
-          >
-            <span class="text-brand-red font-mono text-xs font-bold shrink-0 mt-0.5 leading-5">{num}</span>
-            <span class="text-white/80 group-hover:text-white text-sm font-medium leading-snug transition">{title}</span>
-            <span class="ml-auto shrink-0 text-white/20 group-hover:text-brand-red transition text-xs leading-5">▶</span>
-          </a>
+      <div class="space-y-3">
+        {[
+          { part: 1, label: 'Part 1', subtitle: 'Attacks & Fundamentals' },
+          { part: 2, label: 'Part 2', subtitle: 'Defences, Recoveries & Escapes' },
+        ].map(({ part, label, subtitle }) => (
+          <div class="part-item border border-white/10 rounded-2xl overflow-hidden">
+
+            <!-- Part header -->
+            <button
+              class="part-btn w-full flex items-center justify-between px-6 py-5 text-left bg-brand-gray hover:bg-white/5 transition"
+              data-part={part}
+            >
+              <div>
+                <p class="text-brand-red text-xs uppercase tracking-widest font-semibold mb-0.5">{label}</p>
+                <p class="font-bold text-white text-base">{subtitle}</p>
+              </div>
+              <span class="part-chevron text-brand-red text-sm transition-transform duration-300 ml-4 shrink-0">↓</span>
+            </button>
+
+            <!-- Part panel -->
+            <div class="part-panel hidden border-t border-white/10 bg-brand-dark px-4 py-4" data-part-panel={part}>
+              <div class="space-y-2">
+                {curriculum.filter(c => c.part === part).map((cat, i) => (
+                  <div class="cat-item border border-white/10 rounded-xl overflow-hidden">
+                    <button
+                      class="cat-btn w-full flex items-center justify-between px-5 py-3.5 text-left bg-brand-gray hover:bg-white/5 transition"
+                      data-index={`p${part}-${i}`}
+                    >
+                      <span class="font-semibold text-white text-sm">{cat.category}</span>
+                      <span class="cat-chevron text-brand-red text-xs transition-transform duration-300 ml-4 shrink-0">↓</span>
+                    </button>
+                    <div class="cat-panel hidden px-5 pb-4 bg-brand-gray border-t border-white/10" data-cat-panel={`p${part}-${i}`}>
+                      <ul class="space-y-2 pt-4">
+                        {cat.techniques.map((t: Technique) => {
+                          const isLinked = typeof t === 'object';
+                          const title = isLinked ? t.title : t;
+                          const videoId = isLinked ? t.videoId : null;
+                          return (
+                            <li class="flex items-start gap-3">
+                              <span class="text-brand-red shrink-0 mt-0.5 text-xs">▸</span>
+                              {isLinked ? (
+                                <button
+                                  class="video-trigger text-white/70 text-sm hover:text-brand-red transition flex items-center gap-1.5 text-left"
+                                  data-video-id={videoId}
+                                  data-video-title={title}
+                                >
+                                  {title}
+                                  <span class="text-brand-red text-xs opacity-70">▶</span>
+                                </button>
+                              ) : (
+                                <span class="text-white/70 text-sm">{title}</span>
+                              )}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
         ))}
       </div>
 
-      <div class="text-center">
-        <a
-          href="https://www.youtube.com/playlist?list=PLGFWCYhPhk04j1u0d_ZUX1gfkWmaNMRTz"
-          target="_blank"
-          rel="noopener"
-          class="border border-white/30 hover:border-white text-white font-semibold px-8 py-3 rounded-lg transition inline-block text-sm"
-        >
-          View Full Playlist on YouTube →
-        </a>
-      </div>
     </div>
   </section>
+
+  <script>
+    // Part-level accordion — each part toggles independently
+    document.querySelectorAll('.part-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const part    = (btn as HTMLElement).dataset.part!;
+        const panel   = document.querySelector(`[data-part-panel="${part}"]`) as HTMLElement;
+        const chevron = btn.querySelector('.part-chevron') as HTMLElement;
+        const isOpen  = !panel.classList.contains('hidden');
+        panel.classList.toggle('hidden', isOpen);
+        chevron.style.transform = isOpen ? '' : 'rotate(180deg)';
+      });
+    });
+
+    // Category-level accordion — closes other categories when one opens
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx     = (btn as HTMLElement).dataset.index!;
+        const panel   = document.querySelector(`[data-cat-panel="${idx}"]`) as HTMLElement;
+        const chevron = btn.querySelector('.cat-chevron') as HTMLElement;
+        const isOpen  = !panel.classList.contains('hidden');
+
+        // Close all category panels
+        document.querySelectorAll('.cat-panel').forEach(p => p.classList.add('hidden'));
+        document.querySelectorAll('.cat-chevron').forEach(c => (c as HTMLElement).style.transform = '');
+
+        if (!isOpen) {
+          panel.classList.remove('hidden');
+          chevron.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+
+    // ── Video modal ──────────────────────────────────────────────
+    const modal       = document.getElementById('video-modal') as HTMLElement;
+    const modalIframe = document.getElementById('modal-iframe') as HTMLIFrameElement;
+    const modalTitle  = document.getElementById('modal-title') as HTMLElement;
+
+    function openModal(videoId: string, title: string) {
+      modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+      modalTitle.textContent = title;
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      modalIframe.src = '';
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.video-trigger').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const el = btn as HTMLElement;
+        openModal(el.dataset.videoId!, el.dataset.videoTitle!);
+      });
+    });
+
+    // Close on backdrop click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // Close on ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // Close button
+    document.getElementById('modal-close')?.addEventListener('click', closeModal);
+  </script>
+
+  <!-- ── VIDEO MODAL ───────────────────────────────────────────── -->
+  <div
+    id="video-modal"
+    class="hidden fixed inset-0 z-50 flex items-center justify-center px-4"
+    style="background:rgba(0,0,0,0.85);"
+  >
+    <div class="relative w-full max-w-3xl">
+      <!-- Title + close row -->
+      <div class="flex items-center justify-between mb-3">
+        <p id="modal-title" class="text-white font-semibold text-sm truncate pr-4"></p>
+        <button
+          id="modal-close"
+          class="shrink-0 text-white/50 hover:text-white text-2xl leading-none transition"
+          aria-label="Close"
+        >✕</button>
+      </div>
+      <!-- Embed -->
+      <div class="relative w-full rounded-2xl overflow-hidden bg-black" style="aspect-ratio:16/9;">
+        <iframe
+          id="modal-iframe"
+          src=""
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          class="absolute inset-0 w-full h-full"
+        ></iframe>
+      </div>
+    </div>
+  </div>
 
   <div style="height:50px;background:linear-gradient(to bottom,#0d0d0d,#1a1a1a);"></div>
 
