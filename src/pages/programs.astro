@@ -167,6 +167,99 @@ const programs = [
     </>
   ))}
 
+  <!-- ─── AUTO-SCROLL PHOTO STRIP ─────────────────────────────── -->
+  <div id="strip-programs" class="relative overflow-hidden h-52 md:h-72 bg-brand-dark">
+    <div id="strip-programs-track" class="flex h-full">
+      {[
+        { src: '/Gallery/Adults.bluebelts.png',    alt: 'Blue belts training' },
+        { src: '/Gallery/Kids.w.Rob.shaka.png',    alt: 'Kids with Rob' },
+        { src: '/Gallery/Ladies.defendingback.png',alt: 'Ladies defending back' },
+        { src: '/Gallery/Adults.nogi.png',         alt: 'No-Gi class' },
+        { src: '/Gallery/Kids.climbingtrees.png',  alt: 'Kids having fun' },
+        { src: '/Gallery/Adults.passing.png',      alt: 'Guard passing' },
+        { src: '/Gallery/Ladies.RNC.png',          alt: 'Ladies RNC defence' },
+        { src: '/Gallery/Adults.hittingpads.png',  alt: 'Striking pads' },
+        { src: '/Gallery/Kids.strech.png',         alt: 'Kids stretching' },
+        { src: '/Gallery/Adults.shaka.png',        alt: 'Adults shaka' },
+        { src: '/Gallery/Adults.bluebelts.png',    alt: 'Blue belts training' },
+        { src: '/Gallery/Kids.w.Rob.shaka.png',    alt: 'Kids with Rob' },
+        { src: '/Gallery/Ladies.defendingback.png',alt: 'Ladies defending back' },
+        { src: '/Gallery/Adults.nogi.png',         alt: 'No-Gi class' },
+        { src: '/Gallery/Kids.climbingtrees.png',  alt: 'Kids having fun' },
+        { src: '/Gallery/Adults.passing.png',      alt: 'Guard passing' },
+        { src: '/Gallery/Ladies.RNC.png',          alt: 'Ladies RNC defence' },
+        { src: '/Gallery/Adults.hittingpads.png',  alt: 'Striking pads' },
+        { src: '/Gallery/Kids.strech.png',         alt: 'Kids stretching' },
+        { src: '/Gallery/Adults.shaka.png',        alt: 'Adults shaka' },
+      ].map(({ src, alt }) => (
+        <img src={src} alt={alt} loading="lazy" class="h-full w-auto flex-shrink-0 object-cover" />
+      ))}
+    </div>
+    <button id="strip-programs-prev" class="strip-nav-btn absolute left-3 top-1/2 -translate-y-1/2 z-10">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+    </button>
+    <button id="strip-programs-next" class="strip-nav-btn absolute right-3 top-1/2 -translate-y-1/2 z-10">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+
+  <style>
+    .strip-nav-btn {
+      background: rgba(0,0,0,0.55);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      border-radius: 50%;
+      width: 2.25rem;
+      height: 2.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .strip-nav-btn:hover { background: #c41230; border-color: #c41230; }
+  </style>
+
+  <script>
+    (function() {
+      const track = document.getElementById('strip-programs-track') as HTMLElement;
+      const prev  = document.getElementById('strip-programs-prev')  as HTMLElement;
+      const next  = document.getElementById('strip-programs-next')  as HTMLElement;
+      if (!track) return;
+
+      let pos      = 0;
+      let paused   = false;
+      let lastTime = performance.now();
+      const jump     = 400;
+      const duration = 80000;
+
+      function half() { return track.scrollWidth / 2; }
+
+      function tick(now: number) {
+        const dt = now - lastTime;
+        lastTime = now;
+        if (!paused) {
+          pos += (half() / duration) * dt;
+          if (pos >= half()) pos -= half();
+        }
+        track.style.transform = `translateX(-${pos}px)`;
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+
+      track.addEventListener('mouseenter', () => paused = true);
+      track.addEventListener('mouseleave', () => paused = false);
+
+      prev?.addEventListener('click', () => {
+        pos -= jump;
+        if (pos < 0) pos += half();
+      });
+      next?.addEventListener('click', () => {
+        pos += jump;
+        if (pos >= half()) pos -= half();
+      });
+    })();
+  </script>
+
   <!-- ─── COACHES ─────────────────────────────────────────────── -->
   <section class="py-16 px-6 bg-brand-dark border-t border-white/10">
     <div class="max-w-5xl mx-auto">
@@ -242,8 +335,10 @@ const programs = [
         <ul class="space-y-2 text-white/60 text-sm">
           <li><a href="/about" class="hover:text-white transition">About</a></li>
           <li><a href="/programs" class="hover:text-white transition">Programs</a></li>
-          <li><a href="/timetable" class="hover:text-white transition">Timetable & Pricing</a></li>
+          <li><a href="/timetable" class="hover:text-white transition">Timetable &amp; Pricing</a></li>
           <li><a href="/team" class="hover:text-white transition">Our Team</a></li>
+          <li><a href="/contact" class="hover:text-white transition">Contact</a></li>
+          <li><a href="/faq" class="hover:text-white transition">FAQ</a></li>
           <li><a href="/resources" class="hover:text-white transition">Resources</a></li>
           <li><a href="/#free-trial" class="hover:text-white transition">Free Trial</a></li>
         </ul>

@@ -145,7 +145,7 @@ const programs = [
           We welcome complete beginners, experienced grapplers, families, and everyone in between.
         </p>
         <a href="#free-trial" class="bg-brand-red hover:bg-red-700 text-white font-bold px-8 py-3 rounded transition inline-block">
-          Try a Free Class
+          Try Free for 10 Days
         </a>
       </div>
       <div class="rounded-2xl overflow-hidden aspect-[4/5]">
@@ -283,18 +283,107 @@ const programs = [
     </div>
   </section>
 
-  <!-- ─── PHOTO STRIP ─────────────────────────────────────────────── -->
-  <div class="grid grid-cols-3 h-52 md:h-72">
-    <div class="overflow-hidden">
-      <img src="/Gallery/morning%20champs.png" alt="Adults morning class" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
+  <!-- ─── AUTO-SCROLL PHOTO STRIP ─────────────────────────────── -->
+  <div id="strip-home" class="relative overflow-hidden h-52 md:h-72 bg-brand-dark group/strip">
+    <div id="strip-home-track" class="flex h-full">
+      {[
+        { src: '/Gallery/Adults.action.png',              alt: 'Adults training' },
+        { src: '/Gallery/Kids.teaching.png',              alt: 'Kids class' },
+        { src: '/Gallery/Ladies.jj.png',                  alt: 'Ladies Jiu Jitsu' },
+        { src: '/Gallery/Legends.Rob.Rickson.Gracie.png', alt: 'Rob with Rickson Gracie' },
+        { src: '/Gallery/Adults.rolling.png',             alt: 'Adults rolling' },
+        { src: '/Gallery/Kids.focus.png',                 alt: 'Kids focused' },
+        { src: '/Gallery/Ladies.standing.png',            alt: 'Ladies class' },
+        { src: '/Gallery/Adults.saturday.png',            alt: 'Saturday class' },
+        { src: '/Gallery/Kids.backmount.png',             alt: 'Kids back mount' },
+        { src: '/Gallery/Legends.Rob.McKenzie.png',       alt: 'Rob with McKenzie Dern' },
+        { src: '/Gallery/Adults.morningsesh.png',         alt: 'Morning session' },
+        { src: '/Gallery/Ladies.stripe.png',              alt: 'Ladies stripe ceremony' },
+        { src: '/Gallery/Adults.action.png',              alt: 'Adults training' },
+        { src: '/Gallery/Kids.teaching.png',              alt: 'Kids class' },
+        { src: '/Gallery/Ladies.jj.png',                  alt: 'Ladies Jiu Jitsu' },
+        { src: '/Gallery/Legends.Rob.Rickson.Gracie.png', alt: 'Rob with Rickson Gracie' },
+        { src: '/Gallery/Adults.rolling.png',             alt: 'Adults rolling' },
+        { src: '/Gallery/Kids.focus.png',                 alt: 'Kids focused' },
+        { src: '/Gallery/Ladies.standing.png',            alt: 'Ladies class' },
+        { src: '/Gallery/Adults.saturday.png',            alt: 'Saturday class' },
+        { src: '/Gallery/Kids.backmount.png',             alt: 'Kids back mount' },
+        { src: '/Gallery/Legends.Rob.McKenzie.png',       alt: 'Rob with McKenzie Dern' },
+        { src: '/Gallery/Adults.morningsesh.png',         alt: 'Morning session' },
+        { src: '/Gallery/Ladies.stripe.png',              alt: 'Ladies stripe ceremony' },
+      ].map(({ src, alt }) => (
+        <div class="h-full aspect-[3/2] flex-shrink-0 overflow-hidden">
+          <img src={src} alt={alt} loading="lazy" class="h-full w-full object-cover" />
+        </div>
+      ))}
     </div>
-    <div class="overflow-hidden">
-      <img src="/Gallery/kids%20n%20Rob.png" alt="Kids with Rob" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
-    </div>
-    <div class="overflow-hidden">
-      <img src="/Gallery/ladies%20class.png" alt="Ladies BJJ class" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
-    </div>
+    <!-- Nav buttons -->
+    <button id="strip-home-prev" class="strip-nav-btn absolute left-3 top-1/2 -translate-y-1/2 z-10">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+    </button>
+    <button id="strip-home-next" class="strip-nav-btn absolute right-3 top-1/2 -translate-y-1/2 z-10">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+    </button>
   </div>
+
+  <style>
+    .strip-nav-btn {
+      background: rgba(0,0,0,0.55);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      border-radius: 50%;
+      width: 2.25rem;
+      height: 2.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .strip-nav-btn:hover { background: #c41230; border-color: #c41230; }
+  </style>
+
+  <script>
+    function initStrip(trackId: string, prevId: string, nextId: string) {
+      const track = document.getElementById(trackId) as HTMLElement;
+      const prev  = document.getElementById(prevId)  as HTMLElement;
+      const next  = document.getElementById(nextId)  as HTMLElement;
+      if (!track) return;
+
+      let pos      = 0;
+      let paused   = false;
+      let lastTime = performance.now();
+      const jump   = 400;
+      const duration = 100000; // ms to scroll half the track
+
+      function half() { return track.scrollWidth / 2; }
+
+      function tick(now: number) {
+        const dt = now - lastTime;
+        lastTime = now;
+        if (!paused) {
+          pos += (half() / duration) * dt;
+          if (pos >= half()) pos -= half();
+        }
+        track.style.transform = `translateX(-${pos}px)`;
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+
+      track.addEventListener('mouseenter', () => paused = true);
+      track.addEventListener('mouseleave', () => paused = false);
+
+      prev?.addEventListener('click', () => {
+        pos -= jump;
+        if (pos < 0) pos += half();
+      });
+      next?.addEventListener('click', () => {
+        pos += jump;
+        if (pos >= half()) pos -= half();
+      });
+    }
+
+    initStrip('strip-home-track', 'strip-home-prev', 'strip-home-next');
+  </script>
 
   <!-- ─── REVIEWS ─────────────────────────────────────────────────── -->
   <section class="py-24 px-6 bg-brand-dark">
@@ -387,95 +476,39 @@ const programs = [
 
   <div style="height:50px;background:linear-gradient(to bottom,#1a1a1a,#0d0d0d);"></div>
 
-  <!-- ─── FREE TRIAL FORM ───────────────────────────────────────── -->
+  <!-- ─── FREE TRIAL ───────────────────────────────────────────── -->
   <section id="free-trial" class="py-24 px-6 bg-brand-dark">
-    <div class="max-w-xl mx-auto">
-      <div class="text-center mb-12">
-        <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Get Started</p>
-        <h2 class="font-display text-4xl font-bold mb-4">Your First 10 Days Are Free</h2>
-        <p class="text-white/60 text-lg">
-          Unlimited classes for 10 days, no payment details needed. Show up, give it a go, and find out why Rob Williams BJJ is Meadowbrook's home of Gracie Jiu Jitsu.
-        </p>
+    <div class="max-w-xl mx-auto text-center">
+      <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Get Started</p>
+      <h2 class="font-display text-4xl font-bold mb-4">Your First 10 Days Are Free</h2>
+      <p class="text-white/60 text-lg mb-10">
+        Unlimited classes for 10 days, no payment details needed. Choose your program below and complete the quick sign-up — Rob will be in touch to confirm your first session.
+      </p>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <a
+          href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new"
+          target="_blank"
+          rel="noopener"
+          class="bg-brand-red hover:bg-red-700 text-white font-bold text-lg px-8 py-5 rounded-xl transition flex flex-col items-center gap-1"
+        >
+          <span>I'm an Adult</span>
+          <span class="text-white/70 text-sm font-normal">Ages 13 & over</span>
+        </a>
+        <a
+          href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new"
+          target="_blank"
+          rel="noopener"
+          class="bg-brand-gray hover:bg-white/10 border border-white/20 hover:border-white text-white font-bold text-lg px-8 py-5 rounded-xl transition flex flex-col items-center gap-1"
+        >
+          <span>I'm a Parent</span>
+          <span class="text-white/70 text-sm font-normal">Signing up a child</span>
+        </a>
       </div>
 
-      <form
-        name="free-trial"
-        method="POST"
-        data-netlify="true"
-        netlify-honeypot="bot-field"
-        class="bg-brand-gray border border-white/10 rounded-2xl p-8 flex flex-col gap-5"
-      >
-        <input type="hidden" name="form-name" value="free-trial" />
-        <p class="hidden"><label>Don't fill this out: <input name="bot-field" /></label></p>
-
-        <div>
-          <label class="block text-sm font-semibold text-white/80 mb-2">Full Name *</label>
-          <input
-            type="text"
-            name="name"
-            required
-            class="w-full bg-brand-dark border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-brand-red transition"
-            placeholder="Your name"
-          />
-        </div>
-
-        <div>
-          <label class="block text-sm font-semibold text-white/80 mb-2">Phone *</label>
-          <input
-            type="tel"
-            name="phone"
-            required
-            class="w-full bg-brand-dark border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-brand-red transition"
-            placeholder="0400 000 000"
-          />
-        </div>
-
-        <div>
-          <label class="block text-sm font-semibold text-white/80 mb-2">Email</label>
-          <input
-            type="email"
-            name="email"
-            class="w-full bg-brand-dark border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-brand-red transition"
-            placeholder="you@email.com"
-          />
-        </div>
-
-        <div>
-          <label class="block text-sm font-semibold text-white/80 mb-2">Which program are you interested in?</label>
-          <select
-            name="program"
-            class="w-full bg-brand-dark border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-red transition"
-          >
-            <option value="">Select a program</option>
-            <option>Pythons (Ages 4–7)</option>
-            <option>Anacondas (Ages 8–12)</option>
-            <option>Women (13+)</option>
-            <option>Adults (13+)</option>
-            <option>Women's class</option>
-          </select>
-        </div>
-
-        <div>
-          <label class="block text-sm font-semibold text-white/80 mb-2">Message (optional)</label>
-          <textarea
-            name="message"
-            rows="3"
-            class="w-full bg-brand-dark border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-brand-red transition resize-none"
-            placeholder="Any questions or preferred class times?"
-          ></textarea>
-        </div>
-
-        <button
-          type="submit"
-          class="bg-brand-red hover:bg-red-700 text-white font-bold text-lg py-4 rounded-lg transition mt-2"
-        >
-          Claim My Free Trial →
-        </button>
-
-        <p class="text-white/40 text-xs text-center">
-          Rob will be in touch within 24 hours.
-        </p>
-      </form>
+      <p class="text-white/30 text-xs mt-6">
+        Powered by ClubWorx · Rob will be in touch within 24 hours
+      </p>
     </div>
   </section>
 
@@ -595,11 +628,14 @@ const programs = [
       <div>
         <p class="font-semibold text-white/80 mb-4 text-sm uppercase tracking-wide">Quick Links</p>
         <ul class="space-y-2 text-white/60 text-sm">
+          <li><a href="/about" class="hover:text-white transition">About</a></li>
           <li><a href="/programs" class="hover:text-white transition">Programs</a></li>
-          <li><a href="/timetable" class="hover:text-white transition">Timetable & Pricing</a></li>
+          <li><a href="/timetable" class="hover:text-white transition">Timetable &amp; Pricing</a></li>
           <li><a href="/team" class="hover:text-white transition">Our Team</a></li>
+          <li><a href="/contact" class="hover:text-white transition">Contact</a></li>
           <li><a href="/faq" class="hover:text-white transition">FAQ</a></li>
-          <li><a href="#free-trial" class="hover:text-white transition">Free Trial</a></li>
+          <li><a href="/resources" class="hover:text-white transition">Resources</a></li>
+          <li><a href="/#free-trial" class="hover:text-white transition">Free Trial</a></li>
         </ul>
       </div>
     </div>
