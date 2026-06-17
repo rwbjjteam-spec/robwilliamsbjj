@@ -13,7 +13,7 @@ const schedule = [
   },
   {
     time: '9:30am',
-    classes: [null, null, null, null, null, { label: 'Anacondas', sub: 'Must Book · Trials OK', type: 'anacondas' }],
+    classes: [null, null, null, null, null, { label: 'Anacondas', sub: 'Must Book', type: 'anacondas' }],
   },
   {
     time: '10:00am',
@@ -41,9 +41,9 @@ const schedule = [
     time: '5:45pm',
     classes: [
       null,
-      { label: 'Anacondas', sub: 'Must Book · Trials OK', type: 'anacondas' },
+      { label: 'Anacondas', sub: 'Must Book', type: 'anacondas' },
       null,
-      { label: 'Anacondas', sub: 'Must Book · No Trials', type: 'anacondas' },
+      { label: 'Anacondas', sub: 'Must Book', type: 'anacondas' },
       null,
       null,
     ],
@@ -314,7 +314,24 @@ const typeStyles: Record<string, string> = {
     <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-start">
 
       <div class="order-2 md:order-1">
-        <img src="/Gradings.jpg" alt="Rob Williams BJJ Grading" class="rounded-2xl w-full object-cover mb-6" />
+        <img
+          id="grading-thumb"
+          src="/Gradings-2.0.png"
+          alt="Rob Williams BJJ Grading Chart"
+          class="rounded-2xl w-full object-cover mb-6 cursor-pointer hover:ring-2 hover:ring-brand-red transition"
+        />
+
+        <!-- Lightbox -->
+        <div id="grading-lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+          <div class="relative max-w-4xl w-full">
+            <button id="grading-close" class="absolute -top-4 -right-4 z-10 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-lg transition">✕</button>
+            <img
+              src="/Gradings-2.0.png"
+              alt="Rob Williams BJJ Grading Chart"
+              class="max-h-[90vh] w-full object-contain rounded-2xl"
+            />
+          </div>
+        </div>
         <!-- Transfer students note -->
         <div class="bg-brand-dark border border-white/10 rounded-2xl p-6">
           <p class="text-brand-red uppercase tracking-widest text-xs font-semibold mb-3">Transferring from Another Gym?</p>
@@ -453,6 +470,24 @@ const typeStyles: Record<string, string> = {
 </style>
 
 <script>
+  // Grading lightbox
+  const thumb = document.getElementById('grading-thumb');
+  const lightbox = document.getElementById('grading-lightbox');
+  thumb?.addEventListener('click', () => {
+    lightbox?.classList.remove('hidden');
+    lightbox?.classList.add('flex');
+  });
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
+    }
+  });
+  document.getElementById('grading-close')?.addEventListener('click', () => {
+    lightbox?.classList.add('hidden');
+    lightbox?.classList.remove('flex');
+  });
+
   const items = document.querySelectorAll<HTMLElement>('[data-class-type]');
   let lockedType: string | null = null;
 
