@@ -13,7 +13,7 @@ const schedule = [
   },
   {
     time: '9:30am',
-    classes: [null, null, null, null, null, { label: 'Anacondas', sub: 'Must Book', type: 'anacondas' }],
+    classes: [null, null, null, null, null, { label: 'Anacondas', sub: 'Booking Essential', type: 'anacondas' }],
   },
   {
     time: '10:00am',
@@ -29,7 +29,7 @@ const schedule = [
   {
     time: '5:00pm',
     classes: [
-      { label: 'Girls (13y+) & Women', type: 'women' },
+      { label: 'Girls (13y+) & Women', sub: 'Booking Essential', type: 'women' },
       { label: 'Pythons', sub: '30 mins', type: 'pythons' },
       null,
       { label: 'Pythons', sub: '30 mins', type: 'pythons' },
@@ -41,9 +41,9 @@ const schedule = [
     time: '5:45pm',
     classes: [
       null,
-      { label: 'Anacondas', sub: 'Must Book', type: 'anacondas' },
+      { label: 'Anacondas', sub: 'Booking Essential', type: 'anacondas' },
       null,
-      { label: 'Anacondas', sub: 'Must Book', type: 'anacondas' },
+      { label: 'Anacondas', sub: 'Booking Essential', type: 'anacondas' },
       null,
       null,
     ],
@@ -94,7 +94,7 @@ const typeStyles: Record<string, string> = {
       <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Schedule</p>
       <h1 class="font-display text-5xl md:text-6xl font-bold leading-tight">Timetable & Pricing</h1>
       <p class="text-white/60 text-lg mt-4 max-w-xl">
-        Classes 6 days a week. Only Anacondas must pre-book via ClubWorx.
+        Classes 6 days a week. Anacondas and Women's classes must pre-book via ClubWorx.
       </p>
     </div>
   </section>
@@ -102,6 +102,22 @@ const typeStyles: Record<string, string> = {
   <!-- ─── TIMETABLE GRID ───────────────────────────────────────── -->
   <section class="bg-brand-gray px-4 py-10">
     <div class="max-w-5xl mx-auto">
+
+      <!-- Note + Book button -->
+      <div class="mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 bg-brand-gray border border-white/10 rounded-2xl px-6 py-5 md:bg-brand-gray">
+        <p class="text-white/60 text-sm text-center sm:text-left">
+          Anacondas and Women's classes — booking essential via ClubWorx.<br class="hidden sm:inline" />
+          ⚠️ When the forecast exceeds 30°C, gi classes convert to No-Gi — check socials for updates.
+        </p>
+        <a
+          href="https://app.clubworx.com/websites/rob-williams-bjj/calendar/weekly_agenda"
+          target="_blank"
+          rel="noopener"
+          class="shrink-0 bg-brand-red hover:bg-red-700 text-white font-bold px-8 py-3 rounded-lg transition text-sm"
+        >
+          Book a Class via ClubWorx →
+        </a>
+      </div>
 
       <!-- Legend -->
       <div class="flex flex-wrap gap-3 mb-6 justify-center">
@@ -181,21 +197,6 @@ const typeStyles: Record<string, string> = {
         })}
       </div>
 
-      <!-- Note + Book button -->
-      <div class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 bg-brand-gray border border-white/10 rounded-2xl px-6 py-5 md:bg-brand-gray">
-        <p class="text-white/60 text-sm text-center sm:text-left">
-          Only Anacondas must pre-book via ClubWorx.<br class="hidden sm:inline" />
-          ⚠️ When the forecast exceeds 30°C, gi classes convert to No-Gi — check socials for updates.
-        </p>
-        <a
-          href="https://app.clubworx.com/websites/rob-williams-bjj/calendar/weekly_agenda"
-          target="_blank"
-          rel="noopener"
-          class="shrink-0 bg-brand-red hover:bg-red-700 text-white font-bold px-8 py-3 rounded-lg transition text-sm"
-        >
-          Book a Class via ClubWorx →
-        </a>
-      </div>
 
     </div>
   </section>
