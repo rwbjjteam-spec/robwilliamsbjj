@@ -6,10 +6,15 @@ const active = (path: string) => pathname === path ? 'text-white font-semibold' 
 <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/90 backdrop-blur border-b border-white/10">
   <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
 
-    <!-- Logo -->
-    <a href="/" class="flex items-center shrink-0">
-      <img src="/Rob Williams BJJ logo.jpg" alt="Rob Williams BJJ" class="h-10 w-auto" />
-    </a>
+    <!-- Logo + Book In -->
+    <div class="flex items-center gap-3">
+      <a href="/" class="flex items-center shrink-0">
+        <img src="/Rob Williams BJJ logo.jpg" alt="Rob Williams BJJ" class="h-10 w-auto" />
+      </a>
+      <a href="https://app.clubworx.com/websites/rob-williams-bjj/calendar/weekly_agenda" target="_blank" rel="noopener" class="border border-white/30 hover:border-white text-white text-sm font-semibold px-5 py-2 rounded transition">
+        Book In
+      </a>
+    </div>
 
     <!-- Desktop nav -->
     <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-white/80">
@@ -55,7 +60,10 @@ const active = (path: string) => pathname === path ? 'text-white font-semibold' 
       <a href="/resources" class="text-white/80 hover:text-white hover:bg-white/5 transition px-3 py-3 rounded-lg">Resources</a>
       <a href="/contact"   class="text-white/80 hover:text-white hover:bg-white/5 transition px-3 py-3 rounded-lg">Contact</a>
       <a href="/faq"       class="text-white/80 hover:text-white hover:bg-white/5 transition px-3 py-3 rounded-lg">FAQ</a>
-      <a href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener" class="mt-2 text-center bg-brand-red hover:bg-red-700 text-white font-bold px-5 py-3 rounded-lg transition">
+      <a href="https://app.clubworx.com/websites/rob-williams-bjj/calendar/weekly_agenda" target="_blank" rel="noopener" class="mt-2 text-center border border-white/30 hover:border-white text-white font-bold px-5 py-3 rounded-lg transition">
+        Book In
+      </a>
+      <a href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener" class="text-center bg-brand-red hover:bg-red-700 text-white font-bold px-5 py-3 rounded-lg transition">
         Book a Free Trial
       </a>
     </nav>
