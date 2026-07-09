@@ -135,5 +135,67 @@ const ogImage    = `${siteBase}/hero-bg.jpg`;
   </head>
   <body class="bg-brand-dark text-white font-body antialiased">
     <slot />
+
+    <!-- ── NEW CLASS POPUP ─────────────────────────────────────── -->
+    <div id="taipans-popup" class="hidden fixed inset-0 z-[100] flex items-center justify-center px-4" style="background:rgba(0,0,0,0.85);">
+      <div class="relative max-w-sm w-full rounded-2xl overflow-hidden shadow-2xl" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d1010 50%, #1a1a1a 100%);">
+        <!-- Top accent bar -->
+        <div style="height:5px; background: linear-gradient(90deg, #f59e0b, #d97706, #f59e0b);"></div>
+
+        <div class="p-8 text-center">
+          <button id="taipans-close" class="absolute top-4 right-4 text-white/40 hover:text-white text-xl leading-none transition">✕</button>
+
+          <p class="uppercase tracking-widest text-xs font-bold mb-4" style="color:#f59e0b;">⚡ New Class Opening ⚡</p>
+          <h2 class="font-display font-bold mb-1" style="font-size:2.8rem; line-height:1; color:#ffffff;">TAIPANS</h2>
+          <p class="font-bold text-lg mb-5" style="color:#f59e0b;">Ages 12–15</p>
+
+          <p class="text-white/80 text-sm leading-relaxed mb-6">
+            Real Jiu Jitsu for teens. Serious technique, real self-defence — building confidence on and off the mat.
+          </p>
+
+          <div class="rounded-xl px-5 py-4 mb-6" style="background:rgba(255,255,255,0.06); border: 1px solid rgba(245,158,11,0.5);">
+            <p class="font-bold text-white text-base">Wednesdays &amp; Fridays</p>
+            <p class="text-white/60 text-sm mt-1">First class: <span class="font-bold text-white">July 22nd at 5:45pm</span></p>
+          </div>
+
+          <a href="/contact" class="block font-bold px-6 py-3 rounded-lg transition mb-3" style="background: linear-gradient(90deg, #f59e0b, #d97706); color:#111;">
+            Contact Us for More Info →
+          </a>
+          <button id="taipans-dismiss" class="text-white/30 hover:text-white/60 text-xs transition">Don't show again</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        // Hide permanently after August 1 2026 AEST (UTC+10 = July 31 14:00 UTC)
+        const expiry = new Date('2026-08-01T00:00:00+10:00');
+        if (new Date() >= expiry) return;
+
+        // Only show on homepage
+        if (window.location.pathname !== '/') return;
+
+        // Don't show if user dismissed
+        if (localStorage.getItem('taipans-dismissed')) return;
+
+        const popup = document.getElementById('taipans-popup');
+        if (!popup) return;
+
+        // Show after short delay
+        setTimeout(() => popup.classList.replace('hidden', 'flex'), 800);
+
+        function close() {
+          popup.classList.replace('flex', 'hidden');
+        }
+
+        document.getElementById('taipans-close')?.addEventListener('click', close);
+        popup.addEventListener('click', (e) => { if (e.target === popup) close(); });
+
+        document.getElementById('taipans-dismiss')?.addEventListener('click', () => {
+          localStorage.setItem('taipans-dismissed', '1');
+          close();
+        });
+      })();
+    </script>
   </body>
 </html>
