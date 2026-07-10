@@ -6,7 +6,7 @@ const programs = [
   {
     name: 'Pythons',
     age: 'Ages 4–7',
-    icon: '🐍',
+    icon: '🦎',
     color: 'text-green-400',
     image: '/Pythons.jpg',
     imageAlt: 'Rob Williams coaching the Pythons kids class',
@@ -25,7 +25,7 @@ const programs = [
   {
     name: 'Anacondas',
     age: 'Ages 8–12',
-    icon: '🥋',
+    icon: '🐍',
     color: 'text-blue-400',
     image: '/Anacondas.jpg',
     imageAlt: 'Anacondas kids class',
@@ -40,6 +40,27 @@ const programs = [
     booking: 'Booking essential — pre-book via ClubWorx',
     bookingLink: 'https://app.clubworx.com/websites/rob-williams-bjj/calendar/weekly_agenda',
     schedule: 'Tuesday 5:45pm · Thursday 5:45pm · Saturday 9:30am',
+  },
+  {
+    name: 'Taipans',
+    age: 'Ages 12–15',
+    icon: '🐉',
+    color: 'text-yellow-400',
+    image: null,
+    imageAlt: '',
+    desc: 'Real Jiu Jitsu & self-defence. The perfect cross-training for any contact sport — and a great way to build real confidence for teens.',
+    details: [
+      'Real self-defence skills in a structured environment',
+      'Takedowns, throws, escapes and ground control',
+      'Builds discipline, focus and confidence',
+      'Great cross-training for footy, rugby and other contact sports',
+    ],
+    booking: 'Booking essential — pre-book via ClubWorx',
+    bookingLink: 'https://app.clubworx.com/websites/rob-williams-bjj/calendar/weekly_agenda',
+    schedule: 'Wednesday & Friday 5:45pm',
+    badge: 'First Class July 22nd',
+    badgeExpiry: '2026-07-22T00:00:00+10:00',
+    ctaSwitchDate: '2026-07-20T00:00:00+10:00',
   },
   {
     name: 'Girls & Women',
@@ -64,7 +85,7 @@ const programs = [
   {
     name: 'Adults',
     age: '13 & Over',
-    icon: '🏆',
+    icon: '🥋',
     color: 'text-brand-red',
     image: '/Adults.jpg',
     imageAlt: 'Adults class at Rob Williams BJJ',
@@ -110,11 +131,18 @@ const programs = [
 
           <!-- Image -->
           <div class="md:[direction:ltr] rounded-2xl overflow-hidden h-[300px] md:h-[420px]">
-            <img
-              src={p.image}
-              alt={p.imageAlt}
-              class={`w-full h-full object-cover ${p.imgClass ?? ''}`}
-            />
+            {p.image ? (
+              <img
+                src={p.image}
+                alt={p.imageAlt}
+                class={`w-full h-full object-cover ${p.imgClass ?? ''}`}
+              />
+            ) : (
+              <div class="w-full h-full bg-brand-dark border border-white/10 flex flex-col items-center justify-center gap-3">
+                <span class="text-5xl opacity-30">📸</span>
+                <p class="text-white/30 text-sm font-medium uppercase tracking-widest">Photos Coming Soon</p>
+              </div>
+            )}
           </div>
 
           <!-- Content -->
@@ -123,7 +151,19 @@ const programs = [
               <span class="text-3xl">{p.icon}</span>
               <p class="text-brand-red uppercase tracking-widest text-sm font-semibold">{p.age}</p>
             </div>
-            <h2 class="font-display text-4xl font-bold mb-4">{p.name}</h2>
+            <div class="flex items-center gap-3 mb-4 flex-wrap">
+              <h2 class="font-display text-4xl font-bold">{p.name}</h2>
+              {p.badge && (
+                <span
+                  id={`badge-${i}`}
+                  class="hidden text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full"
+                  style="background:rgba(245,158,11,0.15); color:#f59e0b; border:1px solid rgba(245,158,11,0.4);"
+                  data-expiry={p.badgeExpiry}
+                >
+                  {p.badge}
+                </span>
+              )}
+            </div>
             <p class="text-white/70 text-lg leading-relaxed mb-6">{p.desc}</p>
 
             <!-- Details list -->
@@ -143,22 +183,51 @@ const programs = [
             </div>
 
             <!-- CTAs -->
-            <div class="flex flex-col sm:flex-row gap-3">
-              <a
-                href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener"
-                class="text-center bg-brand-red hover:bg-red-700 text-white font-bold px-8 py-3 rounded-lg transition text-sm"
-              >
-                Book a Free Trial
-              </a>
-              <a
-                href={p.bookingLink}
-                target={p.bookingLink.startsWith('http') ? '_blank' : undefined}
-                rel={p.bookingLink.startsWith('http') ? 'noopener' : undefined}
-                class="text-center border border-white/30 hover:border-white text-white font-semibold px-8 py-3 rounded-lg transition text-sm"
-              >
-                {p.booking}
-              </a>
-            </div>
+            {p.ctaSwitchDate ? (
+              <>
+                <div id={`cta-comingsoon-${i}`} class="hidden">
+                  <a
+                    href="/contact"
+                    class="text-center inline-block bg-brand-red hover:bg-red-700 text-white font-bold px-8 py-3 rounded-lg transition text-sm"
+                  >
+                    Contact Us for More Info →
+                  </a>
+                </div>
+                <div id={`cta-real-${i}`} class="hidden flex-col sm:flex-row gap-3" data-switch={p.ctaSwitchDate}>
+                  <a
+                    href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener"
+                    class="text-center bg-brand-red hover:bg-red-700 text-white font-bold px-8 py-3 rounded-lg transition text-sm"
+                  >
+                    Book a Free Trial
+                  </a>
+                  <a
+                    href={p.bookingLink}
+                    target={p.bookingLink.startsWith('http') ? '_blank' : undefined}
+                    rel={p.bookingLink.startsWith('http') ? 'noopener' : undefined}
+                    class="text-center border border-white/30 hover:border-white text-white font-semibold px-8 py-3 rounded-lg transition text-sm"
+                  >
+                    {p.booking}
+                  </a>
+                </div>
+              </>
+            ) : (
+              <div class="flex flex-col sm:flex-row gap-3">
+                <a
+                  href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener"
+                  class="text-center bg-brand-red hover:bg-red-700 text-white font-bold px-8 py-3 rounded-lg transition text-sm"
+                >
+                  Book a Free Trial
+                </a>
+                <a
+                  href={p.bookingLink}
+                  target={p.bookingLink.startsWith('http') ? '_blank' : undefined}
+                  rel={p.bookingLink.startsWith('http') ? 'noopener' : undefined}
+                  class="text-center border border-white/30 hover:border-white text-white font-semibold px-8 py-3 rounded-lg transition text-sm"
+                >
+                  {p.booking}
+                </a>
+              </div>
+            )}
           </div>
 
         </div>
@@ -166,6 +235,34 @@ const programs = [
     </section>
     </>
   ))}
+
+  <script>
+    (function () {
+      const now = new Date();
+
+      // Badges — hide once past their expiry date
+      document.querySelectorAll<HTMLElement>('[id^="badge-"]').forEach(badge => {
+        const expiry = badge.dataset.expiry;
+        if (expiry && now < new Date(expiry)) {
+          badge.classList.replace('hidden', 'inline-block');
+        }
+      });
+
+      // CTA switch — show "coming soon" contact button before the switch date, real buttons after
+      document.querySelectorAll<HTMLElement>('[id^="cta-real-"]').forEach(realCta => {
+        const idx = realCta.id.replace('cta-real-', '');
+        const comingSoon = document.getElementById(`cta-comingsoon-${idx}`);
+        const switchDate = realCta.dataset.switch;
+        if (!switchDate) return;
+
+        if (now >= new Date(switchDate)) {
+          realCta.classList.replace('hidden', 'flex');
+        } else if (comingSoon) {
+          comingSoon.classList.replace('hidden', 'block');
+        }
+      });
+    })();
+  </script>
 
   <!-- ─── AUTO-SCROLL PHOTO STRIP ─────────────────────────────── -->
   <div id="strip-programs" class="relative overflow-hidden h-52 md:h-72 bg-brand-dark">

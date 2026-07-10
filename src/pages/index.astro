@@ -6,7 +6,7 @@ const programs = [
   {
     name: 'Pythons',
     age: 'Ages 4–7',
-    icon: '🐍',
+    icon: '🦎',
     desc: 'Fun, safe introduction to grappling. Builds coordination, confidence and essential life skills through age-appropriate games.',
     details: [
       'Fundamental takedowns, throws and self-defence techniques',
@@ -19,7 +19,7 @@ const programs = [
   {
     name: 'Anacondas',
     age: 'Ages 8–12',
-    icon: '🥋',
+    icon: '🐍',
     desc: 'Structured classes covering defence fundamentals, ground grappling and throws in a fun, challenging environment.',
     details: [
       'Takedowns, throws, escapes and transitions',
@@ -29,6 +29,21 @@ const programs = [
       'Friendly competitions for advanced students',
       'Booking essential — pre-book via ClubWorx',
     ],
+  },
+  {
+    name: 'Taipans',
+    age: 'Ages 12–15',
+    icon: '🐉',
+    desc: 'Real Jiu Jitsu & self-defence. The perfect cross-training for any contact sport — and a great way to build real confidence for teens.',
+    details: [
+      'Real self-defence skills in a structured environment',
+      'Takedowns, throws, escapes and ground control',
+      'Builds discipline, focus and confidence',
+      'Great cross-training for footy, rugby and other contact sports',
+    ],
+    ctaSwitchDate: '2026-07-20T00:00:00+10:00',
+    bookingLink: 'https://app.clubworx.com/websites/rob-williams-bjj/calendar/weekly_agenda',
+    booking: 'Booking essential — pre-book via ClubWorx',
   },
   {
     name: 'Women',
@@ -47,7 +62,7 @@ const programs = [
   {
     name: 'Adults',
     age: '13 & Over',
-    icon: '🏆',
+    icon: '🥋',
     desc: 'Full Gracie Jiu Jitsu curriculum for beginners and experienced grapplers alike. Walk-in welcome.',
     details: [
       '2–3 techniques per class covering standing and ground work',
@@ -214,16 +229,34 @@ const programs = [
                   </li>
                 ))}
               </ul>
-              <a href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener" class="inline-block bg-brand-red hover:bg-red-700 text-white font-bold px-6 py-2.5 rounded transition text-sm">
-                Book a free trial →
-              </a>
+              {p.ctaSwitchDate ? (
+                <>
+                  <div id={`mobile-cta-comingsoon-${p.name.toLowerCase()}`} class="hidden">
+                    <a href="/contact" class="inline-block bg-brand-red hover:bg-red-700 text-white font-bold px-6 py-2.5 rounded transition text-sm">
+                      Contact Us for More Info →
+                    </a>
+                  </div>
+                  <div id={`mobile-cta-real-${p.name.toLowerCase()}`} class="hidden" data-switch={p.ctaSwitchDate}>
+                    <a href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener" class="inline-block bg-brand-red hover:bg-red-700 text-white font-bold px-6 py-2.5 rounded transition text-sm mr-2 mb-2">
+                      Book a free trial →
+                    </a>
+                    <a href={p.bookingLink} target="_blank" rel="noopener" class="inline-block border border-white/30 hover:border-white text-white font-semibold px-6 py-2.5 rounded transition text-sm">
+                      {p.booking}
+                    </a>
+                  </div>
+                </>
+              ) : (
+                <a href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener" class="inline-block bg-brand-red hover:bg-red-700 text-white font-bold px-6 py-2.5 rounded transition text-sm">
+                  Book a free trial →
+                </a>
+              )}
             </div>
           </div>
         ))}
       </div>
 
       <!-- ── DESKTOP: 4-column grid + panel below ── -->
-      <div class="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+      <div class="hidden sm:grid sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
         {programs.map((p) => (
           <button
             data-program={p.name.toLowerCase()}
@@ -259,14 +292,48 @@ const programs = [
                 </li>
               ))}
             </ul>
-            <a href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener" class="inline-block bg-brand-red hover:bg-red-700 text-white font-bold px-8 py-3 rounded transition text-sm">
-              Book a free trial →
-            </a>
+            {p.ctaSwitchDate ? (
+              <>
+                <div id={`desktop-cta-comingsoon-${p.name.toLowerCase()}`} class="hidden">
+                  <a href="/contact" class="inline-block bg-brand-red hover:bg-red-700 text-white font-bold px-8 py-3 rounded transition text-sm">
+                    Contact Us for More Info →
+                  </a>
+                </div>
+                <div id={`desktop-cta-real-${p.name.toLowerCase()}`} class="hidden" data-switch={p.ctaSwitchDate}>
+                  <a href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener" class="inline-block bg-brand-red hover:bg-red-700 text-white font-bold px-8 py-3 rounded transition text-sm mr-3 mb-2">
+                    Book a free trial →
+                  </a>
+                  <a href={p.bookingLink} target="_blank" rel="noopener" class="inline-block border border-white/30 hover:border-white text-white font-semibold px-8 py-3 rounded transition text-sm">
+                    {p.booking}
+                  </a>
+                </div>
+              </>
+            ) : (
+              <a href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener" class="inline-block bg-brand-red hover:bg-red-700 text-white font-bold px-8 py-3 rounded transition text-sm">
+                Book a free trial →
+              </a>
+            )}
           </div>
         </div>
       ))}
 
       <script>
+        // ── Taipans-style CTA switch (coming soon vs real booking buttons) ──
+        (function () {
+          const now = new Date();
+          document.querySelectorAll<HTMLElement>('[id^="mobile-cta-real-"], [id^="desktop-cta-real-"]').forEach(realCta => {
+            const comingSoonId = realCta.id.replace('-real-', '-comingsoon-');
+            const comingSoon = document.getElementById(comingSoonId);
+            const switchDate = realCta.dataset.switch;
+            if (!switchDate) return;
+            if (now >= new Date(switchDate)) {
+              realCta.classList.replace('hidden', 'block');
+            } else if (comingSoon) {
+              comingSoon.classList.replace('hidden', 'block');
+            }
+          });
+        })();
+
         // ── Mobile inline expansion ──
         document.querySelectorAll('.mobile-program-group').forEach(group => {
           const btn     = group.querySelector('.mobile-card') as HTMLElement;
