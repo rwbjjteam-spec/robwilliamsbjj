@@ -2,23 +2,33 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 
-// Fetch latest video server-side at build time (no CORS issues)
-let latestVideoId    = 'ArStX4WJoxI';
-let latestVideoTitle = 'Saturdays!!!! #bjj';
+// Fetch playlist server-side at build time (no CORS issues)
+type PlaylistVideo = { id: string; title: string };
+
+let playlistVideos: PlaylistVideo[] = [
+  { id: 'ArStX4WJoxI', title: 'Saturdays!!!! #bjj' },
+];
 
 try {
-  const channelId = 'UCdjnapRr2XcGAiMoyZCPvmw';
-  const res = await fetch(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`);
+  const playlistId = 'PLWS-N4Sxm3qA';
+  const res = await fetch(`https://www.youtube.com/feeds/videos.xml?playlist_id=${playlistId}`);
   if (res.ok) {
     const xml = await res.text();
-    const idMatch    = xml.match(/<yt:videoId>([^<]+)<\/yt:videoId>/);
-    const titleMatch = xml.match(/<title>(?!Rob Williams BJJ)([^<]+)<\/title>/);
-    if (idMatch?.[1])    latestVideoId    = idMatch[1];
-    if (titleMatch?.[1]) latestVideoTitle = titleMatch[1];
+    const entries = [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)];
+    const parsed = entries.map(([, entry]) => {
+      const idMatch    = entry.match(/<yt:videoId>([^<]+)<\/yt:videoId>/);
+      const titleMatch = entry.match(/<media:title>([^<]+)<\/media:title>/);
+      return { id: idMatch?.[1] ?? '', title: titleMatch?.[1] ?? '' };
+    }).filter(v => v.id);
+    if (parsed.length) playlistVideos = parsed;
   }
 } catch {
   // Keep fallback values
 }
+
+const latestVideoId    = playlistVideos[0].id;
+const latestVideoTitle = playlistVideos[0].title;
+const upNextVideos     = playlistVideos.slice(1, 8);
 
 type Technique = string | { title: string; videoId: string };
 
@@ -238,41 +248,87 @@ const curriculum = [
 
   <!-- ─── LATEST VIDEO ─────────────────────────────────────────── -->
   <section class="py-24 px-6 bg-brand-gray">
-    <div class="max-w-4xl mx-auto">
+    <div class="max-w-6xl mx-auto">
       <div class="text-center mb-10">
         <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">YouTube</p>
-        <h2 class="font-display text-4xl font-bold">Latest from the Channel</h2>
+        <h2 class="font-display text-4xl font-bold">Basics of Jiu Jitsu</h2>
       </div>
 
-      <!-- Video embed -->
-      <div class="relative w-full rounded-2xl overflow-hidden bg-black" style="aspect-ratio: 16/9;">
-        <iframe
-          id="latest-video-iframe"
-          src={`https://www.youtube.com/embed/${latestVideoId}?rel=0&modestbranding=1`}
-          title={latestVideoTitle}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          class="absolute inset-0 w-full h-full"
-        ></iframe>
-      </div>
+      <div class="grid lg:grid-cols-[1fr_340px] gap-6 items-start">
 
-      <!-- Video meta + channel link -->
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6">
-        <p class="text-white/60 text-sm">
-          <span id="latest-video-title" class="text-white font-semibold">{latestVideoTitle}</span>
-          &nbsp;·&nbsp; Rob Williams BJJ
-        </p>
-        <a
-          href="https://www.youtube.com/@robwilliamsbjj8446"
-          target="_blank"
-          rel="noopener"
-          class="shrink-0 border border-white/30 hover:border-white text-white text-sm font-semibold px-6 py-2.5 rounded-lg transition"
-        >
-          View Full Channel →
-        </a>
+        <div>
+          <!-- Video embed -->
+          <div class="relative w-full rounded-2xl overflow-hidden bg-black" style="aspect-ratio: 16/9;">
+            <iframe
+              id="latest-video-iframe"
+              src={`https://www.youtube.com/embed/${latestVideoId}?rel=0&modestbranding=1`}
+              title={latestVideoTitle}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              class="absolute inset-0 w-full h-full"
+            ></iframe>
+          </div>
+
+          <!-- Video meta + channel link -->
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6">
+            <p class="text-white/60 text-sm">
+              <span id="latest-video-title" class="text-white font-semibold">{latestVideoTitle}</span>
+              &nbsp;·&nbsp; Rob Williams BJJ
+            </p>
+            <a
+              href="https://www.youtube.com/@robwilliamsbjj8446"
+              target="_blank"
+              rel="noopener"
+              class="shrink-0 border border-white/30 hover:border-white text-white text-sm font-semibold px-6 py-2.5 rounded-lg transition"
+            >
+              View Full Channel →
+            </a>
+          </div>
+        </div>
+
+        <!-- Up Next list -->
+        {upNextVideos.length > 0 && (
+          <div class="bg-brand-dark border border-white/10 rounded-2xl p-4 lg:max-h-[420px] lg:overflow-y-auto">
+            <p class="text-white/40 uppercase tracking-widest text-xs font-semibold mb-3 px-1">Up Next</p>
+            <div class="space-y-2">
+              {upNextVideos.map(v => (
+                <button
+                  class="playlist-item w-full flex items-center gap-3 text-left rounded-xl p-2 hover:bg-white/5 transition"
+                  data-video-id={v.id}
+                  data-video-title={v.title}
+                >
+                  <span class="relative shrink-0 w-24 h-14 rounded-lg overflow-hidden bg-black">
+                    <img src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`} alt={v.title} class="w-full h-full object-cover" loading="lazy" />
+                    <span class="absolute inset-0 flex items-center justify-center bg-black/20">
+                      <span class="text-white text-lg">▶</span>
+                    </span>
+                  </span>
+                  <span class="text-white/80 text-sm leading-snug line-clamp-2">{v.title}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
       </div>
     </div>
   </section>
+
+  <script>
+    (function () {
+      const iframe = document.getElementById('latest-video-iframe') as HTMLIFrameElement | null;
+      const titleEl = document.getElementById('latest-video-title');
+      document.querySelectorAll<HTMLElement>('.playlist-item').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.videoId!;
+          const title = btn.dataset.videoTitle!;
+          if (iframe) iframe.src = `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1&autoplay=1`;
+          if (titleEl) titleEl.textContent = title;
+          window.scrollTo({ top: (iframe?.closest('section') as HTMLElement)?.offsetTop ?? 0, behavior: 'smooth' });
+        });
+      });
+    })();
+  </script>
 
 
   <div style="height:50px;background:linear-gradient(to bottom,#1a1a1a,#0d0d0d);"></div>

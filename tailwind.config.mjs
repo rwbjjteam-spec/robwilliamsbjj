@@ -7,6 +7,7 @@ export default {
     'bg-blue-900/80', 'border-blue-700',
     'bg-yellow-600/80', 'border-yellow-500',
     'bg-orange-600/80', 'border-orange-400',
+    'bg-purple-600/80', 'border-purple-400',
     'bg-emerald-700/80', 'border-emerald-500',
   ],
   theme: {
