@@ -34,195 +34,170 @@ type Technique = string | { title: string; videoId: string };
 
 const curriculum = [
   {
-    part: 1,
-    category: 'Fundamentals',
+    category: 'Self Defence: Striking Defence Techniques',
     techniques: [
-      { title: '01. Tie the Belt', videoId: 'EaMxkYioG8w' },
-      { title: '00. Break Fall', videoId: 'SWn5kaJkNHs' },
-      { title: '00. Shrimp', videoId: 'YctKq_DutK8' },
-      { title: '02. Roll Forward', videoId: 'tdzALqKZdPk' },
-      '03. Roll Backward',
-      '04. Upa',
-      '05. Teeter Totter',
-      '06. Four-Points Base',
-      { title: '08. Stand up in Base', videoId: 'CySWLbXbbYk' },
-      '30. Basic Armlock Movement',
+      '1. Closing The Gap - Long Range to Clinch',
+      '2. Sucker Punch: How to Counter (Statistically Most Common Strike)',
+      '3. Front Kick: How to Nullify',
+      '4. Low Kick: Counter',
+      '5. Roundhouse Kick: Counter',
     ] as Technique[],
   },
   {
-    part: 1,
-    category: 'Self-Defence: Standing Attacks',
+    category: 'Self Defence: Standing Attacks',
     techniques: [
-      { title: '20. T-Position Hip Throw', videoId: 'mC7Ko5jY8j8' },
-      { title: '21. T-Position Leg Throw', videoId: 'P2SMD_anUOM' },
-      { title: '22. T-Position Throw from Behind (Sitting Down)', videoId: 'Iw_BY-8rrqY' },
-      '44. Standing Guillotine Choke',
-      '86. Bajana (Double Leg Takedown)',
+      { title: '6. The "T" Position: Essential Hip Throw Attack', videoId: 'mC7Ko5jY8j8' },
+      { title: '7. The "T" Position: Foot Sweep (O-Uchi-Gari)', videoId: 'P2SMD_anUOM' },
+      { title: '8. The "T" Position: Rear Drag Takedown', videoId: 'Iw_BY-8rrqY' },
+      '9. Guillotine Choke: Standing Submission Attack',
+      '10. Double Leg Takedown: Basic Mechanics',
     ],
   },
   {
-    part: 1,
-    category: 'Self-Defence: Striking Defences',
+    category: 'Self Defence: Standing Defences',
     techniques: [
-      '83. Close the Gap (to T Position)',
-      '15. Round House Punch Defence (lunging punch)',
-      '15. Round House Punch Defence (close)',
-      '16. Straight Punch Defence',
-      '17. Front Kick Defence (absorb)',
-      '18. Low Kick Defence',
-      '19. High Kick Defence',
+      '11. Wrist Grab: Same-side Escape Mechanics',
+      '12. Wrist Grab: Two-Handed Escape Mechanics',
+      '13. Single Hand Lapel Grab: Straight Arm Lock Counter',
+      '14. Single Hand Lapel Grab: Bent Arm Lock Counter',
+      '15. Single Hand Lapel Grab: Wristlock O-Soto Gari (Palm Turned Up)',
+      '16. Double Grip Lapel Grab: Hip Throw Counter (Take to Ground Tactic)',
+      '17. Two Handed Front Choke Defence',
+      '18. Guillotine Choke: Sacrifice Throw Reversal',
+      '19. Guillotine Choke: Trip Takedown to Ground',
+      '20. Back Choke Counter: Hip Throw to Ground Armlock Control',
+      '21. Back Choke Counter: Off-Balancing Takedown vs Pulling Choke',
+      '22. Armed Strike: Nullifying Overhead Club Attacks',
+      '23. Hair/Ear Grabs: Minimising the Damage',
     ],
   },
   {
-    part: 1,
-    category: 'Self-Defence: Standing Defences',
-    techniques: [
-      '10. Same Side Wrist Grab Escape',
-      '11. Two-Hand Wrist Grab Escape',
-      '12. One-Hand Lapel Grab Defence (Straight Arm / from side)',
-      '13. One-Hand Lapel Grab Defence (Bent Arm)',
-      '14. One-Hand Lapel Grab Defence (Bent Wrist)',
-      '09. Two-Handed Choke Defence',
-      '45. Standing Guillotine Choke Defence (Hands on Knees)',
-      '46. Standing Guillotine Choke Defence (Buckle the Knee)',
-      '65. Standing Rear Naked Choke Defence (throw)',
-      '73. Standing Rear Naked Choke being dragged backwards',
-      '64. Overhead Club Defence (close distance)',
-      '88. Standing Hair / Ear Grab Defence',
-    ],
-  },
-  {
-    part: 1,
     category: 'Bear Hug & Wall Defences',
     techniques: [
-      '47. Rear Bear Hug Defence (Arms Pinned)',
-      '00. Rear Bear Hug Defence (Arms Free)',
-      '72. Rear Bear Hug Defence (Arms Free being picked up)',
-      '70. Front Bear Hug Defence (Arms Free)',
-      '67. Front Bear Hug Defence (Arms Pinned)',
-      '71. Neck Defence (Pinned to Wall - One Hand)',
+      '24. Rear Bear Hug: Counter to Over the Arms Restraint',
+      '25. Rear Bear Hug: Counter to Under the Arms Waist Grab',
+      '26. Front Bear Hug: Counter to Over the Arms Restraint',
+      '27. Front Bear Hug: Counter to Under the Arms Waist Grab',
+      '28. Front Choke: Single Handed Attack Counter',
     ],
   },
   {
-    part: 1,
     category: 'Headlock Defences',
     techniques: [
-      '63. Headlock Defence (lifting opponent)',
-      '66. Headlock Defence (with punch defense)',
+      '29. Headlocks: Total Body Throw to Ground',
+      '30. Headlocks: Rear Restraint and Bent Armlock (With Punches)',
     ],
   },
   {
-    part: 1,
-    category: 'Cross Body (Side Control) Attacks',
+    category: 'Cross Body - Side Control Defences',
     techniques: [
-      '50. Establish Cross Body Position',
-      '51. Maintain Cross Side',
-      '56. American Armlock from Cross Body (Keylock)',
-      '57. Cross Body Kimura (chicken wing)',
-      '82. Cross Body Neck Crank (Pass the Leg)',
-      { title: '85. Armlock from Cross Body', videoId: 'JybSE2swg8Y' },
+      { title: '31. Guard Recovery: Recover Closed Guard vs Weak-Style Side Control', videoId: 'CTWH4G9x21o' },
+      '32. Guard Recovery: Thread the Needle Escape to Duck Under Control',
+      '33. Side Headlock: Defensive Reversal with Head Scissors Mechanic',
+      '34. Side Headlock: Bridging Reversal Escape to Superior Control',
+      '35. Side Headlock: Leverage Redirection to Superior Control (Elegant and Simple)',
+      '36. Side Headlock: Bridging Pin to Back Shoulder Lock Control',
+      '37. Side Headlock: Stand Up in Base to Reversal and Armlock',
     ],
   },
   {
-    part: 1,
-    category: 'Mounting',
+    category: 'Cross Body - Side Control Attacks',
     techniques: [
-      { title: '54. Basic Mount from Cross Body (Arm Out)', videoId: 'tgkxf7FvAeo' },
-      { title: '55. Basic Mount from Cross Body (Arm In)', videoId: 'OyJyWlCRbBc' },
+      '38. Cross Body Position: General Theory on How to Establish and Control',
+      '39. Side Control: Americana Arm / Shoulder Lock Mechanics',
+      '40. Side Control: The Kimura Attack',
+      '41. Side Control: Neck Crank Attack (Caution!)',
+      { title: '42. Side Control: The Straight Armlock', videoId: 'JybSE2swg8Y' },
     ],
   },
   {
-    part: 1,
-    category: 'Mount: Control & Attacks',
+    category: 'Mount - Getting to Mount from Cross Body',
     techniques: [
-      '23. Maintain the Mount (Swimming Through Arms)',
-      '24. Maintain the Mount (Pulling Hands off Knees)',
-      '25. Maintain the Mount (Pushing Opponent\'s Head)',
-      { title: '28/29. Basic Cross Choke', videoId: 'Ql9Enzo88tc' },
-      '32. Keylock (American Armlock)',
-      '31. Armbar',
+      { title: '43. Basic Mount From Cross Body (Arm Out)', videoId: 'tgkxf7FvAeo' },
+      { title: '44. Basic Mount From Cross Body (Arm In)', videoId: 'OyJyWlCRbBc' },
     ],
   },
   {
-    part: 1,
-    category: 'Back: Attacks',
+    category: 'Mount Defences',
     techniques: [
-      '58. Maintain Back Control with Hooks',
-      '60. Collar Choke',
-      '61. Mata Leao (RNC)',
+      '45. Mount Prevention From Cross Body',
+      '46. Mounted Punch Attack Defence',
+      { title: '47. Upa With Choke Defence', videoId: '8QUDcKmiaN4' },
+      { title: '48. Elbow Escape', videoId: 'WHRtPS2HEEg' },
     ],
   },
   {
-    part: 1,
-    category: 'Guard: Attacks',
+    category: 'Mount Attacks',
     techniques: [
-      { title: '36. Cross Choke', videoId: 'BnsnEiblTyA' },
-      '40. Armlock',
-      { title: '41. Triangle', videoId: 'hSYLNsU-Hfw' },
-      { title: '34. Kimura', videoId: 'ysQqHh2WWlA' },
-      { title: '42. Guillotine Choke', videoId: '35gdHO8uo28' },
+      '49. Maintain The Mount',
+      { title: '50. Basic Cross Choke From The Mount', videoId: 'Ql9Enzo88tc' },
+      '51. Bent Armlock',
+      '52. Straight Armlock',
     ],
   },
   {
-    part: 2,
-    category: 'Guard: Defences',
+    category: 'Back Defence',
     techniques: [
-      '35. Posture (driving hips to ground, one arm post)',
-      '43. Guillotine Choke Defence',
-      '38. Choke Defence (comb the hair)',
-      '37/49. Choke Defence (squeeze the bread)',
-      '78/79. Display Active Protection from Attacks and Sweeps',
+      '53. Back Mount Escape',
+      '54. Rear Choke Escape',
     ],
   },
   {
-    part: 2,
-    category: 'Guard: Breaks & Passes',
+    category: 'Back Attacks',
     techniques: [
-      '48. Knee on Floor Break: Shoulder Pass',
-      '48. Knee on Floor Break: Hip Pass',
+      '55. Maintain Back Mount',
+      '56. Collar Choke',
+      '57. Mata Leao (Rear Naked Choke)',
     ],
   },
   {
-    part: 2,
-    category: 'Guard: Defences & Sweeps',
+    category: 'Guard Defences',
     techniques: [
-      '39. Scissor Sweep to Mount',
-      { title: '77. Basic Hook Sweep', videoId: 'bEYtZNxNVmM' },
-      { title: '33. Sit-up Sweep (knee to ground)', videoId: 'tGuWH_cnekg' },
+      '58. Posture: How to Best Position Oneself from Passing',
+      '59. Choke Protection From Guard While Passing',
+      '60. Defending Chokes and Countering Offensive from Guard Player',
+      '61. Guillotine Choke Escape: Surviving to Win and Submit',
+      '62. Armlock Prevention: Basic Principles to Avoid Armlocks',
     ],
   },
   {
-    part: 2,
-    category: 'Side Control (Cross-Body) Defences',
+    category: 'Guard Attacks',
     techniques: [
-      { title: '52. Regain the Guard from Cross Body', videoId: 'CTWH4G9x21o' },
-      '53. Cross Body Defence (Turn on Knees)',
-      '68. Cross Body Headlock Defence (Opponents Head Low)',
-      '69. Wrestlers Head and Arm Defence (Hips under Opponent)',
-      '74. Cross Body Headlock Defence (Make a Frame)',
-      '80. Cross Body Headlock Defence (Go to Back)',
-      '81. Cross Body Headlock Defence (Go to Knees)',
+      { title: '63. Cross Choke', videoId: 'BnsnEiblTyA' },
+      { title: '64. Guillotine Choke Attack', videoId: '35gdHO8uo28' },
+      { title: '65. Triangle Choke', videoId: 'hSYLNsU-Hfw' },
+      '66. Straight Arm Lock',
+      { title: '67. Kimura', videoId: 'ysQqHh2WWlA' },
     ],
   },
   {
-    part: 2,
-    category: 'Mount: Defences',
+    category: 'Guard Breaks & Passes',
     techniques: [
-      '04. Upa',
-      { title: '26. Upa with Choke Defence', videoId: '8QUDcKmiaN4' },
-      '75. Mounted Punch Attack (Upa)',
-      '84. Mount Defence (Move Away)',
-      { title: '7/27. Elbow Escape', videoId: 'WHRtPS2HEEg' },
+      '68. Passing The Closed Guard (Kneeling)',
+      '69. Passing The Closed Guard (Standing)',
     ],
   },
   {
-    part: 2,
-    category: 'Back: Defences',
+    category: 'Guard Sweeps',
     techniques: [
-      '59. Escape from Back Control with Hooks',
-      '62. Rear Choke Escape (Finger Point)',
+      '70. Scissor Sweep to Mount',
+      { title: '71. Hook Sweep', videoId: 'bEYtZNxNVmM' },
+      { title: '72. Sit Up Sweep', videoId: 'tGuWH_cnekg' },
     ],
   },
+];
+
+const coreMovement: Technique[] = [
+  { title: 'Break Fall', videoId: 'SWn5kaJkNHs' },
+  { title: 'Tying the Belt', videoId: 'EaMxkYioG8w' },
+  { title: 'How to Hip Escape (Shrimp): 3 Different Ways', videoId: 'YctKq_DutK8' },
+  { title: 'The Forward Roll', videoId: 'tdzALqKZdPk' },
+  'The Backward Roll',
+  'The "Upa" - Bridging Hip Escape',
+  'Counterbalancing - Formerly Known as "Teeter-Totter"',
+  'Four Point Base (The Idea of Base in Close Quarters Combat)',
+  { title: 'Stand Up In Base (The Most Secure Way to Stand Up in Combat Situations)', videoId: 'CySWLbXbbYk' },
+  'Basic Armlock Theory',
 ];
 ---
 
@@ -341,72 +316,75 @@ const curriculum = [
         <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Curriculum</p>
         <h2 class="font-display text-4xl font-bold mb-4">White to Blue Belt</h2>
         <p class="text-white/60 text-lg max-w-2xl">
-          The full Pedro Sauer Association Blue Belt curriculum. Click a part to expand, then a category to see techniques.
+          The full Pedro Sauer Association Blue Belt curriculum. Click a category to see techniques.
         </p>
       </div>
 
-      <div class="space-y-3">
-        {[
-          { part: 1, label: 'Part 1', subtitle: 'Attacks & Fundamentals' },
-          { part: 2, label: 'Part 2', subtitle: 'Defences, Recoveries & Escapes' },
-        ].map(({ part, label, subtitle }) => (
-          <div class="part-item border border-white/10 rounded-2xl overflow-hidden">
+      <!-- Jiu Jitsu Core Movement -->
+      <div class="mb-10 border border-white/10 rounded-2xl p-6 bg-brand-gray">
+        <p class="text-brand-red uppercase tracking-widest text-xs font-semibold mb-4">Jiu Jitsu Core Movement</p>
+        <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2.5">
+          {coreMovement.map((t: Technique) => {
+            const isLinked = typeof t === 'object';
+            const title = isLinked ? t.title : t;
+            const videoId = isLinked ? t.videoId : null;
+            return (
+              <li class="flex items-start gap-2">
+                <span class="text-brand-red shrink-0 mt-0.5 text-xs">▸</span>
+                {isLinked ? (
+                  <button
+                    class="video-trigger text-white/70 text-sm hover:text-brand-red transition flex items-center gap-1.5 text-left"
+                    data-video-id={videoId}
+                    data-video-title={title}
+                  >
+                    {title}
+                    <span class="text-brand-red text-xs opacity-70">▶</span>
+                  </button>
+                ) : (
+                  <span class="text-white/70 text-sm">{title}</span>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
 
-            <!-- Part header -->
+      <div class="grid md:grid-cols-2 gap-4">
+        {curriculum.map((cat, i) => (
+          <div class="cat-item border border-white/10 rounded-2xl overflow-hidden self-start">
             <button
-              class="part-btn w-full flex items-center justify-between px-6 py-5 text-left bg-brand-gray hover:bg-white/5 transition"
-              data-part={part}
+              class="cat-btn w-full flex items-center justify-between px-5 py-4 text-left bg-brand-gray hover:bg-white/5 transition"
+              data-index={i}
             >
-              <div>
-                <p class="text-brand-red text-xs uppercase tracking-widest font-semibold mb-0.5">{label}</p>
-                <p class="font-bold text-white text-base">{subtitle}</p>
-              </div>
-              <span class="part-chevron text-brand-red text-sm transition-transform duration-300 ml-4 shrink-0">↓</span>
+              <span class="font-semibold text-white text-sm">{cat.category}</span>
+              <span class="cat-chevron text-brand-red text-xs transition-transform duration-300 ml-4 shrink-0">↓</span>
             </button>
-
-            <!-- Part panel -->
-            <div class="part-panel hidden border-t border-white/10 bg-brand-dark px-4 py-4" data-part-panel={part}>
-              <div class="space-y-2">
-                {curriculum.filter(c => c.part === part).map((cat, i) => (
-                  <div class="cat-item border border-white/10 rounded-xl overflow-hidden">
-                    <button
-                      class="cat-btn w-full flex items-center justify-between px-5 py-3.5 text-left bg-brand-gray hover:bg-white/5 transition"
-                      data-index={`p${part}-${i}`}
-                    >
-                      <span class="font-semibold text-white text-sm">{cat.category}</span>
-                      <span class="cat-chevron text-brand-red text-xs transition-transform duration-300 ml-4 shrink-0">↓</span>
-                    </button>
-                    <div class="cat-panel hidden px-5 pb-4 bg-brand-gray border-t border-white/10" data-cat-panel={`p${part}-${i}`}>
-                      <ul class="space-y-2 pt-4">
-                        {cat.techniques.map((t: Technique) => {
-                          const isLinked = typeof t === 'object';
-                          const title = isLinked ? t.title : t;
-                          const videoId = isLinked ? t.videoId : null;
-                          return (
-                            <li class="flex items-start gap-3">
-                              <span class="text-brand-red shrink-0 mt-0.5 text-xs">▸</span>
-                              {isLinked ? (
-                                <button
-                                  class="video-trigger text-white/70 text-sm hover:text-brand-red transition flex items-center gap-1.5 text-left"
-                                  data-video-id={videoId}
-                                  data-video-title={title}
-                                >
-                                  {title}
-                                  <span class="text-brand-red text-xs opacity-70">▶</span>
-                                </button>
-                              ) : (
-                                <span class="text-white/70 text-sm">{title}</span>
-                              )}
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </div>
-                  </div>
-                ))}
-              </div>
+            <div class="cat-panel hidden px-5 pb-5 bg-brand-gray border-t border-white/10" data-cat-panel={i}>
+              <ul class="space-y-2 pt-4">
+                {cat.techniques.map((t: Technique) => {
+                  const isLinked = typeof t === 'object';
+                  const title = isLinked ? t.title : t;
+                  const videoId = isLinked ? t.videoId : null;
+                  return (
+                    <li class="flex items-start gap-3">
+                      <span class="text-brand-red shrink-0 mt-0.5 text-xs">▸</span>
+                      {isLinked ? (
+                        <button
+                          class="video-trigger text-white/70 text-sm hover:text-brand-red transition flex items-center gap-1.5 text-left"
+                          data-video-id={videoId}
+                          data-video-title={title}
+                        >
+                          {title}
+                          <span class="text-brand-red text-xs opacity-70">▶</span>
+                        </button>
+                      ) : (
+                        <span class="text-white/70 text-sm">{title}</span>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-
           </div>
         ))}
       </div>
@@ -415,34 +393,15 @@ const curriculum = [
   </section>
 
   <script>
-    // Part-level accordion — each part toggles independently
-    document.querySelectorAll('.part-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const part    = (btn as HTMLElement).dataset.part!;
-        const panel   = document.querySelector(`[data-part-panel="${part}"]`) as HTMLElement;
-        const chevron = btn.querySelector('.part-chevron') as HTMLElement;
-        const isOpen  = !panel.classList.contains('hidden');
-        panel.classList.toggle('hidden', isOpen);
-        chevron.style.transform = isOpen ? '' : 'rotate(180deg)';
-      });
-    });
-
-    // Category-level accordion — closes other categories when one opens
+    // Category-level accordion — each category toggles independently
     document.querySelectorAll('.cat-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const idx     = (btn as HTMLElement).dataset.index!;
         const panel   = document.querySelector(`[data-cat-panel="${idx}"]`) as HTMLElement;
         const chevron = btn.querySelector('.cat-chevron') as HTMLElement;
         const isOpen  = !panel.classList.contains('hidden');
-
-        // Close all category panels
-        document.querySelectorAll('.cat-panel').forEach(p => p.classList.add('hidden'));
-        document.querySelectorAll('.cat-chevron').forEach(c => (c as HTMLElement).style.transform = '');
-
-        if (!isOpen) {
-          panel.classList.remove('hidden');
-          chevron.style.transform = 'rotate(180deg)';
-        }
+        panel.classList.toggle('hidden', isOpen);
+        chevron.style.transform = isOpen ? '' : 'rotate(180deg)';
       });
     });
 
