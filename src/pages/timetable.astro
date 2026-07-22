@@ -29,10 +29,10 @@ const schedule = [
   {
     time: '5:00pm',
     classes: [
-      { label: 'Girls (13y+) & Women', sub: 'Booking Essential', type: 'women' },
-      { label: 'Pythons', sub: '30 mins', type: 'pythons' },
+      { label: 'Women (13+)', sub: 'Booking Essential', type: 'women' },
+      { label: 'Pythons', sub: '30 mins · Booking Essential', type: 'pythons' },
       null,
-      { label: 'Pythons', sub: '30 mins', type: 'pythons' },
+      { label: 'Pythons', sub: '30 mins · Booking Essential', type: 'pythons' },
       null,
       null,
     ],
@@ -95,7 +95,7 @@ const typeStyles: Record<string, string> = {
       <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Schedule</p>
       <h1 class="font-display text-5xl md:text-6xl font-bold leading-tight">Timetable & Pricing</h1>
       <p class="text-white/60 text-lg mt-4 max-w-xl">
-        Classes 6 days a week. Anacondas, Taipans and Women's classes must pre-book via ClubWorx.
+        Classes 6 days a week. Pythons, Anacondas, Taipans and Women's classes must pre-book via ClubWorx.
       </p>
     </div>
   </section>
@@ -107,7 +107,7 @@ const typeStyles: Record<string, string> = {
       <!-- Note + Book button -->
       <div class="mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 bg-brand-gray border border-white/10 rounded-2xl px-6 py-5 md:bg-brand-gray">
         <p class="text-white/60 text-sm text-center sm:text-left">
-          Anacondas, Taipans and Women's classes — booking essential via ClubWorx.<br class="hidden sm:inline" />
+          Pythons, Anacondas, Taipans and Women's classes — booking essential via ClubWorx.<br class="hidden sm:inline" />
           ⚠️ When the forecast exceeds 30°C, gi classes convert to No-Gi — check socials for updates.
         </p>
         <a
@@ -128,7 +128,7 @@ const typeStyles: Record<string, string> = {
           { label: 'Pythons (4–7)',   type: 'pythons',     style: 'bg-yellow-600/80 border-yellow-500 text-white' },
           { label: 'Anacondas (8–12)',type: 'anacondas',   style: 'bg-orange-600/80 border-orange-400 text-white' },
           { label: 'Taipans (12–15)', type: 'taipans',     style: 'bg-purple-600/80 border-purple-400 text-white' },
-          { label: 'Girls & Women',   type: 'women',       style: 'bg-emerald-700/80 border-emerald-500 text-white' },
+          { label: 'Women (13+)',     type: 'women',       style: 'bg-emerald-700/80 border-emerald-500 text-white' },
         ].map(({ label, type, style }) => (
           <div data-class-type={type} class={`legend-item flex items-center gap-2 border rounded-lg px-3 py-1.5 text-xs font-semibold cursor-pointer transition-all ${style}`}>
             {label}

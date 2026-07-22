@@ -18,8 +18,8 @@ const programs = [
       'Self-discipline, teamwork and socialisation',
       'Improves fitness and coordination in a safe environment',
     ],
-    booking: 'Walk-in welcome',
-    bookingLink: 'https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new',
+    booking: 'Booking essential — pre-book via ClubWorx',
+    bookingLink: 'https://app.clubworx.com/websites/rob-williams-bjj/calendar/weekly_agenda',
     schedule: 'Tuesday & Thursday 5:00pm · 30 minute sessions',
   },
   {
@@ -63,12 +63,13 @@ const programs = [
     ctaSwitchDate: '2026-07-16T00:00:00+10:00',
   },
   {
-    name: 'Girls & Women',
+    name: 'Women (13+)',
+    id: 'women',
     age: '13 & Over',
     icon: '💪',
     color: 'text-pink-400',
     image: '/Womens.jpg',
-    imageAlt: 'Girls and Women\'s class at Rob Williams BJJ',
+    imageAlt: 'Women\'s class at Rob Williams BJJ',
     imgClass: 'scale-[1.15] [object-position:55%_50%] md:scale-[1.4] md:-translate-y-[15%] md:[object-position:75%_60%]',
     desc: 'A supportive, non-competitive environment to learn Jiu Jitsu at your own pace. No prior experience needed — just show up. Bring a friend.',
     details: [
@@ -84,7 +85,7 @@ const programs = [
   },
   {
     name: 'Adults',
-    age: '13 & Over',
+    age: '16 & Over',
     icon: '🥋',
     color: 'text-brand-red',
     image: '/Adults.jpg',
@@ -125,7 +126,7 @@ const programs = [
       {i > 0 && (
         <div style={i % 2 === 0 ? "height:50px;background:linear-gradient(to bottom,#0d0d0d,#1a1a1a);" : "height:50px;background:linear-gradient(to bottom,#1a1a1a,#0d0d0d);"}></div>
       )}
-    <section id={p.name.toLowerCase()} class={`py-24 px-6 scroll-mt-20 ${i % 2 === 0 ? 'bg-brand-gray' : 'bg-brand-dark'}`}>
+    <section id={p.id ?? p.name.toLowerCase()} class={`py-24 px-6 scroll-mt-20 ${i % 2 === 0 ? 'bg-brand-gray' : 'bg-brand-dark'}`}>
       <div class="max-w-5xl mx-auto">
         <div class={`grid md:grid-cols-2 gap-16 items-center ${i % 2 === 1 ? 'md:[direction:rtl]' : ''}`}>
 
