@@ -155,16 +155,40 @@ const ogImage    = `${siteBase}/hero-bg.jpg`;
 
           <div class="rounded-xl px-5 py-4 mb-6" style="background:rgba(255,255,255,0.06); border: 1px solid rgba(245,158,11,0.5);">
             <p class="font-bold text-white text-base">Wednesdays &amp; Fridays</p>
-            <p class="text-white/60 text-sm mt-1">First class: <span class="font-bold text-white">July 22nd at 5:45pm</span></p>
+            <p class="text-white/60 text-sm mt-1">Next class: <span id="taipans-next-class-popup" class="font-bold text-white">Wednesday at 5:45pm</span></p>
           </div>
 
-          <a href="/contact" class="block font-bold px-6 py-3 rounded-lg transition mb-3" style="background: linear-gradient(90deg, #f59e0b, #d97706); color:#111;">
-            Contact Us for More Info →
+          <a href="/programs#taipans" class="block font-bold px-6 py-3 rounded-lg transition mb-3" style="background: linear-gradient(90deg, #f59e0b, #d97706); color:#111;">
+            Book Now →
           </a>
           <button id="taipans-dismiss" class="text-white/30 hover:text-white/60 text-xs transition">Don't show again</button>
         </div>
       </div>
     </div>
+
+    <script>
+      (function () {
+        // Compute the next Taipans class (Wed or Fri, 5:45pm) from today
+        function nextTaipansClass(): string {
+          const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+          const now = new Date();
+          for (let i = 0; i < 8; i++) {
+            const d = new Date(now);
+            d.setDate(now.getDate() + i);
+            const isClassDay = d.getDay() === 3 || d.getDay() === 5; // Wed or Fri
+            if (!isClassDay) continue;
+            const classTime = new Date(d);
+            classTime.setHours(17, 45, 0, 0);
+            if (classTime <= now) continue;
+            return i === 0 ? `Today at 5:45pm` : i === 1 ? `Tomorrow at 5:45pm` : `${days[d.getDay()]} at 5:45pm`;
+          }
+          return 'Wednesday at 5:45pm';
+        }
+        document.querySelectorAll('#taipans-next-class-popup, #taipans-next-class-banner').forEach(el => {
+          el.textContent = nextTaipansClass();
+        });
+      })();
+    </script>
 
     <script>
       (function () {
