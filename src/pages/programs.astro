@@ -17,10 +17,12 @@ const programs = [
       'Anti-bullying strategies, empathy and leadership',
       'Self-discipline, teamwork and socialisation',
       'Improves fitness and coordination in a safe environment',
+      'No submissions — safe, age-appropriate grappling only',
     ],
     booking: 'Booking essential — pre-book via ClubWorx',
     bookingLink: 'https://app.clubworx.com/websites/rob-williams-bjj/calendar/weekly_agenda',
     schedule: 'Tuesday & Thursday 5:00pm · 30 minute sessions',
+    secondaryLink: { href: '/gradings#kids', text: 'Understand the Gradings →' },
   },
   {
     name: 'Anacondas',
@@ -33,6 +35,7 @@ const programs = [
     details: [
       'Takedowns, throws, escapes and transitions',
       'Submissions including chokes and armlocks',
+      'Punch defence techniques',
       'Anti-bullying, leadership and cooperation skills',
       'Team-building exercises and responsibility',
       'Friendly competitions for advanced students',
@@ -40,6 +43,7 @@ const programs = [
     booking: 'Booking essential — pre-book via ClubWorx',
     bookingLink: 'https://app.clubworx.com/websites/rob-williams-bjj/calendar/weekly_agenda',
     schedule: 'Tuesday 5:45pm · Thursday 5:45pm · Saturday 9:30am',
+    secondaryLink: { href: '/gradings#kids', text: 'Understand the Gradings →' },
   },
   {
     name: 'Taipans',
@@ -49,10 +53,11 @@ const programs = [
     image: '/Gallery/Taipans2.JPG',
     imageAlt: 'Taipans class at Rob Williams BJJ',
     imgClass: '[object-position:center_80%]',
-    desc: 'Real Jiu Jitsu & self-defence. The perfect cross-training for any contact sport — and a great way to build real confidence for teens.',
+    desc: 'Real Jiu Jitsu & self-defence. Kick, punch, throw and grapple — in a controlled and progressive self defence system that\'s the perfect cross-training for any contact sport.',
     details: [
       'Real self-defence skills in a structured environment',
       'Takedowns, throws, escapes and ground control',
+      'Submissions permitted — same rules as Adults classes',
       'Builds discipline, focus and confidence',
       'Great cross-training for footy, rugby and other contact sports',
     ],
@@ -62,6 +67,7 @@ const programs = [
     badge: 'First Class July 22nd',
     badgeExpiry: '2026-07-22T00:00:00+10:00',
     ctaSwitchDate: '2026-07-16T00:00:00+10:00',
+    secondaryLink: { href: '/gradings#kids', text: 'Understand the Gradings →' },
   },
   {
     name: 'Women (13+)',
@@ -83,6 +89,7 @@ const programs = [
     booking: 'Booking essential — pre-book via ClubWorx',
     bookingLink: 'https://app.clubworx.com/websites/rob-williams-bjj/calendar/weekly_agenda',
     schedule: 'Mondays 5:00pm',
+    secondaryLink: { href: '/gradings#playlist', text: 'Understand Jiu Jitsu Fundamentals →' },
   },
   {
     name: 'Adults',
@@ -102,6 +109,7 @@ const programs = [
     booking: 'Walk-in welcome',
     bookingLink: 'https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new',
     schedule: 'Mon 10am & 6pm · Tue 6:30pm · Wed 10am · Thu 6:30pm · Fri 10am · Sat 8am',
+    secondaryLink: { href: '/gradings#playlist', text: 'Understand Jiu Jitsu Fundamentals →' },
   },
 ];
 ---
@@ -230,6 +238,18 @@ const programs = [
                 </a>
               </div>
             )}
+
+            {p.secondaryLink && (
+              <a
+                href={p.secondaryLink.href}
+                class="block mt-4 text-white/50 hover:text-white/80 text-sm font-medium transition"
+              >
+                {p.secondaryLink.text}
+              </a>
+            )}
+            <a href="/etiquette" class="block mt-1 text-white/50 hover:text-white/80 text-sm font-medium transition">
+              Read Our Gym Etiquette →
+            </a>
           </div>
 
         </div>
@@ -435,10 +455,11 @@ const programs = [
           <li><a href="/about" class="hover:text-white transition">About</a></li>
           <li><a href="/programs" class="hover:text-white transition">Programs</a></li>
           <li><a href="/timetable" class="hover:text-white transition">Timetable &amp; Pricing</a></li>
+          <li><a href="/etiquette" class="hover:text-white transition">Etiquette &amp; Rules</a></li>
           <li><a href="/team" class="hover:text-white transition">Our Team</a></li>
           <li><a href="/contact" class="hover:text-white transition">Contact</a></li>
           <li><a href="/faq" class="hover:text-white transition">FAQ</a></li>
-          <li><a href="/resources" class="hover:text-white transition">Resources</a></li>
+          <li><a href="/gradings" class="hover:text-white transition">Gradings</a></li>
           <li><a href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener" class="hover:text-white transition">Free Trial</a></li>
         </ul>
       </div>

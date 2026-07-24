@@ -1,0 +1,409 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+
+// Fetch playlist server-side at build time (no CORS issues)
+type PlaylistVideo = { id: string; title: string };
+
+let playlistVideos: PlaylistVideo[] = [
+  { id: 'ArStX4WJoxI', title: 'Saturdays!!!! #bjj' },
+];
+
+try {
+  const playlistId = 'PLWS-N4Sxm3qA';
+  const res = await fetch(`https://www.youtube.com/feeds/videos.xml?playlist_id=${playlistId}`);
+  if (res.ok) {
+    const xml = await res.text();
+    const entries = [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)];
+    const parsed = entries.map(([, entry]) => {
+      const idMatch    = entry.match(/<yt:videoId>([^<]+)<\/yt:videoId>/);
+      const titleMatch = entry.match(/<media:title>([^<]+)<\/media:title>/);
+      return { id: idMatch?.[1] ?? '', title: titleMatch?.[1] ?? '' };
+    }).filter(v => v.id);
+    if (parsed.length) playlistVideos = parsed;
+  }
+} catch {
+  // Keep fallback values
+}
+
+const latestVideoId    = playlistVideos[0].id;
+const latestVideoTitle = playlistVideos[0].title;
+const upNextVideos     = playlistVideos.slice(1, 8);
+---
+
+<Layout
+  title="Gradings | Rob Williams BJJ – South Brisbane"
+  description="Kids and adult belt grading requirements for Rob Williams BJJ students in Meadowbrook, South Brisbane — Pedro Sauer Association curriculum."
+>
+
+  <Header />
+
+  <!-- ─── HERO ──────────────────────────────────────────────────── -->
+  <section class="page-hero relative flex items-end px-6 pb-16 pt-32">
+    <div class="max-w-5xl mx-auto w-full">
+      <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Progression</p>
+      <h1 class="font-display text-5xl md:text-6xl font-bold leading-tight">Gradings</h1>
+      <p class="text-white/60 text-lg mt-4 max-w-xl">
+        Grading at Rob Williams BJJ follows the Pedro Sauer Association curriculum. Every student must demonstrate technical and physical competency at each level before advancing — no shortcuts, no exceptions.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── KIDS GRADING ──────────────────────────────────────────── -->
+  <section id="kids" class="py-14 px-6 bg-brand-gray scroll-mt-20">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-start">
+
+      <div class="order-2 md:order-1">
+        <img
+          id="kids-grading-thumb"
+          src="/RWBJJ_Kids_Belt_Graduation_System.png"
+          alt="Rob Williams BJJ Kids Belt Graduation System"
+          class="rounded-2xl w-full object-cover mb-6 cursor-pointer hover:ring-2 hover:ring-brand-red transition"
+        />
+
+        <!-- Lightbox -->
+        <div id="kids-grading-lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+          <div class="relative max-w-4xl w-full">
+            <button id="kids-grading-close" class="absolute -top-4 -right-4 z-10 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-lg transition">✕</button>
+            <img
+              src="/RWBJJ_Kids_Belt_Graduation_System.png"
+              alt="Rob Williams BJJ Kids Belt Graduation System"
+              class="max-h-[90vh] w-full object-contain rounded-2xl"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="order-1 md:order-2">
+        <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Kids</p>
+        <h2 class="font-display text-4xl font-bold mb-6">Kids (Ages 4–15)</h2>
+        <p class="text-white/70 text-lg leading-relaxed mb-8">
+          Kids progress through a dedicated belt system based on attendance and technique — keeping goals
+          achievable and motivating at every stage.
+        </p>
+
+        <div class="grid grid-cols-2 gap-3">
+          {[
+            { label: 'Classes per stripe', value: '20' },
+            { label: 'Classes per belt', value: '100' },
+          ].map(({ label, value }) => (
+            <div class="bg-brand-dark border border-white/10 rounded-xl p-4 text-center">
+              <p class="font-display text-3xl font-bold text-white">{value}</p>
+              <p class="text-white/50 text-xs mt-1">{label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div style="height:24px;background:linear-gradient(to bottom,#1a1a1a,#0d0d0d);"></div>
+
+  <!-- ─── ADULT GRADING ─────────────────────────────────────────── -->
+  <section class="py-14 px-6 bg-brand-dark">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-x-16 gap-y-6 items-start">
+
+      <div class="order-2 md:order-1">
+        <!-- Transfer students note -->
+        <div class="bg-brand-gray border border-white/10 rounded-2xl p-6 mb-6">
+          <p class="text-brand-red uppercase tracking-widest text-xs font-semibold mb-3">Transferring from Another Gym?</p>
+          <p class="text-white/70 text-sm leading-relaxed mb-3">
+            The Pedro Sauer Association upholds very high standards. Students joining from another school —
+            particularly those wearing a coloured belt — must meet PSBJJA requirements before wearing
+            that belt in our academy uniform.
+          </p>
+          <p class="text-white/70 text-sm leading-relaxed mb-3">
+            Casual visitors are always welcome to train in their own uniform and belt. However, full members
+            wishing to wear our uniform must sit the assessment for each belt level before it is awarded here.
+          </p>
+          <p class="text-white/50 text-xs leading-relaxed">
+            This policy exists to protect the integrity of our ranks. The curriculum for each grade is available
+            to study and be assessed on at any time — just ask Rob.
+          </p>
+        </div>
+
+        <img
+          id="grading-thumb"
+          src="/Gradings-2.0.png"
+          alt="Rob Williams BJJ Grading Chart"
+          class="rounded-2xl w-full object-cover cursor-pointer hover:ring-2 hover:ring-brand-red transition"
+        />
+
+        <!-- Lightbox -->
+        <div id="grading-lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+          <div class="relative max-w-4xl w-full">
+            <button id="grading-close" class="absolute -top-4 -right-4 z-10 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-lg transition">✕</button>
+            <img
+              src="/Gradings-2.0.png"
+              alt="Rob Williams BJJ Grading Chart"
+              class="max-h-[90vh] w-full object-contain rounded-2xl"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="order-1 md:order-2">
+        <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Adults</p>
+        <h2 class="font-display text-4xl font-bold mb-6">Adults (16+)</h2>
+        <p class="text-white/70 text-lg leading-relaxed mb-8">
+          Every student must demonstrate technical and physical competency at each level
+          before advancing — no shortcuts, no exceptions.
+        </p>
+
+        <div class="space-y-3 mb-6">
+          {[
+            { from: 'White', to: 'Blue',   years: '2–3 years',  c1: '#e5e7eb', c2: '#2563eb' },
+            { from: 'Blue',  to: 'Purple', years: '5–7 years',  c1: '#2563eb', c2: '#9333ea' },
+            { from: 'Purple',to: 'Brown',  years: '7–10 years', c1: '#9333ea', c2: '#92400e' },
+            { from: 'Brown', to: 'Black',  years: '10–12 years',c1: '#92400e', c2: '#4b5563' },
+          ].map(({ from, to, years, c1, c2 }) => (
+            <div
+              class="belt-row flex items-center justify-between bg-brand-gray rounded-xl px-5 py-3 border cursor-default"
+              style={`border-color: ${c1};`}
+              data-c1={c1}
+              data-c2={c2}
+            >
+              <span class="text-white/80 text-sm">{from} → {to}</span>
+              <span class="text-white font-bold text-sm">{years}</span>
+            </div>
+          ))}
+        </div>
+
+        <img
+          id="adult-grading-thumb"
+          src="/RWBJJ_Adult_Belt_Graduation_System.png"
+          alt="Rob Williams BJJ Adult Belt Graduation System"
+          class="rounded-2xl w-full object-cover cursor-pointer hover:ring-2 hover:ring-brand-red transition"
+        />
+
+        <!-- Lightbox -->
+        <div id="adult-grading-lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+          <div class="relative max-w-4xl w-full">
+            <button id="adult-grading-close" class="absolute -top-4 -right-4 z-10 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-lg transition">✕</button>
+            <img
+              src="/RWBJJ_Adult_Belt_Graduation_System.png"
+              alt="Rob Williams BJJ Adult Belt Graduation System"
+              class="max-h-[90vh] w-full object-contain rounded-2xl"
+            />
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div style="height:24px;background:linear-gradient(to bottom,#0d0d0d,#1a1a1a);"></div>
+
+  <!-- ─── BASICS OF JIU JITSU PLAYLIST ───────────────────────────── -->
+  <section id="playlist" class="py-14 px-6 bg-brand-gray scroll-mt-20">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-10">
+        <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">YouTube</p>
+        <h2 class="font-display text-4xl font-bold">Basics of Jiu Jitsu</h2>
+      </div>
+
+      <div class="grid lg:grid-cols-[1fr_340px] gap-6 items-start">
+
+        <div>
+          <!-- Video embed -->
+          <div class="relative w-full rounded-2xl overflow-hidden bg-black" style="aspect-ratio: 16/9;">
+            <iframe
+              id="gradings-video-iframe"
+              src={`https://www.youtube.com/embed/${latestVideoId}?rel=0&modestbranding=1`}
+              title={latestVideoTitle}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              class="absolute inset-0 w-full h-full"
+            ></iframe>
+          </div>
+
+          <!-- Video meta + channel link -->
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6">
+            <p class="text-white/60 text-sm">
+              <span id="gradings-video-title" class="text-white font-semibold">{latestVideoTitle}</span>
+              &nbsp;·&nbsp; Rob Williams BJJ
+            </p>
+            <a
+              href="https://www.youtube.com/@robwilliamsbjj8446"
+              target="_blank"
+              rel="noopener"
+              class="shrink-0 border border-white/30 hover:border-white text-white text-sm font-semibold px-6 py-2.5 rounded-lg transition"
+            >
+              View Full Channel →
+            </a>
+          </div>
+        </div>
+
+        <!-- Up Next list -->
+        {upNextVideos.length > 0 && (
+          <div class="bg-brand-dark border border-white/10 rounded-2xl p-4 lg:max-h-[420px] lg:overflow-y-auto">
+            <p class="text-white/40 uppercase tracking-widest text-xs font-semibold mb-3 px-1">Up Next</p>
+            <div class="space-y-2">
+              {upNextVideos.map(v => (
+                <button
+                  class="gradings-playlist-item w-full flex items-center gap-3 text-left rounded-xl p-2 hover:bg-white/5 transition"
+                  data-video-id={v.id}
+                  data-video-title={v.title}
+                >
+                  <span class="relative shrink-0 w-24 h-14 rounded-lg overflow-hidden bg-black">
+                    <img src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`} alt={v.title} class="w-full h-full object-cover" loading="lazy" />
+                    <span class="absolute inset-0 flex items-center justify-center bg-black/20">
+                      <span class="text-white text-lg">▶</span>
+                    </span>
+                  </span>
+                  <span class="text-white/80 text-sm leading-snug line-clamp-2">{v.title}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      const iframe = document.getElementById('gradings-video-iframe') as HTMLIFrameElement | null;
+      const titleEl = document.getElementById('gradings-video-title');
+      document.querySelectorAll<HTMLElement>('.gradings-playlist-item').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.videoId!;
+          const title = btn.dataset.videoTitle!;
+          if (iframe) iframe.src = `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1&autoplay=1`;
+          if (titleEl) titleEl.textContent = title;
+          window.scrollTo({ top: (iframe?.closest('section') as HTMLElement)?.offsetTop ?? 0, behavior: 'smooth' });
+        });
+      });
+    })();
+  </script>
+
+  <div style="height:24px;background:linear-gradient(to bottom,#1a1a1a,#0d0d0d);"></div>
+
+  <!-- ─── CTA ──────────────────────────────────────────────────── -->
+  <section class="py-20 px-6 bg-brand-dark text-center">
+    <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Ready to Start?</p>
+    <h2 class="font-display text-4xl font-bold mb-6">Your First 10 Days Are Free</h2>
+    <p class="text-white/60 text-lg mb-10 max-w-lg mx-auto">
+      No experience needed. Unlimited classes for 10 days — meet the team and see if Rob Williams BJJ is the right fit for you.
+    </p>
+    <a
+      href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener"
+      class="bg-brand-red hover:bg-red-700 text-white font-bold text-lg px-12 py-4 rounded transition inline-block"
+    >
+      Book Your Free Trial
+    </a>
+  </section>
+
+  <div style="height:24px;background:linear-gradient(to bottom,#1a1a1a,#0d0d0d);"></div>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────────── -->
+  <footer class="bg-brand-dark py-14 px-6">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-10">
+      <div>
+        <p class="font-display text-xl font-bold mb-3">ROB WILLIAMS <span class="text-brand-red">BJJ</span></p>
+        <p class="text-white/50 text-sm leading-relaxed">
+          Authentic Gracie Jiu Jitsu self-defence academy.<br />
+          South Brisbane · Meadowbrook QLD
+        </p>
+      </div>
+      <div>
+        <p class="font-semibold text-white/80 mb-4 text-sm uppercase tracking-wide">Contact</p>
+        <ul class="space-y-3 text-white/60 text-sm">
+          <li><a href="tel:0421729868" class="hover:text-white transition">📞 0421 729 868</a></li>
+          <li><a href="mailto:robwilliamsgz@gmail.com" class="hover:text-white transition">✉️ robwilliamsgz@gmail.com</a></li>
+          <li>
+            <a href="https://maps.google.com/?q=3/45+Nealdon+Dr+Meadowbrook+QLD+4131" target="_blank" rel="noopener" class="hover:text-white transition">
+              📍 3/45 Nealdon Dr, Meadowbrook QLD 4131
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-white/80 mb-4 text-sm uppercase tracking-wide">Quick Links</p>
+        <ul class="space-y-2 text-white/60 text-sm">
+          <li><a href="/about" class="hover:text-white transition">About</a></li>
+          <li><a href="/programs" class="hover:text-white transition">Programs</a></li>
+          <li><a href="/timetable" class="hover:text-white transition">Timetable &amp; Pricing</a></li>
+          <li><a href="/etiquette" class="hover:text-white transition">Etiquette &amp; Rules</a></li>
+          <li><a href="/gradings" class="hover:text-white transition">Gradings</a></li>
+          <li><a href="/team" class="hover:text-white transition">Our Team</a></li>
+          <li><a href="/contact" class="hover:text-white transition">Contact</a></li>
+          <li><a href="/faq" class="hover:text-white transition">FAQ</a></li>
+          <li><a href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener" class="hover:text-white transition">Free Trial</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="max-w-5xl mx-auto mt-10 pt-6 border-t border-white/10 text-center text-white/30 text-xs">
+      © {new Date().getFullYear()} Rob Williams BJJ. All rights reserved.
+    </div>
+  </footer>
+
+<script>
+  // Kids grading lightbox
+  const kidsThumb = document.getElementById('kids-grading-thumb');
+  const kidsLightbox = document.getElementById('kids-grading-lightbox');
+  kidsThumb?.addEventListener('click', () => {
+    kidsLightbox?.classList.remove('hidden');
+    kidsLightbox?.classList.add('flex');
+  });
+  kidsLightbox?.addEventListener('click', (e) => {
+    if (e.target === kidsLightbox) {
+      kidsLightbox.classList.add('hidden');
+      kidsLightbox.classList.remove('flex');
+    }
+  });
+  document.getElementById('kids-grading-close')?.addEventListener('click', () => {
+    kidsLightbox?.classList.add('hidden');
+    kidsLightbox?.classList.remove('flex');
+  });
+
+  // Adult grading lightbox
+  const thumb = document.getElementById('grading-thumb');
+  const lightbox = document.getElementById('grading-lightbox');
+  thumb?.addEventListener('click', () => {
+    lightbox?.classList.remove('hidden');
+    lightbox?.classList.add('flex');
+  });
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
+    }
+  });
+  document.getElementById('grading-close')?.addEventListener('click', () => {
+    lightbox?.classList.add('hidden');
+    lightbox?.classList.remove('flex');
+  });
+
+  // Adult belt graduation system lightbox
+  const adultThumb = document.getElementById('adult-grading-thumb');
+  const adultLightbox = document.getElementById('adult-grading-lightbox');
+  adultThumb?.addEventListener('click', () => {
+    adultLightbox?.classList.remove('hidden');
+    adultLightbox?.classList.add('flex');
+  });
+  adultLightbox?.addEventListener('click', (e) => {
+    if (e.target === adultLightbox) {
+      adultLightbox.classList.add('hidden');
+      adultLightbox.classList.remove('flex');
+    }
+  });
+  document.getElementById('adult-grading-close')?.addEventListener('click', () => {
+    adultLightbox?.classList.add('hidden');
+    adultLightbox?.classList.remove('flex');
+  });
+
+  // Belt row hover + tap colours
+  document.querySelectorAll<HTMLElement>('.belt-row').forEach(row => {
+    const c1 = row.dataset.c1!;
+    const c2 = row.dataset.c2!;
+    row.addEventListener('mouseenter', () => row.style.borderColor = c2);
+    row.addEventListener('mouseleave', () => row.style.borderColor = c1);
+    row.addEventListener('touchstart', () => row.style.borderColor = c2, { passive: true });
+    row.addEventListener('touchend', () => setTimeout(() => row.style.borderColor = c1, 3500), { passive: true });
+  });
+</script>
+
+</Layout>

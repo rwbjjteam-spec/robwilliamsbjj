@@ -312,101 +312,6 @@ const typeStyles: Record<string, string> = {
 
   <div style="height:50px;background:linear-gradient(to bottom,#0d0d0d,#1a1a1a);"></div>
 
-  <!-- ─── GRADINGS ───────────────────────────────────────────────── -->
-  <section class="py-24 px-6 bg-brand-gray">
-    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-start">
-
-      <div class="order-2 md:order-1">
-        <img
-          id="grading-thumb"
-          src="/Gradings-2.0.png"
-          alt="Rob Williams BJJ Grading Chart"
-          class="rounded-2xl w-full object-cover mb-6 cursor-pointer hover:ring-2 hover:ring-brand-red transition"
-        />
-
-        <!-- Lightbox -->
-        <div id="grading-lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-          <div class="relative max-w-4xl w-full">
-            <button id="grading-close" class="absolute -top-4 -right-4 z-10 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-lg transition">✕</button>
-            <img
-              src="/Gradings-2.0.png"
-              alt="Rob Williams BJJ Grading Chart"
-              class="max-h-[90vh] w-full object-contain rounded-2xl"
-            />
-          </div>
-        </div>
-        <!-- Transfer students note -->
-        <div class="bg-brand-dark border border-white/10 rounded-2xl p-6">
-          <p class="text-brand-red uppercase tracking-widest text-xs font-semibold mb-3">Transferring from Another Gym?</p>
-          <p class="text-white/70 text-sm leading-relaxed mb-3">
-            The Pedro Sauer Association upholds very high standards. Students joining from another school —
-            particularly those wearing a coloured belt — must meet PSBJJA requirements before wearing
-            that belt in our academy uniform.
-          </p>
-          <p class="text-white/70 text-sm leading-relaxed mb-3">
-            Casual visitors are always welcome to train in their own uniform and belt. However, full members
-            wishing to wear our uniform must sit the assessment for each belt level before it is awarded here.
-          </p>
-          <p class="text-white/50 text-xs leading-relaxed">
-            This policy exists to protect the integrity of our ranks. The curriculum for each grade is available
-            to study and be assessed on at any time — just ask Rob.
-          </p>
-        </div>
-      </div>
-
-      <div class="order-1 md:order-2">
-        <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Progression</p>
-        <h2 class="font-display text-4xl font-bold mb-6">Gradings</h2>
-        <p class="text-white/70 text-lg leading-relaxed mb-8">
-          Grading at Rob Williams BJJ follows the Pedro Sauer Association curriculum.
-          Every student must demonstrate technical and physical competency at each level
-          before advancing — no shortcuts, no exceptions.
-        </p>
-
-        <!-- Kids -->
-        <div class="mb-8">
-          <h3 class="font-display text-xl font-bold mb-4 text-white">Kids (Ages 4–15)</h3>
-          <div class="grid grid-cols-2 gap-3">
-            {[
-              { label: 'Classes per stripe', value: '20' },
-              { label: 'Classes per belt', value: '100' },
-            ].map(({ label, value }) => (
-              <div class="bg-brand-dark border border-white/10 rounded-xl p-4 text-center">
-                <p class="font-display text-3xl font-bold text-white">{value}</p>
-                <p class="text-white/50 text-xs mt-1">{label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <!-- Adults -->
-        <div>
-          <h3 class="font-display text-xl font-bold mb-4 text-white">Adults (16+)</h3>
-          <div class="space-y-3">
-            {[
-              { from: 'White', to: 'Blue',   years: '2–3 years',  c1: '#e5e7eb', c2: '#2563eb' },
-              { from: 'Blue',  to: 'Purple', years: '5–7 years',  c1: '#2563eb', c2: '#9333ea' },
-              { from: 'Purple',to: 'Brown',  years: '7–10 years', c1: '#9333ea', c2: '#92400e' },
-              { from: 'Brown', to: 'Black',  years: '10–12 years',c1: '#92400e', c2: '#4b5563' },
-            ].map(({ from, to, years, c1, c2 }) => (
-              <div
-                class="belt-row flex items-center justify-between bg-brand-dark rounded-xl px-5 py-3 border cursor-default"
-                style={`border-color: ${c1}; transition: border-color 3s ease;`}
-                style={`border-color: ${c1};`}
-                data-c1={c1}
-                data-c2={c2}
-              >
-                <span class="text-white/80 text-sm">{from} → {to}</span>
-                <span class="text-white font-bold text-sm">{years}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
   <!-- ─── CTA ──────────────────────────────────────────────────── -->
   <section class="py-20 px-6 bg-brand-gray text-center">
     <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Ready to Start?</p>
@@ -452,10 +357,11 @@ const typeStyles: Record<string, string> = {
           <li><a href="/about" class="hover:text-white transition">About</a></li>
           <li><a href="/programs" class="hover:text-white transition">Programs</a></li>
           <li><a href="/timetable" class="hover:text-white transition">Timetable &amp; Pricing</a></li>
+          <li><a href="/etiquette" class="hover:text-white transition">Etiquette &amp; Rules</a></li>
           <li><a href="/team" class="hover:text-white transition">Our Team</a></li>
           <li><a href="/contact" class="hover:text-white transition">Contact</a></li>
           <li><a href="/faq" class="hover:text-white transition">FAQ</a></li>
-          <li><a href="/resources" class="hover:text-white transition">Resources</a></li>
+          <li><a href="/gradings" class="hover:text-white transition">Gradings</a></li>
           <li><a href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener" class="hover:text-white transition">Free Trial</a></li>
         </ul>
       </div>
@@ -473,24 +379,6 @@ const typeStyles: Record<string, string> = {
 </style>
 
 <script>
-  // Grading lightbox
-  const thumb = document.getElementById('grading-thumb');
-  const lightbox = document.getElementById('grading-lightbox');
-  thumb?.addEventListener('click', () => {
-    lightbox?.classList.remove('hidden');
-    lightbox?.classList.add('flex');
-  });
-  lightbox?.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-      lightbox.classList.add('hidden');
-      lightbox.classList.remove('flex');
-    }
-  });
-  document.getElementById('grading-close')?.addEventListener('click', () => {
-    lightbox?.classList.add('hidden');
-    lightbox?.classList.remove('flex');
-  });
-
   const items = document.querySelectorAll<HTMLElement>('[data-class-type]');
   let lockedType: string | null = null;
 
@@ -536,16 +424,6 @@ const typeStyles: Record<string, string> = {
       lockedType = null;
       applyHighlight(null);
     }
-  });
-
-  // Belt row hover + tap colours
-  document.querySelectorAll<HTMLElement>('.belt-row').forEach(row => {
-    const c1 = row.dataset.c1!;
-    const c2 = row.dataset.c2!;
-    row.addEventListener('mouseenter', () => row.style.borderColor = c2);
-    row.addEventListener('mouseleave', () => row.style.borderColor = c1);
-    row.addEventListener('touchstart', () => row.style.borderColor = c2, { passive: true });
-    row.addEventListener('touchend', () => setTimeout(() => row.style.borderColor = c1, 3500), { passive: true });
   });
 </script>
 

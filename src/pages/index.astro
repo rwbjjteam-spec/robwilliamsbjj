@@ -14,6 +14,7 @@ const programs = [
       'Anti-bullying strategies, empathy and leadership',
       'Self-discipline, teamwork and socialization',
       'Improves fitness and coordination in a safe environment',
+      'No submissions — safe, age-appropriate grappling only',
       'Booking essential — pre-book via ClubWorx',
     ],
   },
@@ -25,6 +26,7 @@ const programs = [
     details: [
       'Takedowns, throws, escapes and transitions',
       'Submissions including chokes and armlocks',
+      'Punch defence techniques',
       'Anti-bullying, leadership and cooperation skills',
       'Team-building exercises and responsibility',
       'Friendly competitions for advanced students',
@@ -35,10 +37,11 @@ const programs = [
     name: 'Taipans',
     age: 'Ages 12–15',
     icon: '🐉',
-    desc: 'Real Jiu Jitsu & self-defence. The perfect cross-training for any contact sport — and a great way to build real confidence for teens.',
+    desc: 'Real Jiu Jitsu & self-defence. Kick, punch, throw and grapple — in a controlled and progressive self defence system that\'s the perfect cross-training for any contact sport.',
     details: [
       'Real self-defence skills in a structured environment',
       'Takedowns, throws, escapes and ground control',
+      'Submissions permitted — same rules as Adults classes',
       'Builds discipline, focus and confidence',
       'Great cross-training for footy, rugby and other contact sports',
       'Booking essential — pre-book via ClubWorx',
@@ -250,6 +253,12 @@ const programs = [
                   Book a free trial →
                 </a>
               )}
+              <a href={`/programs#${p.name.toLowerCase()}`} class="block mt-3 text-white/50 hover:text-white/80 text-sm font-medium transition">
+                See full class details →
+              </a>
+              <a href="/etiquette" class="block mt-1 text-white/50 hover:text-white/80 text-sm font-medium transition">
+                Read Our Gym Etiquette →
+              </a>
             </div>
           </div>
         ))}
@@ -313,6 +322,12 @@ const programs = [
                 Book a free trial →
               </a>
             )}
+            <a href={`/programs#${p.name.toLowerCase()}`} class="block mt-4 text-white/50 hover:text-white/80 text-sm font-medium transition">
+              See full class details →
+            </a>
+            <a href="/etiquette" class="block mt-1 text-white/50 hover:text-white/80 text-sm font-medium transition">
+              Read Our Gym Etiquette →
+            </a>
           </div>
         </div>
       ))}
@@ -723,10 +738,11 @@ const programs = [
           <li><a href="/about" class="hover:text-white transition">About</a></li>
           <li><a href="/programs" class="hover:text-white transition">Programs</a></li>
           <li><a href="/timetable" class="hover:text-white transition">Timetable &amp; Pricing</a></li>
+          <li><a href="/etiquette" class="hover:text-white transition">Etiquette &amp; Rules</a></li>
           <li><a href="/team" class="hover:text-white transition">Our Team</a></li>
           <li><a href="/contact" class="hover:text-white transition">Contact</a></li>
           <li><a href="/faq" class="hover:text-white transition">FAQ</a></li>
-          <li><a href="/resources" class="hover:text-white transition">Resources</a></li>
+          <li><a href="/gradings" class="hover:text-white transition">Gradings</a></li>
           <li><a href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener" class="hover:text-white transition">Free Trial</a></li>
         </ul>
       </div>

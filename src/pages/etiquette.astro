@@ -1,0 +1,166 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+
+const gymEtiquette = [
+  'Trimmed nails',
+  'Shower before class',
+  'Deodorant',
+  'Clean uniform',
+  'Wash uniform after every class',
+  'NO shoes ON the mat',
+  'Shoes MUST be worn when OFF the mat',
+  'NO jewelry/watches',
+  'Be kind and courteous on and off the mat',
+  'If sick, please stay home',
+  'Spectators please be seated and quiet during class',
+  'Parents: no communication with kids on the mat',
+  'If kids refuse to follow instructions, they will be removed from the class',
+  'Continued disobedience or disrespectful behaviour will lead to termination of membership',
+];
+
+const rollingRules = [
+  'IBJJF Rules apply (go to IBJJF.com)',
+  'Roll with control',
+  'No leg / foot attacks for white belts under 3rd stripe',
+  'Use submissions allowed by the lowest grade in the contest. (If a blue and white roll then it\'s white belt rules)',
+  'Always apply submissions with control - treat your opponent as you wish to be treated.',
+  'Dangerous rolling will receive a warning - if you deliberately injure someone you may be asked to leave the gym.',
+  'Self Defence begins when you walk through the door. Protect yourself and be wary when drilling and especially when rolling.',
+  'Focus on learning NOT winning. If you want to fight aggressively enter competitions - in the gym show respect and care for your training partner.',
+  'No one\'s keeping score in training.',
+  'Report any incident that results in injury to the head coach immediately.',
+];
+---
+
+<Layout
+  title="Etiquette & Rules | Rob Williams BJJ – South Brisbane"
+  description="Gym etiquette, rolling rules and grading requirements for Rob Williams BJJ students in Meadowbrook, South Brisbane."
+>
+
+  <Header />
+
+  <!-- ─── HERO ──────────────────────────────────────────────────── -->
+  <section class="page-hero relative flex items-end px-6 pb-16 pt-32">
+    <div class="max-w-5xl mx-auto w-full">
+      <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">For Students</p>
+      <h1 class="font-display text-5xl md:text-6xl font-bold leading-tight">Etiquette & Rules</h1>
+      <p class="text-white/60 text-lg mt-4 max-w-xl">
+        Students and parents take note — how we train, roll and conduct ourselves on the mat.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── GYM ETIQUETTE ───────────────────────────────────────────── -->
+  <section class="py-14 px-6 bg-brand-gray">
+    <div class="max-w-3xl mx-auto">
+      <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Gym Etiquette</p>
+      <h2 class="font-display text-4xl font-bold mb-4">Students and Parents Take Note</h2>
+      <p class="text-white/60 text-lg mb-8">
+        Simple standards that keep the academy clean, safe and respectful for everyone.
+      </p>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
+        {gymEtiquette.map(rule => (
+          <li class="border-l-4 border-brand-red bg-white rounded-r-md px-4 py-2.5">
+            <span class="text-brand-dark font-bold text-sm leading-snug">{rule}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <div style="height:24px;background:linear-gradient(to bottom,#1a1a1a,#0d0d0d);"></div>
+
+  <!-- ─── ROLLING RULES ───────────────────────────────────────────── -->
+  <section class="py-12 px-6 bg-brand-dark">
+    <div class="max-w-3xl mx-auto">
+      <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Live Training</p>
+      <h2 class="font-display text-4xl font-bold mb-8">Rolling Rules</h2>
+
+      <ol class="space-y-5 mb-10">
+        {rollingRules.map((rule, i) => (
+          <li class="flex items-start gap-4">
+            <span class="shrink-0 w-8 h-8 rounded-full bg-brand-gray border border-white/10 flex items-center justify-center text-brand-red font-bold text-sm">{i + 1}</span>
+            <span class="text-white/80 text-base leading-relaxed pt-1">{rule}</span>
+          </li>
+        ))}
+      </ol>
+
+      <div class="bg-brand-gray border border-white/10 rounded-2xl p-6 mb-6">
+        <p class="text-white/80 text-sm leading-relaxed mb-4">
+          All new adults will be administered a red stripe on their belt first lesson. As they demonstrate control and maturity of movement then the stripe will be removed.
+        </p>
+        <p class="text-white/80 text-sm leading-relaxed">
+          <span class="font-bold text-white">Red Stripe:</span> no submissions, no free training, positional sparring only, no grading, focus on control, staying calm, smoother movements, more self awareness.
+        </p>
+      </div>
+
+      <p class="text-brand-red font-semibold text-center text-lg">
+        Stay safe / have fun / focus on learning not winning / look after your partners - always show respect and control.
+      </p>
+    </div>
+  </section>
+
+  <div style="height:24px;background:linear-gradient(to bottom,#0d0d0d,#1a1a1a);"></div>
+
+  <!-- ─── CTA ──────────────────────────────────────────────────── -->
+  <section class="py-20 px-6 bg-brand-dark text-center">
+    <p class="text-brand-red uppercase tracking-widest text-sm font-semibold mb-3">Ready to Start?</p>
+    <h2 class="font-display text-4xl font-bold mb-6">Your First 10 Days Are Free</h2>
+    <p class="text-white/60 text-lg mb-10 max-w-lg mx-auto">
+      No experience needed. Unlimited classes for 10 days — meet the team and see if Rob Williams BJJ is the right fit for you.
+    </p>
+    <a
+      href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener"
+      class="bg-brand-red hover:bg-red-700 text-white font-bold text-lg px-12 py-4 rounded transition inline-block"
+    >
+      Book Your Free Trial
+    </a>
+  </section>
+
+  <div style="height:24px;background:linear-gradient(to bottom,#1a1a1a,#0d0d0d);"></div>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────────── -->
+  <footer class="bg-brand-dark py-14 px-6">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-10">
+      <div>
+        <p class="font-display text-xl font-bold mb-3">ROB WILLIAMS <span class="text-brand-red">BJJ</span></p>
+        <p class="text-white/50 text-sm leading-relaxed">
+          Authentic Gracie Jiu Jitsu self-defence academy.<br />
+          South Brisbane · Meadowbrook QLD
+        </p>
+      </div>
+      <div>
+        <p class="font-semibold text-white/80 mb-4 text-sm uppercase tracking-wide">Contact</p>
+        <ul class="space-y-3 text-white/60 text-sm">
+          <li><a href="tel:0421729868" class="hover:text-white transition">📞 0421 729 868</a></li>
+          <li><a href="mailto:robwilliamsgz@gmail.com" class="hover:text-white transition">✉️ robwilliamsgz@gmail.com</a></li>
+          <li>
+            <a href="https://maps.google.com/?q=3/45+Nealdon+Dr+Meadowbrook+QLD+4131" target="_blank" rel="noopener" class="hover:text-white transition">
+              📍 3/45 Nealdon Dr, Meadowbrook QLD 4131
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-white/80 mb-4 text-sm uppercase tracking-wide">Quick Links</p>
+        <ul class="space-y-2 text-white/60 text-sm">
+          <li><a href="/about" class="hover:text-white transition">About</a></li>
+          <li><a href="/programs" class="hover:text-white transition">Programs</a></li>
+          <li><a href="/timetable" class="hover:text-white transition">Timetable &amp; Pricing</a></li>
+          <li><a href="/etiquette" class="hover:text-white transition">Etiquette &amp; Rules</a></li>
+          <li><a href="/team" class="hover:text-white transition">Our Team</a></li>
+          <li><a href="/contact" class="hover:text-white transition">Contact</a></li>
+          <li><a href="/faq" class="hover:text-white transition">FAQ</a></li>
+          <li><a href="/gradings" class="hover:text-white transition">Gradings</a></li>
+          <li><a href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener" class="hover:text-white transition">Free Trial</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="max-w-5xl mx-auto mt-10 pt-6 border-t border-white/10 text-center text-white/30 text-xs">
+      © {new Date().getFullYear()} Rob Williams BJJ. All rights reserved.
+    </div>
+  </footer>
+
+</Layout>
