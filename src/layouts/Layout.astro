@@ -63,9 +63,9 @@ const ogImage    = `${siteBase}/hero-bg.jpg`;
         "openingHoursSpecification": [
           { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday",    "opens": "10:00", "closes": "20:00" },
           { "@type": "OpeningHoursSpecification", "dayOfWeek": "Tuesday",   "opens": "17:00", "closes": "20:00" },
-          { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "10:00", "closes": "11:00" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "10:00", "closes": "20:00" },
           { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday",  "opens": "17:00", "closes": "20:00" },
-          { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday",    "opens": "10:00", "closes": "11:00" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday",    "opens": "10:00", "closes": "20:00" },
           { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday",  "opens": "08:00", "closes": "10:30" }
         ],
         "hasMap": "https://maps.google.com/?q=3/45+Nealdon+Dr+Meadowbrook+QLD+4131",
@@ -154,7 +154,7 @@ const ogImage    = `${siteBase}/hero-bg.jpg`;
           </p>
 
           <div class="rounded-xl px-5 py-4 mb-6" style="background:rgba(255,255,255,0.06); border: 1px solid rgba(245,158,11,0.5);">
-            <p class="font-bold text-white text-base">Wednesdays &amp; Fridays</p>
+            <p class="font-bold text-white text-base">Mondays &amp; Wednesdays</p>
             <p class="text-white/60 text-sm mt-1">Next class: <span id="taipans-next-class-popup" class="font-bold text-white">Wednesday at 5:45pm</span></p>
           </div>
 
@@ -168,21 +168,21 @@ const ogImage    = `${siteBase}/hero-bg.jpg`;
 
     <script>
       (function () {
-        // Compute the next Taipans class (Wed or Fri, 5:45pm) from today
+        // Compute the next Taipans class (Mon or Wed, 5:45pm) from today
         function nextTaipansClass(): string {
           const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
           const now = new Date();
           for (let i = 0; i < 8; i++) {
             const d = new Date(now);
             d.setDate(now.getDate() + i);
-            const isClassDay = d.getDay() === 3 || d.getDay() === 5; // Wed or Fri
+            const isClassDay = d.getDay() === 1 || d.getDay() === 3; // Mon or Wed
             if (!isClassDay) continue;
             const classTime = new Date(d);
             classTime.setHours(17, 45, 0, 0);
             if (classTime <= now) continue;
             return i === 0 ? `Today at 5:45pm` : i === 1 ? `Tomorrow at 5:45pm` : `${days[d.getDay()]} at 5:45pm`;
           }
-          return 'Wednesday at 5:45pm';
+          return 'Monday at 5:45pm';
         }
         document.querySelectorAll('#taipans-next-class-popup, #taipans-next-class-banner').forEach(el => {
           el.textContent = nextTaipansClass();
