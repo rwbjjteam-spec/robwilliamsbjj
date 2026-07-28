@@ -41,7 +41,7 @@ const faqs = [
       },
       {
         q: 'What happens in the Women\'s class?',
-        a: 'It is a dedicated, non-competitive class on Friday evenings at 5:45pm for women 13 and over. No experience needed. Bring a friend. Booking essential via ClubWorx. The class covers practical self-defence at a comfortable pace.',
+        a: 'It is a dedicated, non-competitive class on Monday evenings at 5pm for women 13 and over. No experience needed. Bring a friend. Booking essential via ClubWorx. The class covers practical self-defence at a comfortable pace.',
       },
     ],
   },
@@ -233,5 +233,25 @@ const faqs = [
       © {new Date().getFullYear()} Rob Williams BJJ. All rights reserved.
     </div>
   </footer>
+
+  <script>
+    // Women's class schedule change: Monday evenings 5pm -> Friday evenings 5:45pm
+    // Effective Sunday Aug 2nd 2026, 7pm AEST
+    (function () {
+      const SCHEDULE_SWITCH = '2026-08-02T19:00:00+10:00';
+      if (new Date() < new Date(SCHEDULE_SWITCH)) return;
+      const oldText = 'Monday evenings at 5pm';
+      const newText = 'Friday evenings at 5:45pm';
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      const nodes: Text[] = [];
+      let n: Node | null;
+      while ((n = walker.nextNode())) nodes.push(n as Text);
+      nodes.forEach(node => {
+        if (node.textContent?.includes(oldText)) {
+          node.textContent = node.textContent.replaceAll(oldText, newText);
+        }
+      });
+    })();
+  </script>
 
 </Layout>
