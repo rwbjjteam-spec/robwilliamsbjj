@@ -62,11 +62,11 @@ import Header from '../components/Header.astro';
         <div class="bg-brand-dark border border-white/10 rounded-2xl p-6">
           <p class="text-brand-red uppercase tracking-widest text-xs font-semibold mb-4">Class Times</p>
           <ul class="space-y-2 text-sm text-white/70 mb-6">
-            <li class="flex justify-between"><span>Monday</span><span id="hours-monday">10:00am · 6:00pm</span></li>
+            <li class="flex justify-between"><span>Monday</span><span>10:00am · 5:45pm · 6:30pm</span></li>
             <li class="flex justify-between"><span>Tuesday</span><span>5:00pm · 5:45pm · 6:30pm</span></li>
-            <li class="flex justify-between"><span>Wednesday</span><span id="hours-wednesday">10:00am</span></li>
+            <li class="flex justify-between"><span>Wednesday</span><span>10:00am · 5:45pm</span></li>
             <li class="flex justify-between"><span>Thursday</span><span>5:00pm · 5:45pm · 6:30pm</span></li>
-            <li class="flex justify-between"><span>Friday</span><span id="hours-friday">10:00am</span></li>
+            <li class="flex justify-between"><span>Friday</span><span>10:00am · 5:45pm</span></li>
             <li class="flex justify-between"><span>Saturday</span><span>8:00am · 9:30am</span></li>
             <li class="flex justify-between text-white/40 pt-2 border-t border-white/10"><span>Sunday</span><span>Closed</span></li>
           </ul>
@@ -178,20 +178,5 @@ import Header from '../components/Header.astro';
       © {new Date().getFullYear()} Rob Williams BJJ. All rights reserved.
     </div>
   </footer>
-
-  <script>
-    // Class time changes: Taipans Mon/Wed, Women's Fri, Monday adults 6:30pm
-    // Effective Sunday Aug 2nd 2026, 7pm AEST
-    (function () {
-      const SCHEDULE_SWITCH = '2026-08-02T19:00:00+10:00';
-      if (new Date() < new Date(SCHEDULE_SWITCH)) return;
-      const monday = document.getElementById('hours-monday');
-      const wednesday = document.getElementById('hours-wednesday');
-      const friday = document.getElementById('hours-friday');
-      if (monday) monday.textContent = '10:00am · 5:45pm · 6:30pm';
-      if (wednesday) wednesday.textContent = '10:00am · 5:45pm';
-      if (friday) friday.textContent = '10:00am · 5:45pm';
-    })();
-  </script>
 
 </Layout>
