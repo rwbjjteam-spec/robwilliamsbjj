@@ -16,6 +16,7 @@ const programs = [
       'Improves fitness and coordination in a safe environment',
       'No submissions — safe, age-appropriate grappling only',
       'Booking essential — pre-book via ClubWorx',
+      'Tuesdays & Thursdays at 5:00pm — 30 minute sessions',
     ],
   },
   {
@@ -31,20 +32,22 @@ const programs = [
       'Team-building exercises and responsibility',
       'Friendly competitions for advanced students',
       'Booking essential — pre-book via ClubWorx',
+      'Tuesdays & Thursdays at 5:45pm · Saturdays at 9:30am',
     ],
   },
   {
     name: 'Taipans',
     age: 'Ages 12–15',
     icon: '🐉',
-    desc: 'Real Jiu Jitsu & self-defence. Kick, punch, throw and grapple — in a controlled and progressive self defence system that\'s the perfect cross-training for any contact sport.',
+    desc: 'Real Jiu Jitsu & self-defence, including kick and punch defence. Kick, punch, throw and grapple — in a controlled and progressive self defence system that\'s the perfect cross-training for any contact sport.',
     details: [
-      'Real self-defence skills in a structured environment',
+      'Kick and punch defence — real self-defence in a structured environment',
       'Takedowns, throws, escapes and ground control',
       'Submissions permitted — same rules as Adults classes',
       'Builds discipline, focus and confidence',
       'Great cross-training for footy, rugby and other contact sports',
       'Booking essential — pre-book via ClubWorx',
+      'Mondays & Wednesdays at 5:45pm',
     ],
   },
   {
@@ -73,6 +76,7 @@ const programs = [
       'Suitable for complete beginners through to experienced grapplers',
       'Builds mutual respect and a strong training community',
       'Walk-in welcome',
+      'Mon 10am & 6:30pm · Tue 6:30pm · Wed 10am · Thu 6:30pm · Fri 10am · Sat 8am',
     ],
   },
 ];
@@ -209,27 +213,9 @@ const programs = [
                   </li>
                 ))}
               </ul>
-              {p.ctaSwitchDate ? (
-                <>
-                  <div id={`mobile-cta-comingsoon-${p.name.toLowerCase()}`} class="hidden">
-                    <a href="/contact" class="inline-block bg-brand-red hover:bg-red-700 text-white font-bold px-6 py-2.5 rounded transition text-sm">
-                      Contact Us for More Info →
-                    </a>
-                  </div>
-                  <div id={`mobile-cta-real-${p.name.toLowerCase()}`} class="hidden" data-switch={p.ctaSwitchDate}>
-                    <a href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener" class="inline-block bg-brand-red hover:bg-red-700 text-white font-bold px-6 py-2.5 rounded transition text-sm mr-2 mb-2">
-                      Book a free trial →
-                    </a>
-                    <a href={p.bookingLink} target="_blank" rel="noopener" class="inline-block border border-white/30 hover:border-white text-white font-semibold px-6 py-2.5 rounded transition text-sm">
-                      {p.booking}
-                    </a>
-                  </div>
-                </>
-              ) : (
-                <a href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener" class="inline-block bg-brand-red hover:bg-red-700 text-white font-bold px-6 py-2.5 rounded transition text-sm">
-                  Book a free trial →
-                </a>
-              )}
+              <a href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener" class="inline-block bg-brand-red hover:bg-red-700 text-white font-bold px-6 py-2.5 rounded transition text-sm">
+                Book a free trial →
+              </a>
               <a href={`/programs#${p.name.toLowerCase()}`} class="block mt-3 text-white/50 hover:text-white/80 text-sm font-medium transition">
                 See full class details →
               </a>
@@ -278,27 +264,9 @@ const programs = [
                 </li>
               ))}
             </ul>
-            {p.ctaSwitchDate ? (
-              <>
-                <div id={`desktop-cta-comingsoon-${p.name.toLowerCase()}`} class="hidden">
-                  <a href="/contact" class="inline-block bg-brand-red hover:bg-red-700 text-white font-bold px-8 py-3 rounded transition text-sm">
-                    Contact Us for More Info →
-                  </a>
-                </div>
-                <div id={`desktop-cta-real-${p.name.toLowerCase()}`} class="hidden" data-switch={p.ctaSwitchDate}>
-                  <a href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener" class="inline-block bg-brand-red hover:bg-red-700 text-white font-bold px-8 py-3 rounded transition text-sm mr-3 mb-2">
-                    Book a free trial →
-                  </a>
-                  <a href={p.bookingLink} target="_blank" rel="noopener" class="inline-block border border-white/30 hover:border-white text-white font-semibold px-8 py-3 rounded transition text-sm">
-                    {p.booking}
-                  </a>
-                </div>
-              </>
-            ) : (
-              <a href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener" class="inline-block bg-brand-red hover:bg-red-700 text-white font-bold px-8 py-3 rounded transition text-sm">
-                Book a free trial →
-              </a>
-            )}
+            <a href="https://app.clubworx.com/websites/rob-williams-bjj/waivers/waiver-without-payment-auth/signed_waivers/new" target="_blank" rel="noopener" class="inline-block bg-brand-red hover:bg-red-700 text-white font-bold px-8 py-3 rounded transition text-sm">
+              Book a free trial →
+            </a>
             <a href={`/programs#${p.name.toLowerCase()}`} class="block mt-4 text-white/50 hover:text-white/80 text-sm font-medium transition">
               See full class details →
             </a>
@@ -310,22 +278,6 @@ const programs = [
       ))}
 
       <script>
-        // ── Taipans-style CTA switch (coming soon vs real booking buttons) ──
-        (function () {
-          const now = new Date();
-          document.querySelectorAll<HTMLElement>('[id^="mobile-cta-real-"], [id^="desktop-cta-real-"]').forEach(realCta => {
-            const comingSoonId = realCta.id.replace('-real-', '-comingsoon-');
-            const comingSoon = document.getElementById(comingSoonId);
-            const switchDate = realCta.dataset.switch;
-            if (!switchDate) return;
-            if (now >= new Date(switchDate)) {
-              realCta.classList.replace('hidden', 'block');
-            } else if (comingSoon) {
-              comingSoon.classList.replace('hidden', 'block');
-            }
-          });
-        })();
-
         // ── Mobile inline expansion ──
         document.querySelectorAll('.mobile-program-group').forEach(group => {
           const btn     = group.querySelector('.mobile-card') as HTMLElement;
