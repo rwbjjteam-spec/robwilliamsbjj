@@ -5,11 +5,11 @@ import Header from '../components/Header.astro';
 const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 // Each cell: null = empty, or { label, type }
-// types: adults-gi | adults-nogi | pythons | anacondas | taipans
+// types: adults-gi | adults-nogi | pythons | anacondas | taipans | mma
 const schedule = [
   {
     time: '8:00am',
-    classes: [null, null, null, null, null, { label: 'Adults Gi', type: 'adults-gi' }],
+    classes: [null, null, null, null, null, { label: 'MMA / Self Defence', type: 'mma' }],
   },
   {
     time: '9:30am',
@@ -67,6 +67,7 @@ const typeStyles: Record<string, string> = {
   'pythons':     'bg-yellow-600/80 border-yellow-500',
   'anacondas':   'bg-orange-600/80 border-orange-400',
   'taipans':     'bg-purple-600/80 border-purple-400',
+  'mma':         'bg-red-700/80 border-red-500',
 };
 ---
 
@@ -116,6 +117,7 @@ const typeStyles: Record<string, string> = {
           { label: 'Pythons (4–7)',   type: 'pythons',     style: 'bg-yellow-600/80 border-yellow-500 text-white' },
           { label: 'Anacondas (8–12)',type: 'anacondas',   style: 'bg-orange-600/80 border-orange-400 text-white' },
           { label: 'Taipans (12–15)', type: 'taipans',     style: 'bg-purple-600/80 border-purple-400 text-white' },
+          { label: 'MMA / Self Defence', type: 'mma',     style: 'bg-red-700/80 border-red-500 text-white' },
         ].map(({ label, type, style }) => (
           <div data-class-type={type} class={`legend-item flex items-center gap-2 border rounded-lg px-3 py-1.5 text-xs font-semibold cursor-pointer transition-all ${style}`}>
             {label}
